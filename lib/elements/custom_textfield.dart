@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatelessWidget {
-  const CustomTextfield({super.key});
+  final TextEditingController controller;
+  final bool isInvalidEmail;
+
+  const CustomTextfield({super.key, required this.controller, required this.isInvalidEmail});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: controller,
       decoration: InputDecoration(
         hintText: "Enter email",
         filled: true,
@@ -15,7 +19,22 @@ class CustomTextfield extends StatelessWidget {
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(4)),
           borderSide: BorderSide.none,
-        )
+        ),
+        errorBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 1
+          )
+        ),
+        focusedErrorBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(4)),
+          borderSide: BorderSide(
+            color: Colors.red,
+            width: 1
+          )
+        ),
+        errorText: isInvalidEmail ? 'Неправильный email' : null
       ),
     );
   }

@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonText;
+  void Function() loginPress;
 
-  const CustomButton({super.key, required this.buttonText});
+  CustomButton({super.key, required this.buttonText, required this.loginPress});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: (){}, 
+      onPressed: loginPress, 
       child: Text(
         '${buttonText}',
         style: const TextStyle(
