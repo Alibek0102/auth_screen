@@ -1,24 +1,25 @@
 import 'package:auth_screen/presentation/login_screen.dart';
+import 'package:auth_screen/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
 
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key});
+
+  final appRoutes = AppRoutes();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      routes: <String, WidgetBuilder>{
-        '/': (context) => const LoginScreen()
-      },
+      routerConfig: appRoutes.config(),
     );
   }
 }

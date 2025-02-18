@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
@@ -24,7 +25,7 @@ class Header extends StatelessWidget {
               width: 40,
               height: 40,
               child: IconButton(
-                onPressed: (){}, 
+                onPressed: () => context.router.back(), 
                 icon: const Icon(Icons.arrow_back),
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(Colors.grey[200])

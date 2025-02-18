@@ -1,12 +1,12 @@
-import 'dart:ffi';
-
 import 'package:auth_screen/elements/auth_info_text.dart';
 import 'package:auth_screen/elements/custom_button.dart';
 import 'package:auth_screen/elements/auth_page.dart';
 import 'package:auth_screen/elements/custom_textfield.dart';
 import 'package:auth_screen/elements/social_buttons.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
+@RoutePage()
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -61,19 +61,22 @@ class _LoginScreen extends State<LoginScreen> {
     return Scaffold(
       body: AuthPage(
         headerTitle: "Sign in",
-        hasBackButton: true, // активирует кнопку назад
+        hasBackButton: false, // активирует кнопку назад
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 27),
           child: Column(
             children: [
               CustomTextfield(
                 controller: controller,
-                isInvalidEmail: isInvalidEmail
+                isInvalidEmail: isInvalidEmail,
+                placeholder: 'Enter email',
               ),
               const SizedBox( height: 16),
               CustomButton(buttonText: 'Sign in', loginPress: login),
               const SizedBox( height: 16),
-              const AuthInfoText(),
+              AuthInfoText(
+                goToRegistration: () { context.router.pushNamed('/registration'); },
+              ),
               const SizedBox(height: 71),
               const SocialButtons()
             ], 

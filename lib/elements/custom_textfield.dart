@@ -3,15 +3,21 @@ import 'package:flutter/material.dart';
 class CustomTextfield extends StatelessWidget {
   final TextEditingController controller;
   final bool isInvalidEmail;
+  final String? placeholder;
 
-  const CustomTextfield({super.key, required this.controller, required this.isInvalidEmail});
+  const CustomTextfield({
+    super.key, 
+    required this.controller, 
+    required this.isInvalidEmail,
+    this.placeholder
+  });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
       decoration: InputDecoration(
-        hintText: "Enter email",
+        hintText: placeholder ?? '',
         filled: true,
         isCollapsed: true,
         contentPadding: const EdgeInsets.symmetric(vertical: 17, horizontal: 12),

@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AuthInfoText extends StatelessWidget {
-  const AuthInfoText({super.key});
+
+  final Function()? goToRegistration;
+
+  const AuthInfoText({
+    super.key,
+    this.goToRegistration
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +20,7 @@ class AuthInfoText extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: (){}, 
+          onPressed: goToRegistration, 
           child: const Text(
             "Create One",
             style: TextStyle(
