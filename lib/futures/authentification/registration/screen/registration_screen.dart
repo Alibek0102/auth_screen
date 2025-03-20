@@ -1,4 +1,4 @@
-import 'package:auth_screen/elements/auth_page.dart';
+import 'package:auth_screen/futures/authentification/common/auth_page.dart';
 import 'package:auth_screen/elements/custom_button.dart';
 import 'package:auth_screen/elements/custom_textfield.dart';
 import 'package:auto_route/auto_route.dart';

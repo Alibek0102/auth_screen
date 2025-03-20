@@ -1,4 +1,4 @@
-import 'package:auth_screen/elements/header.dart';
+import 'package:auth_screen/futures/authentification/common/header.dart';
 import 'package:flutter/material.dart';
 
 class AuthPage extends StatelessWidget {

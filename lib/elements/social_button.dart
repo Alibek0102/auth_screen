@@ -1,4 +1,4 @@
-import 'package:auth_screen/entities/social_button_model.dart';
+import 'package:auth_screen/entities/ui/social_button_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

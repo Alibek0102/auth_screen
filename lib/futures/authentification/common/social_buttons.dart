@@ -1,5 +1,5 @@
 import 'package:auth_screen/elements/social_button.dart';
-import 'package:auth_screen/entities/social_button_model.dart';
+import 'package:auth_screen/entities/ui/social_button_model.dart';
 import 'package:flutter/material.dart';
 
 class SocialButtons extends StatelessWidget {

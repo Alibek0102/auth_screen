@@ -1,20 +1,20 @@
-import 'package:auth_screen/elements/auth_info_text.dart';
+import 'package:auth_screen/futures/authentification/common/auth_info_text.dart';
 import 'package:auth_screen/elements/custom_button.dart';
-import 'package:auth_screen/elements/auth_page.dart';
 import 'package:auth_screen/elements/custom_textfield.dart';
-import 'package:auth_screen/elements/social_buttons.dart';
+import 'package:auth_screen/futures/authentification/common/auth_page.dart';
+import 'package:auth_screen/futures/authentification/common/social_buttons.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginEmailScreen extends StatefulWidget {
+  const LoginEmailScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreen();
+  State<LoginEmailScreen> createState() => _LoginEmailScreen();
 }
 
-class _LoginScreen extends State<LoginScreen> {
+class _LoginEmailScreen extends State<LoginEmailScreen> {
 
   final controller = TextEditingController();
   bool isInvalidEmail = false;
@@ -53,7 +53,8 @@ class _LoginScreen extends State<LoginScreen> {
 
     isInvalidEmail = false;
     setState(() {});
-    // continue
+    
+    context.router.pushNamed('/login-password');
   }
 
   @override

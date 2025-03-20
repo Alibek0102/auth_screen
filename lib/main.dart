@@ -1,16 +1,15 @@
-import 'package:auth_screen/presentation/login_screen.dart';
 import 'package:auth_screen/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
 void main() {
 
-  runApp(MainApp());
+  runApp(ClotApplication());
 }
 
-class MainApp extends StatelessWidget {
-  MainApp({super.key});
+class ClotApplication extends StatelessWidget {
+  ClotApplication({super.key});
 
-  final appRoutes = AppRoutes();
+  final _appRoutes = AppRoutes();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      routerConfig: appRoutes.config(),
+      routerConfig: _appRoutes.config(),
     );
   }
 }
