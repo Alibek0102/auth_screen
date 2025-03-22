@@ -6,7 +6,6 @@ class AppRoutes extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => [
-    RedirectRoute(path: '/', redirectTo: '/login-email'), // временно
     AutoRoute(
       path: '/login-email',
       page: LoginEmailRoute.page, 

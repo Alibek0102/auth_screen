@@ -25,7 +25,7 @@ class LoginPaswordScreen extends StatelessWidget {
                   placeholder: 'Password',
                 ),
                 const SizedBox( height: 16),
-                CustomButton(buttonText: 'Sign in', loginPress: (){context.router.pushNamed('/start');}),
+                CustomButton(buttonText: 'Sign in', loginPress: (){context.router.replaceNamed('/start');}),
                 const SizedBox( height: 16),
                 AuthInfoText(
                   goToRegistration: () { context.router.pushNamed('/registration'); },
