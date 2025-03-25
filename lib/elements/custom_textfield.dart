@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 class CustomTextfield extends StatelessWidget {
-  final TextEditingController controller;
   final bool isInvalidEmail;
   final String? placeholder;
+  final  Function(String) onChanged;
 
   const CustomTextfield({
     super.key, 
-    required this.controller, 
     required this.isInvalidEmail,
+    required this.onChanged,
     this.placeholder
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: controller,
+      onChanged: onChanged,
       decoration: InputDecoration(
         hintText: placeholder ?? '',
         filled: true,

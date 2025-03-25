@@ -8,9 +8,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auth_screen/futures/authentification/login/screen/login_email_screen.dart'
+import 'package:auth_screen/futures/authentification/login/screen/login_email/login_email_screen.dart'
     as _i2;
-import 'package:auth_screen/futures/authentification/login/screen/login_pasword_screen.dart'
+import 'package:auth_screen/futures/authentification/login/screen/login_password/login_pasword_screen.dart'
     as _i3;
 import 'package:auth_screen/futures/authentification/registration/screen/registration_screen.dart'
     as _i7;
@@ -80,10 +80,17 @@ class LoginEmailRoute extends _i9.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.LoginPaswordScreen]
-class LoginPaswordRoute extends _i9.PageRouteInfo<void> {
-  const LoginPaswordRoute({List<_i9.PageRouteInfo>? children})
-      : super(
+class LoginPaswordRoute extends _i9.PageRouteInfo<LoginPaswordRouteArgs> {
+  LoginPaswordRoute({
+    _i10.Key? key,
+    required String email,
+    List<_i9.PageRouteInfo>? children,
+  }) : super(
           LoginPaswordRoute.name,
+          args: LoginPaswordRouteArgs(
+            key: key,
+            email: email,
+          ),
           initialChildren: children,
         );
 
@@ -92,9 +99,29 @@ class LoginPaswordRoute extends _i9.PageRouteInfo<void> {
   static _i9.PageInfo page = _i9.PageInfo(
     name,
     builder: (data) {
-      return const _i3.LoginPaswordScreen();
+      final args = data.argsAs<LoginPaswordRouteArgs>();
+      return _i3.LoginPaswordScreen(
+        key: args.key,
+        email: args.email,
+      );
     },
   );
+}
+
+class LoginPaswordRouteArgs {
+  const LoginPaswordRouteArgs({
+    this.key,
+    required this.email,
+  });
+
+  final _i10.Key? key;
+
+  final String email;
+
+  @override
+  String toString() {
+    return 'LoginPaswordRouteArgs{key: $key, email: $email}';
+  }
 }
 
 /// generated route for

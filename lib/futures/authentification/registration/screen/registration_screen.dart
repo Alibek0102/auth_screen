@@ -27,27 +27,27 @@ class RegistrationScreen extends StatelessWidget {
           child: Column(
             children: [
               CustomTextfield(
-                controller: firstNameFieldController, 
                 isInvalidEmail: false,
                 placeholder: 'Firstname',
+                onChanged: (value){},
               ),
               const SizedBox(height: 16,),
               CustomTextfield(
-                controller: lastNameFieldController, 
                 isInvalidEmail: false,
                 placeholder: 'Lastname',
+                onChanged: (value){},
               ),
               const SizedBox(height: 16,),
               CustomTextfield(
-                controller: emailAdressFieldController, 
                 isInvalidEmail: false,
                 placeholder: 'Email Address',
+                onChanged: (value){},
               ),
               const SizedBox(height: 16,),
               CustomTextfield(
-                controller: passwordFieldController, 
                 isInvalidEmail: false,
                 placeholder: 'Password',
+                onChanged: (value){},
               ),
               SizedBox(height: screenHeight * 0.05,),
               CustomButton(

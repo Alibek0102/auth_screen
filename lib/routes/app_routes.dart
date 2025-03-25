@@ -8,11 +8,10 @@ class AppRoutes extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(
       path: '/login-email',
-      page: LoginEmailRoute.page, 
+      page: LoginEmailRoute.page,
       initial: true
     ),
     AutoRoute(
-      path: '/login-password',
       page: LoginPaswordRoute.page,
     ),
     AutoRoute(
