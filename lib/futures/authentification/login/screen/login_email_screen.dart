@@ -3,7 +3,8 @@ import 'package:auth_screen/elements/custom_button.dart';
 import 'package:auth_screen/elements/custom_textfield.dart';
 import 'package:auth_screen/futures/authentification/common/auth_page.dart';
 import 'package:auth_screen/futures/authentification/common/social_buttons.dart';
-import 'package:auth_screen/futures/authentification/login/screen/login_email/bloc/login_email_bloc.dart';
+import 'package:auth_screen/futures/authentification/login/bloc/login_bloc.dart';
+import 'package:auth_screen/futures/authentification/login/screen/login_pasword_screen.dart';
 import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -15,14 +16,13 @@ class LoginEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final loginBlock = BlocProvider.of<LoginEmailBloc>(context);
+    final loginBlock = BlocProvider.of<LoginBloc>(context);
 
     return Scaffold(
-      body: BlocConsumer<LoginEmailBloc, LoginEmailBlocState>(
+      body: BlocConsumer<LoginBloc, LoginBlocState>(
         listener: (context, state) {
           if(state is ConfirmEmailState) {
-            final confirmedEmail = state.email;
-            context.router.push(LoginPaswordRoute(email: confirmedEmail));
+            context.router.push(LoginPaswordRoute(email: state.email));
           }
         },
         bloc: loginBlock,
@@ -35,10 +35,10 @@ class LoginEmailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextfield(
-                      isInvalidEmail: state is EmailChangedState ? state.isInvalidEmail : false,
+                      isInvalidEmail: state is LoginEmailChangeState ? state.isInvalidEmail : false,
                       placeholder: 'Enter email',
                       onChanged: (value) {
-                        loginBlock.add(EmailChangeEvent(email: value));
+                        loginBlock.add(LoginEmailChangeEvent(email: value));
                       },
                     ),
                     const SizedBox(height: 16),

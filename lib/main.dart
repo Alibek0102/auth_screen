@@ -1,8 +1,7 @@
 import 'package:auth_screen/core/clients/dioClient.dart';
 import 'package:auth_screen/domain/repository/login_repository_impl.dart';
 import 'package:auth_screen/domain/repository/token_repository_iml.dart';
-import 'package:auth_screen/futures/authentification/login/screen/login_email/bloc/login_email_bloc.dart';
-import 'package:auth_screen/futures/authentification/login/screen/login_password/bloc/login_password_block.dart';
+import 'package:auth_screen/futures/authentification/login/bloc/login_bloc.dart';
 import 'package:auth_screen/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,10 +21,8 @@ void main() {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => LoginEmailBloc()),
-          BlocProvider(create: (context) => LoginPasswordBlock(
-            loginRepository: RepositoryProvider.of<LoginRepositoryImpl>(context),
-            tokenRepository: RepositoryProvider.of<TokenRepositoryIml>(context)
+          BlocProvider(create: (context) => LoginBloc(
+            loginRepo: RepositoryProvider.of<LoginRepositoryImpl>(context)
           ))
         ],
         child: ClotApplication()

@@ -8,9 +8,9 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auth_screen/futures/authentification/login/screen/login_email/login_email_screen.dart'
+import 'package:auth_screen/futures/authentification/login/screen/login_email_screen.dart'
     as _i2;
-import 'package:auth_screen/futures/authentification/login/screen/login_password/login_pasword_screen.dart'
+import 'package:auth_screen/futures/authentification/login/screen/login_pasword_screen.dart'
     as _i3;
 import 'package:auth_screen/futures/authentification/registration/screen/registration_screen.dart'
     as _i7;
