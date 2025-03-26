@@ -3,40 +3,55 @@ part of 'login_bloc.dart';
 class LoginBlocState {}
 class LoginBlocInitialState extends LoginBlocState {}
 
-// Email screen
-class LoginEmailChangeState extends LoginBlocState {
-  String email;
-  bool isInvalidEmail = false;
+enum LoginScreen { onNavigate, resetNavigate }
+enum LoginResponse { proccess, loader, error }
 
-  LoginEmailChangeState({required this.email, this.isInvalidEmail = false});
-
-  LoginEmailChangeState copyWith({String? email, bool? isInvalidEmail}) {
-    return LoginEmailChangeState(
-      email: email ?? this.email,
-      isInvalidEmail: isInvalidEmail ?? this.isInvalidEmail
-    );
-  }
-}
-
-class ConfirmEmailState extends LoginBlocState {
-  String email;
-  ConfirmEmailState({required this.email});
-}
-
-// password screen
-
-class LoginPasswordState extends LoginBlocState {
+class LoginState extends LoginBlocState {
   String? email;
   String? password;
-  bool invalidPassword = false;
+  bool isInvalidEmail = false;
+  bool isInvalidPassword = false;
 
-  LoginPasswordState({this.email, this.password, this.invalidPassword = false});
+  LoginScreen loginEvent = LoginScreen.resetNavigate;
+  LoginResponse loginResponse = LoginResponse.proccess;
 
-  LoginPasswordState copyWith({String? email, String? password, bool? invalidPassword}) {
-    return LoginPasswordState(
+  LoginState({
+    this.email, 
+    this.password, 
+    this.isInvalidEmail = false, 
+    this.isInvalidPassword = false,
+    this.loginEvent = LoginScreen.resetNavigate,
+    this.loginResponse = LoginResponse.proccess,
+  });
+
+  LoginState copyWith({
+    String? email, 
+    String? password, 
+    bool? isInvalidEmail, 
+    bool? isInvalidPassword,
+    LoginScreen? loginEvent,
+    LoginResponse? loginResponse
+  }) {
+    return LoginState(
       email: email ?? this.email,
       password: password ?? this.password,
-      invalidPassword: invalidPassword ?? this.invalidPassword
+      isInvalidEmail: isInvalidEmail ?? this.isInvalidEmail,
+      isInvalidPassword: isInvalidPassword ?? this.isInvalidPassword,
+      loginEvent: loginEvent ?? this.loginEvent,
+      loginResponse: loginResponse ?? this.loginResponse
+    );
+  }
+
+  LoginState changeLoginData({String? email, String? password}) {
+    return LoginState(
+      email: email ?? this.email,
+      password: password ?? this.password,
+      loginEvent: LoginScreen.resetNavigate,
+      loginResponse: LoginResponse.proccess,
+      isInvalidEmail: false,
+      isInvalidPassword: false
     );
   }
 }
+
+class LoginSuccessState extends LoginBlocState {}

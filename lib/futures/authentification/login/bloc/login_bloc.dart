@@ -1,3 +1,4 @@
+import 'package:auth_screen/core/constants/login_error_messages.dart';
 import 'package:auth_screen/core/validators/login_validators.dart';
 import 'package:auth_screen/data/models/token_model.dart';
 import 'package:auth_screen/data/repositories/login_repository.dart';
@@ -12,54 +13,63 @@ class LoginBloc extends Bloc<LoginBlocEvent, LoginBlocState>
 
   final LoginRepository loginRepo;
 
-  LoginBloc({required this.loginRepo}) : super(LoginBlocInitialState()) {
-    on<LoginEmailChangeEvent>((event, emit) {
+  LoginBloc({required this.loginRepo}) : super(LoginState()) {
+    on<OnChangeEmailEvent>((event, emit) {
       final email = event.email;
-      emit(LoginEmailChangeState(email: email));
+      final initialState = (state as LoginState);
+      emit(initialState.changeLoginData(email: email));
     });
 
-    on<ConfirmEmailEvent>((event, emit) {
-      final currentState = (state as LoginEmailChangeState);
+    on<ConfirmEmailEvent>((_, emit) {
+      final currentState = (state as LoginState);
 
-      if(!isValidEmail(currentState.email)) {
+      if(!isValidEmail(currentState.email ?? '')) {
         emit(currentState.copyWith(isInvalidEmail: true));
       } else {
-        emit(ConfirmEmailState(email: currentState.email));
+        emit(currentState.copyWith(
+          loginEvent: LoginScreen.onNavigate, 
+          loginResponse: LoginResponse.proccess
+        ));
       }
     });
 
-    on<LoginPasswordChangeEvent>((event, emit) {
+    on<OnChangePassword>((event, emit) {
+      final currentState = (state as LoginState);
       final password = event.password;
-      final email = event.email;
-      emit(LoginPasswordState(email: email, password: password));
+      emit(currentState.changeLoginData(password: password));
     });
 
-    on<ConfirmPasswordEvent>((event, emit) {
-      final currentState = (state as LoginPasswordState);
+    on<ConfirmPassword>((_, emit) {
+      final currentState = (state as LoginState);
 
-      if(!isValidPassword(currentState.password ?? '')){
-        emit(currentState.copyWith(invalidPassword: true));
+      if(!isValidPassword(currentState.password ?? '')) {
+        emit(currentState.copyWith(isInvalidPassword: true));
       } else {
         add(LoginEvent());
       }
     });
 
-    on<LoginEvent>((event, emit) async {
-      final availableState = (state as LoginPasswordState);
+    on<LoginEvent>((_, emit) async {
+      final currentState = (state as LoginState);
+      final String? email = currentState.email;
+      final String? password = currentState.password;
 
-      if(availableState.email == null || availableState.password == null) throw ErrorDescription('');
+      emit(currentState.copyWith(loginResponse: LoginResponse.loader));
+
+      if(email == null || password == null) {
+        emit(currentState.copyWith(loginResponse: LoginResponse.error));
+        throw ErrorDescription(LoginErrorMessages.loginError);
+      }
 
       try {
-        TokenModel token = await loginRepo.login(
-          email: availableState.email!, 
-          password: availableState.password!
-        );
+        TokenModel token = await loginRepo.login(email: email, password: password);
         print(token.access_token);
-      } catch(error) {
-        if(error is String) {
-          throw ErrorDescription(error);
-        }
+        await Future.delayed(const Duration(seconds: 2));
+        emit(LoginSuccessState());
+      } catch (_) {
+        emit(currentState.copyWith(loginResponse: LoginResponse.error));
       }
+
     });
   }
 }

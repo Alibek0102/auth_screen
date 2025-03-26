@@ -4,7 +4,6 @@ import 'package:auth_screen/elements/custom_textfield.dart';
 import 'package:auth_screen/futures/authentification/common/auth_page.dart';
 import 'package:auth_screen/futures/authentification/common/social_buttons.dart';
 import 'package:auth_screen/futures/authentification/login/bloc/login_bloc.dart';
-import 'package:auth_screen/futures/authentification/login/screen/login_pasword_screen.dart';
 import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +20,13 @@ class LoginEmailScreen extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<LoginBloc, LoginBlocState>(
         listener: (context, state) {
-          if(state is ConfirmEmailState) {
-            context.router.push(LoginPaswordRoute(email: state.email));
+          if(
+            state is LoginState 
+            && state.loginEvent == LoginScreen.onNavigate 
+            && state.email != null
+          ) {
+            final email = state.email!;
+            context.router.push(LoginPaswordRoute(email: email));
           }
         },
         bloc: loginBlock,
@@ -35,10 +39,10 @@ class LoginEmailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextfield(
-                      isInvalidEmail: state is LoginEmailChangeState ? state.isInvalidEmail : false,
+                      isInvalidEmail: state is LoginState ? state.isInvalidEmail : false,
                       placeholder: 'Enter email',
                       onChanged: (value) {
-                        loginBlock.add(LoginEmailChangeEvent(email: value));
+                        loginBlock.add(OnChangeEmailEvent(email: value));
                       },
                     ),
                     const SizedBox(height: 16),

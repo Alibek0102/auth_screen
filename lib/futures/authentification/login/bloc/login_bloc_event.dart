@@ -2,21 +2,19 @@ part of 'login_bloc.dart';
 
 class LoginBlocEvent {}
 
-// first screen
-class LoginEmailChangeEvent extends LoginBlocEvent {
+class OnChangeEmailEvent extends LoginBlocEvent {
   String email;
-
-  LoginEmailChangeEvent({required this.email});
+  OnChangeEmailEvent({required this.email});
 }
 
 class ConfirmEmailEvent extends LoginBlocEvent {}
 
-class LoginPasswordChangeEvent extends LoginBlocEvent {
+class OnChangePassword extends LoginBlocEvent {
   String password;
-  String email;
-  LoginPasswordChangeEvent({required this.password, required this.email});
+
+  OnChangePassword({required this.password});
 }
 
-class ConfirmPasswordEvent extends LoginBlocEvent {}
+class ConfirmPassword extends LoginBlocEvent {}
 
 class LoginEvent extends LoginBlocEvent {}

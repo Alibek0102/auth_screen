@@ -19,7 +19,6 @@ class AppRoutes extends RootStackRouter {
       page: RegistrationRoute.page
     ),
     AutoRoute(
-      path: '/start',
       page: TabNavigationRoute.page,
       children: [
         AutoRoute(page: HomeRoute.page),
