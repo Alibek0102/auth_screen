@@ -22,7 +22,9 @@ class HomeAppBar extends StatelessWidget {
       bottom: HomeSearchBar(),
       leading: AppBarLeading(),
       leadingWidth: 64,
-      actions: [AppBarTrailing(),],
+      actions: [
+        AppBarTrailing(),
+      ],
     );
   }
 }
