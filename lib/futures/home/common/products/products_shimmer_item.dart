@@ -90,6 +90,5 @@ class ProductsShimmerItem extends StatelessWidget {
         12.width
       ],
     );
-    ;
   }
 }

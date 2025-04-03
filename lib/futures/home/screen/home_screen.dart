@@ -1,4 +1,3 @@
-import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/common/app_bar/home_app_bar.dart';
 import 'package:auth_screen/futures/home/common/categories/categories_list.dart';
