@@ -1,6 +1,8 @@
+import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/common/app_bar/home_app_bar.dart';
 import 'package:auth_screen/futures/home/common/categories/categories_list.dart';
+import 'package:auth_screen/futures/home/common/products/product_shimmer_list.dart';
 import 'package:auth_screen/futures/home/common/products/products_list.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auto_route/auto_route.dart';
@@ -30,15 +32,21 @@ class _HomeScreenState extends State<HomeScreen> {
         body: CustomScrollView(
       slivers: [
         const HomeAppBar(),
-        SliverList.list(children: const [
-          CategoriesList(),
-          ProductsList(),
-          ProductsList(),
-          ProductsList(),
-          ProductsList(),
-          ProductsList(),
-          ProductsList()
-        ])
+        BlocBuilder<CategoriesBloc, CategoriesState>(
+          builder: (context, state) {
+            return SliverList.list(children: [
+              CategoriesList(categories: state.categories),
+              state.categories.isNotEmpty
+                  ? Column(
+                      children: state.categories
+                          .map((category) => ProductsList(
+                                categoryTitle: category.category,
+                              ))
+                          .toList())
+                  : ProductShimmerList()
+            ]);
+          },
+        )
       ],
     ));
   }

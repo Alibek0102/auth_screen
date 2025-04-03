@@ -1,6 +1,7 @@
 import 'package:auth_screen/core/dio_client.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
+import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
 import 'package:auth_screen/routes/app_routes.dart';
@@ -26,6 +27,9 @@ class ClotApplication extends StatelessWidget {
                 client: RepositoryProvider.of<DioClient>(context).instance)),
         RepositoryProvider(
             create: (context) => CategoryRepositoryImpl(
+                client: RepositoryProvider.of<DioClient>(context).instance)),
+        RepositoryProvider(
+            create: (context) => ProductsRepositoryImpl(
                 client: RepositoryProvider.of<DioClient>(context).instance))
       ],
       child: MultiBlocProvider(

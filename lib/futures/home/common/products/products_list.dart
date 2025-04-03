@@ -1,33 +1,92 @@
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
+import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/common/list_header.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
+import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsList extends StatelessWidget {
-  const ProductsList({
-    super.key,
-  });
+  final String categoryTitle;
+
+  const ProductsList({super.key, required this.categoryTitle});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        24.height,
-        const ListHeader(headerTitle: 'Top Selling'),
-        16.height,
-        SizedBox(
-          height: 281,
-          child: ListView.builder(
+    final productsRepository =
+        RepositoryProvider.of<ProductsRepositoryImpl>(context);
+
+    return BlocProvider(
+      create: (context) => ProductsBloc(productsRepository: productsRepository),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          24.height,
+          ListHeader(headerTitle: categoryTitle),
+          16.height,
+          SizedBox(
+            height: 281,
+            child: Products(
+              model: categoryTitle,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class Products extends StatefulWidget {
+  final String model;
+
+  const Products({super.key, required this.model});
+
+  @override
+  State<Products> createState() => _ProductsState();
+}
+
+class _ProductsState extends State<Products> {
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _controller.addListener(_onEnd);
+    BlocProvider.of<ProductsBloc>(context)
+        .add(FetchProducts(model: widget.model));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onEnd() {
+    if (_controller.position.pixels + 100 ==
+        _controller.position.maxScrollExtent) {
+      print('end');
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ProductsBloc, ProductsState>(
+      builder: (context, state) {
+        if (state.products.isEmpty) {
+          return Text('no data');
+        }
+        return ListView.builder(
+            controller: _controller,
             scrollDirection: Axis.horizontal,
-            itemCount: 15,
+            itemCount: state.products.length,
             padding: const EdgeInsets.symmetric(horizontal: 24),
             itemBuilder: (BuildContext context, int index) {
-              return const ProductItem();
-            }
-          ),
-        ),
-      ],
+              return ProductItem(
+                productEntity: state.products[index],
+              );
+            });
+      },
     );
   }
 }
