@@ -7,7 +7,7 @@ class UserModel extends UserEntity {
       required super.name,
       required super.location,
       required super.phone,
-      required super.pickture});
+      required super.picture});
 
   UserModel.fromJson(Map<String, dynamic> json)
       : super(
@@ -15,5 +15,5 @@ class UserModel extends UserEntity {
             name: json['email'],
             location: LocationModel.fromJson(json['location']),
             phone: json['phone'],
-            pickture: json['picture']['medium']);
+            picture: json['picture']['medium']);
 }

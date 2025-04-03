@@ -1,4 +1,6 @@
 import 'package:auth_screen/core/dio_client.dart';
+import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
+import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
 import 'package:auth_screen/routes/app_routes.dart';
@@ -21,6 +23,9 @@ class ClotApplication extends StatelessWidget {
         RepositoryProvider(create: (_) => DioClient()),
         RepositoryProvider(
             create: (context) => UserRepositoryImpl(
+                client: RepositoryProvider.of<DioClient>(context).instance)),
+        RepositoryProvider(
+            create: (context) => CategoryRepositoryImpl(
                 client: RepositoryProvider.of<DioClient>(context).instance))
       ],
       child: MultiBlocProvider(
@@ -28,7 +33,11 @@ class ClotApplication extends StatelessWidget {
           BlocProvider(
               create: (context) => ProfileBloc(
                   userRepository:
-                      RepositoryProvider.of<UserRepositoryImpl>(context)))
+                      RepositoryProvider.of<UserRepositoryImpl>(context))),
+          BlocProvider(
+              create: (context) => CategoriesBloc(
+                  categoryRepository:
+                      RepositoryProvider.of<CategoryRepositoryImpl>(context)))
         ],
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,

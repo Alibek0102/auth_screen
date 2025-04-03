@@ -1,3 +1,4 @@
+import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/common/app_bar/home_app_bar.dart';
 import 'package:auth_screen/futures/home/common/categories/categories_list.dart';
 import 'package:auth_screen/futures/home/common/products/products_list.dart';
@@ -20,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     BlocProvider.of<ProfileBloc>(context).add(FetchProfile());
+    BlocProvider.of<CategoriesBloc>(context).add(FetchCategories());
   }
 
   @override

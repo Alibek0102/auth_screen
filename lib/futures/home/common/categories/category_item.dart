@@ -1,29 +1,40 @@
+import 'package:auth_screen/core/app_colors.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({
-    super.key,
-  });
+  final String title;
+
+  const CategoryItem({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Column(
+        Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             SizedBox(
-              width: 56,
-              height: 56,
-              child: CircleAvatar()
-            ),
-            Spacer(),
+                width: 56,
+                height: 56,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(56 / 2)),
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(color: AppColors.primary_violet),
+                    child: Center(
+                        child: Text(
+                      title[0].toUpperCase(),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    )),
+                  ),
+                )),
+            const Spacer(),
             Text(
-              'Shoes',
-              style: TextStyle(
-                fontSize: 12
-              ),
+              title,
+              style: const TextStyle(fontSize: 12),
               maxLines: 1,
             ),
           ],

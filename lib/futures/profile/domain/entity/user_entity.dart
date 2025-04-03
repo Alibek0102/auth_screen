@@ -5,12 +5,12 @@ class UserEntity {
   final String name;
   final LocationEntity location;
   final String phone;
-  final String pickture;
+  final String picture;
 
   const UserEntity(
       {required this.id,
       required this.name,
       required this.location,
       required this.phone,
-      required this.pickture});
+      required this.picture});
 }

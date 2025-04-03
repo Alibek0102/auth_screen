@@ -12,9 +12,9 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     on<FetchProfile>((_, emit) async {
       try {
         UserEntity user = await userRepository.fetchUser();
-        emit(ProfileState(pickture: user.pickture));
+        emit(ProfileState(pickture: user.picture));
       } catch (_) {
-        print('user failed');
+        // print('user failed');
       }
     });
   }
