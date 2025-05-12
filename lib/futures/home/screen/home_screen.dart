@@ -1,3 +1,4 @@
+import 'package:auth_screen/core/di/service_locator.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/common/app_bar/home_app_bar.dart';
 import 'package:auth_screen/futures/home/common/categories/categories_list.dart';
@@ -20,9 +21,10 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-
-    BlocProvider.of<ProfileBloc>(context).add(FetchProfile());
-    BlocProvider.of<CategoriesBloc>(context).add(FetchCategories());
+    getIt.get<ProfileBloc>().add(FetchProfile());
+    getIt.get<CategoriesBloc>().add(FetchCategories());
+    // BlocProvider.of<ProfileBloc>(context).add(FetchProfile());
+    // BlocProvider.of<CategoriesBloc>(context).add(FetchCategories());
   }
 
   @override
@@ -32,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
       slivers: [
         const HomeAppBar(),
         BlocBuilder<CategoriesBloc, CategoriesState>(
+          bloc: getIt.get<CategoriesBloc>(),
           builder: (context, state) {
             return SliverList.list(children: [
               CategoriesList(categories: state.categories),
@@ -42,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 categoryTitle: category.category,
                               ))
                           .toList())
-                  : ProductShimmerList()
+                  : const ProductShimmerList()
             ]);
           },
         )

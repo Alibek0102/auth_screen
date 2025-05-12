@@ -1,8 +1,8 @@
+import 'package:auth_screen/core/di/service_locator.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/common/list_header.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
-import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,11 +13,8 @@ class ProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final productsRepository =
-        RepositoryProvider.of<ProductsRepositoryImpl>(context);
-
     return BlocProvider(
-      create: (context) => ProductsBloc(productsRepository: productsRepository),
+      create: (context) => getIt.get<ProductsBloc>(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -74,7 +71,7 @@ class _ProductsState extends State<Products> {
     return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
         if (state.products.isEmpty) {
-          return Text('no data');
+          return const Text('no data');
         }
         return ListView.builder(
             controller: _controller,
