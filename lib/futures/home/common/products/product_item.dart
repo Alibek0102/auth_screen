@@ -11,87 +11,80 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: Stack(
-            children: [
-              SizedBox(
-                width: 159,
-                height: 281,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColors.light_silver,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.0),
+      child: Stack(
+        children: [
+          SizedBox(
+            height: 281,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                color: AppColors.light_silver,
+              ),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Image.network(
+                      productEntity.image,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.network(
+                            'https://images.vexels.com/media/users/3/234049/isolated/preview/8f2ee5f40718feca247cb3e0f6f4d17a-hoodie-solid-color-clothing.png');
+                      },
+                    ),
                   ),
-                  child: Column(
-                    children: [
-                      Expanded(
-                        child: Image.network(
-                          productEntity.image,
-                          fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Image.network(
-                                'https://images.vexels.com/media/users/3/234049/isolated/preview/8f2ee5f40718feca247cb3e0f6f4d17a-hoodie-solid-color-clothing.png');
-                          },
-                        ),
-                      ),
-                      SizedBox(
-                        height: 60,
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 8.0, bottom: 16.0, left: 4, right: 4),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                  SizedBox(
+                    height: 60,
+                    width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                          top: 8.0, bottom: 16.0, left: 4, right: 4),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            productEntity.title,
+                            style: const TextStyle(
+                              fontSize: 12,
+                            ),
+                            maxLines: 1,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Text(
-                                productEntity.title,
+                                '${productEntity.price}',
                                 style: const TextStyle(
-                                  fontSize: 12,
-                                ),
-                                maxLines: 1,
+                                    fontSize: 12, fontWeight: FontWeight.bold),
                               ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    '${productEntity.price}',
-                                    style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  8.width,
-                                  Text(
-                                    'S${productEntity.discount}',
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.primary_silver,
-                                        decoration: TextDecoration.lineThrough,
-                                        decorationThickness: 1,
-                                        decorationColor: Colors.grey),
-                                  )
-                                ],
+                              8.width,
+                              Text(
+                                'S${productEntity.discount}',
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primary_silver,
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationThickness: 1,
+                                    decorationColor: Colors.grey),
                               )
                             ],
-                          ),
-                        ),
+                          )
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                ],
               ),
-              const Positioned(
-                top: 5,
-                right: 8,
-                child: FavoriteButton(),
-              )
-            ],
+            ),
           ),
-        ),
-        12.width
-      ],
+          const Positioned(
+            top: 5,
+            right: 8,
+            child: FavoriteButton(),
+          )
+        ],
+      ),
     );
   }
 }

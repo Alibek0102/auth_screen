@@ -3,6 +3,8 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/common/list_header.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
+import 'package:auth_screen/routes/app_routes.gr.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +21,12 @@ class ProductsList extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           24.height,
-          ListHeader(headerTitle: categoryTitle),
+          ListHeader(
+            headerTitle: categoryTitle,
+            onShow: () {
+              context.router.push(CategoryDetailsRoute(model: categoryTitle));
+            },
+          ),
           16.height,
           SizedBox(
             height: 281,
@@ -79,8 +86,14 @@ class _ProductsState extends State<Products> {
             itemCount: state.products.length,
             padding: const EdgeInsets.symmetric(horizontal: 24),
             itemBuilder: (BuildContext context, int index) {
-              return ProductItem(
-                productEntity: state.products[index],
+              return Padding(
+                padding: const EdgeInsets.only(right: 12.0),
+                child: SizedBox(
+                  width: 159,
+                  child: ProductItem(
+                    productEntity: state.products[index],
+                  ),
+                ),
               );
             });
       },

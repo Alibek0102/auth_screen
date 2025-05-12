@@ -1,4 +1,5 @@
 import 'package:auth_screen/core/dio_client.dart';
+import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
@@ -28,4 +29,6 @@ void setupServiceLocator() {
       CategoriesBloc(categoryRepository: getIt.get<CategoryRepositoryImpl>()));
   getIt.registerFactory(() =>
       ProductsBloc(productsRepository: getIt.get<ProductsRepositoryImpl>()));
+  getIt.registerFactory(() => CategoryDetailsBloc(
+      productsRepository: getIt.get<ProductsRepositoryImpl>()));
 }
