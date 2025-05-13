@@ -16,6 +16,7 @@ dependencies:
   shimmer: ^3.0.0
   get_it: ^8.0.3
   freezed_annotation: ^2.4.4
+  lottie: ^3.2.0
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +30,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/lotties/
