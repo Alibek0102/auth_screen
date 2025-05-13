@@ -33,45 +33,40 @@ class ProductItem extends StatelessWidget {
                       },
                     ),
                   ),
-                  SizedBox(
-                    height: 60,
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          top: 8.0, bottom: 16.0, left: 4, right: 4),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            productEntity.title,
-                            style: const TextStyle(
-                              fontSize: 12,
-                            ),
-                            maxLines: 1,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          productEntity.title,
+                          style: const TextStyle(
+                            fontSize: 12,
                           ),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                '${productEntity.price}',
-                                style: const TextStyle(
-                                    fontSize: 12, fontWeight: FontWeight.bold),
-                              ),
-                              8.width,
-                              Text(
-                                'S${productEntity.discount}',
-                                style: TextStyle(
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.primary_silver,
-                                    decoration: TextDecoration.lineThrough,
-                                    decorationThickness: 1,
-                                    decorationColor: Colors.grey),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
+                          maxLines: 1,
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              '${productEntity.price}',
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.bold),
+                            ),
+                            8.width,
+                            Text(
+                              'S${productEntity.discount}',
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.primary_silver,
+                                  decoration: TextDecoration.lineThrough,
+                                  decorationThickness: 1,
+                                  decorationColor: Colors.grey),
+                            )
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ],
