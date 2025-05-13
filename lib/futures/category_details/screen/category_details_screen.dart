@@ -45,9 +45,10 @@ class CategoryDetailsScreen extends StatelessWidget {
                         SliverToBoxAdapter(
                           child: 15.height,
                         ),
-                        const SliverPadding(
-                          padding: EdgeInsets.symmetric(horizontal: 24.0),
-                          sliver: CategoryTitle(),
+                        SliverPadding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                          sliver: CategoryTitle(
+                              title: model, count: products.length),
                         ),
                         SliverToBoxAdapter(
                           child: 15.height,
