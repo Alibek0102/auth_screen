@@ -1,4 +1,5 @@
 import 'package:auth_screen/core/dio_client.dart';
+import 'package:auth_screen/futures/authentification/login/presentation/blocs/login_cubit.dart';
 import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
@@ -6,6 +7,7 @@ import 'package:auth_screen/futures/home/domain/repository/category_repository_i
 import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
+import 'package:auth_screen/sevices/login_service.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
@@ -31,4 +33,13 @@ void setupServiceLocator() {
       ProductsBloc(productsRepository: getIt.get<ProductsRepositoryImpl>()));
   getIt.registerFactory(() => CategoryDetailsBloc(
       productsRepository: getIt.get<ProductsRepositoryImpl>()));
+
+  getIt.registerFactoryParam<LoginCubit, String, void>((type, _) =>
+      LoginCubit(loginService: getIt.get<LoginService>(instanceName: type)));
+
+  // services
+  getIt.registerFactory<LoginService>(() => EmailService(),
+      instanceName: 'emailService');
+  getIt.registerFactory<LoginService>(() => PasswordService(),
+      instanceName: 'passwordService');
 }

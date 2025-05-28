@@ -1,40 +1,23 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class AuthInfoText extends StatelessWidget {
+  final String startText;
+  final String? tappableText;
+  final VoidCallback? onTap;
 
-  final Function()? goToRegistration;
-
-  const AuthInfoText({
-    super.key,
-    this.goToRegistration
-  });
+  const AuthInfoText(
+      {super.key, this.onTap, required this.startText, this.tappableText});
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Text(
-          'Dont have an Account? ',
-          style: TextStyle(
-            fontSize: 12,
-          ),
-        ),
-        TextButton(
-          onPressed: goToRegistration, 
-          child: const Text(
-            "Create One",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 12,
-              fontWeight: FontWeight.bold
-            ),
-          ),
-          style: const ButtonStyle(
-            padding: WidgetStatePropertyAll(EdgeInsets.zero),
-            minimumSize: WidgetStatePropertyAll(Size.zero)
-          )
-        )
-      ],
-    );
+    return Text.rich(TextSpan(style: const TextStyle(fontSize: 12), children: [
+      TextSpan(text: startText),
+      const TextSpan(text: ' '),
+      TextSpan(
+          text: tappableText ?? '',
+          style: const TextStyle(fontWeight: FontWeight.bold),
+          recognizer: TapGestureRecognizer()..onTap = onTap)
+    ]));
   }
 }

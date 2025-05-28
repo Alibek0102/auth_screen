@@ -6,17 +6,15 @@ class AppRoutes extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
-          path: '/login-email',
-          page: LoginEmailRoute.page,
-          // initial: true
-        ),
+            path: '/login-email', page: LoginEmailRoute.page, initial: true),
         AutoRoute(
           path: '/login-password',
           page: LoginPaswordRoute.page,
         ),
+        AutoRoute(path: '/forgot-password', page: ForgotPasswordRoute.page),
         AutoRoute(path: '/registration', page: RegistrationRoute.page),
         AutoRoute(
-            initial: true,
+            // initial: true,
             path: '/start',
             page: TabNavigationRoute.page,
             children: [

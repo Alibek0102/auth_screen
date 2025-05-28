@@ -8,32 +8,34 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auth_screen/futures/authentification/login/screen/login_email_screen.dart'
-    as _i3;
-import 'package:auth_screen/futures/authentification/login/screen/login_pasword_screen.dart'
+import 'package:auth_screen/futures/authentification/forgot_password/screen/forgot_password_screen.dart'
+    as _i2;
+import 'package:auth_screen/futures/authentification/login/presentation/screen/login_email_screen.dart'
     as _i4;
+import 'package:auth_screen/futures/authentification/login/presentation/screen/login_pasword_screen.dart'
+    as _i5;
 import 'package:auth_screen/futures/authentification/registration/screen/registration_screen.dart'
-    as _i8;
+    as _i9;
 import 'package:auth_screen/futures/category_details/screen/category_details_screen.dart'
     as _i1;
-import 'package:auth_screen/futures/home/screen/home_screen.dart' as _i2;
+import 'package:auth_screen/futures/home/screen/home_screen.dart' as _i3;
 import 'package:auth_screen/futures/notifications/screen/notifications_screen.dart'
-    as _i5;
-import 'package:auth_screen/futures/profile/screen/profile_screen.dart' as _i6;
+    as _i6;
+import 'package:auth_screen/futures/profile/screen/profile_screen.dart' as _i7;
 import 'package:auth_screen/futures/purchases/screen/purchases_screen.dart'
-    as _i7;
-import 'package:auth_screen/routes/tab_navigation.dart' as _i9;
-import 'package:auto_route/auto_route.dart' as _i10;
-import 'package:flutter/material.dart' as _i11;
+    as _i8;
+import 'package:auth_screen/routes/tab_navigation.dart' as _i10;
+import 'package:auto_route/auto_route.dart' as _i11;
+import 'package:flutter/material.dart' as _i12;
 
 /// generated route for
 /// [_i1.CategoryDetailsScreen]
 class CategoryDetailsRoute
-    extends _i10.PageRouteInfo<CategoryDetailsRouteArgs> {
+    extends _i11.PageRouteInfo<CategoryDetailsRouteArgs> {
   CategoryDetailsRoute({
-    _i11.Key? key,
+    _i12.Key? key,
     required String model,
-    List<_i10.PageRouteInfo>? children,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           CategoryDetailsRoute.name,
           args: CategoryDetailsRouteArgs(
@@ -45,7 +47,7 @@ class CategoryDetailsRoute
 
   static const String name = 'CategoryDetailsRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CategoryDetailsRouteArgs>();
@@ -63,7 +65,7 @@ class CategoryDetailsRouteArgs {
     required this.model,
   });
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   final String model;
 
@@ -74,11 +76,46 @@ class CategoryDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i2.HomeScreen]
-class HomeRoute extends _i10.PageRouteInfo<HomeRouteArgs> {
+/// [_i2.ForgotPasswordScreen]
+class ForgotPasswordRoute extends _i11.PageRouteInfo<ForgotPasswordRouteArgs> {
+  ForgotPasswordRoute({
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
+          ForgotPasswordRoute.name,
+          args: ForgotPasswordRouteArgs(key: key),
+          initialChildren: children,
+        );
+
+  static const String name = 'ForgotPasswordRoute';
+
+  static _i11.PageInfo page = _i11.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ForgotPasswordRouteArgs>(
+          orElse: () => const ForgotPasswordRouteArgs());
+      return _i2.ForgotPasswordScreen(key: args.key);
+    },
+  );
+}
+
+class ForgotPasswordRouteArgs {
+  const ForgotPasswordRouteArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'ForgotPasswordRouteArgs{key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i3.HomeScreen]
+class HomeRoute extends _i11.PageRouteInfo<HomeRouteArgs> {
   HomeRoute({
-    _i11.Key? key,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           HomeRoute.name,
           args: HomeRouteArgs(key: key),
@@ -87,12 +124,12 @@ class HomeRoute extends _i10.PageRouteInfo<HomeRouteArgs> {
 
   static const String name = 'HomeRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
       final args =
           data.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
-      return _i2.HomeScreen(key: args.key);
+      return _i3.HomeScreen(key: args.key);
     },
   );
 }
@@ -100,7 +137,7 @@ class HomeRoute extends _i10.PageRouteInfo<HomeRouteArgs> {
 class HomeRouteArgs {
   const HomeRouteArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -109,28 +146,44 @@ class HomeRouteArgs {
 }
 
 /// generated route for
-/// [_i3.LoginEmailScreen]
-class LoginEmailRoute extends _i10.PageRouteInfo<void> {
-  const LoginEmailRoute({List<_i10.PageRouteInfo>? children})
-      : super(
+/// [_i4.LoginEmailScreen]
+class LoginEmailRoute extends _i11.PageRouteInfo<LoginEmailRouteArgs> {
+  LoginEmailRoute({
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
+  }) : super(
           LoginEmailRoute.name,
+          args: LoginEmailRouteArgs(key: key),
           initialChildren: children,
         );
 
   static const String name = 'LoginEmailRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i3.LoginEmailScreen();
+      final args = data.argsAs<LoginEmailRouteArgs>(
+          orElse: () => const LoginEmailRouteArgs());
+      return _i4.LoginEmailScreen(key: args.key);
     },
   );
 }
 
+class LoginEmailRouteArgs {
+  const LoginEmailRouteArgs({this.key});
+
+  final _i12.Key? key;
+
+  @override
+  String toString() {
+    return 'LoginEmailRouteArgs{key: $key}';
+  }
+}
+
 /// generated route for
-/// [_i4.LoginPaswordScreen]
-class LoginPaswordRoute extends _i10.PageRouteInfo<void> {
-  const LoginPaswordRoute({List<_i10.PageRouteInfo>? children})
+/// [_i5.LoginPaswordScreen]
+class LoginPaswordRoute extends _i11.PageRouteInfo<void> {
+  const LoginPaswordRoute({List<_i11.PageRouteInfo>? children})
       : super(
           LoginPaswordRoute.name,
           initialChildren: children,
@@ -138,18 +191,18 @@ class LoginPaswordRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'LoginPaswordRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i4.LoginPaswordScreen();
+      return const _i5.LoginPaswordScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i5.NotificationsScreen]
-class NotificationsRoute extends _i10.PageRouteInfo<void> {
-  const NotificationsRoute({List<_i10.PageRouteInfo>? children})
+/// [_i6.NotificationsScreen]
+class NotificationsRoute extends _i11.PageRouteInfo<void> {
+  const NotificationsRoute({List<_i11.PageRouteInfo>? children})
       : super(
           NotificationsRoute.name,
           initialChildren: children,
@@ -157,18 +210,18 @@ class NotificationsRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'NotificationsRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i5.NotificationsScreen();
+      return const _i6.NotificationsScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i6.ProfileScreen]
-class ProfileRoute extends _i10.PageRouteInfo<void> {
-  const ProfileRoute({List<_i10.PageRouteInfo>? children})
+/// [_i7.ProfileScreen]
+class ProfileRoute extends _i11.PageRouteInfo<void> {
+  const ProfileRoute({List<_i11.PageRouteInfo>? children})
       : super(
           ProfileRoute.name,
           initialChildren: children,
@@ -176,18 +229,18 @@ class ProfileRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i6.ProfileScreen();
+      return const _i7.ProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i7.PurchasesScreen]
-class PurchasesRoute extends _i10.PageRouteInfo<void> {
-  const PurchasesRoute({List<_i10.PageRouteInfo>? children})
+/// [_i8.PurchasesScreen]
+class PurchasesRoute extends _i11.PageRouteInfo<void> {
+  const PurchasesRoute({List<_i11.PageRouteInfo>? children})
       : super(
           PurchasesRoute.name,
           initialChildren: children,
@@ -195,20 +248,20 @@ class PurchasesRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'PurchasesRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i7.PurchasesScreen();
+      return const _i8.PurchasesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i8.RegistrationScreen]
-class RegistrationRoute extends _i10.PageRouteInfo<RegistrationRouteArgs> {
+/// [_i9.RegistrationScreen]
+class RegistrationRoute extends _i11.PageRouteInfo<RegistrationRouteArgs> {
   RegistrationRoute({
-    _i11.Key? key,
-    List<_i10.PageRouteInfo>? children,
+    _i12.Key? key,
+    List<_i11.PageRouteInfo>? children,
   }) : super(
           RegistrationRoute.name,
           args: RegistrationRouteArgs(key: key),
@@ -217,12 +270,12 @@ class RegistrationRoute extends _i10.PageRouteInfo<RegistrationRouteArgs> {
 
   static const String name = 'RegistrationRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<RegistrationRouteArgs>(
           orElse: () => const RegistrationRouteArgs());
-      return _i8.RegistrationScreen(key: args.key);
+      return _i9.RegistrationScreen(key: args.key);
     },
   );
 }
@@ -230,7 +283,7 @@ class RegistrationRoute extends _i10.PageRouteInfo<RegistrationRouteArgs> {
 class RegistrationRouteArgs {
   const RegistrationRouteArgs({this.key});
 
-  final _i11.Key? key;
+  final _i12.Key? key;
 
   @override
   String toString() {
@@ -239,9 +292,9 @@ class RegistrationRouteArgs {
 }
 
 /// generated route for
-/// [_i9.TabNavigationScreen]
-class TabNavigationRoute extends _i10.PageRouteInfo<void> {
-  const TabNavigationRoute({List<_i10.PageRouteInfo>? children})
+/// [_i10.TabNavigationScreen]
+class TabNavigationRoute extends _i11.PageRouteInfo<void> {
+  const TabNavigationRoute({List<_i11.PageRouteInfo>? children})
       : super(
           TabNavigationRoute.name,
           initialChildren: children,
@@ -249,10 +302,10 @@ class TabNavigationRoute extends _i10.PageRouteInfo<void> {
 
   static const String name = 'TabNavigationRoute';
 
-  static _i10.PageInfo page = _i10.PageInfo(
+  static _i11.PageInfo page = _i11.PageInfo(
     name,
     builder: (data) {
-      return const _i9.TabNavigationScreen();
+      return const _i10.TabNavigationScreen();
     },
   );
 }
