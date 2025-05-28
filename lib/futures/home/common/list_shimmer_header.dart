@@ -16,8 +16,8 @@ class ListShimmerHeader extends StatelessWidget {
             width: 80,
             height: 16,
             child: Shimmer.fromColors(
-              baseColor: AppColors.light_silver,
-              highlightColor: AppColors.light_silver2,
+              baseColor: AppColors.lightSilver,
+              highlightColor: AppColors.lightSilver2,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(8.0),
                 child: const DecoratedBox(

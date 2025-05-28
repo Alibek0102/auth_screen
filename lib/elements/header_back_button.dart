@@ -14,7 +14,7 @@ class HeaderBackButton extends StatelessWidget {
           onPressed: goBack,
           icon: const Icon(Icons.chevron_left),
           style: IconButton.styleFrom(
-              backgroundColor: AppColors.light_silver,
+              backgroundColor: AppColors.lightSilver,
               shape: const CircleBorder()),
         ));
   }

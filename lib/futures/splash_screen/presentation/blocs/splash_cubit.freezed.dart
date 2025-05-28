@@ -19,21 +19,21 @@ mixin _$SplashState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(TokenEntity token) authorized,
     required TResult Function() unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(TokenEntity token)? authorized,
     TResult? Function()? unauthorized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(TokenEntity token)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$SplashInitialStateImpl implements _SplashInitialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(TokenEntity token) authorized,
     required TResult Function() unauthorized,
   }) {
     return initial();
@@ -135,7 +135,7 @@ class _$SplashInitialStateImpl implements _SplashInitialState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(TokenEntity token)? authorized,
     TResult? Function()? unauthorized,
   }) {
     return initial?.call();
@@ -145,7 +145,7 @@ class _$SplashInitialStateImpl implements _SplashInitialState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(TokenEntity token)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
@@ -200,6 +200,8 @@ abstract class _$$SplashAuthorizedStateImplCopyWith<$Res> {
           _$SplashAuthorizedStateImpl value,
           $Res Function(_$SplashAuthorizedStateImpl) then) =
       __$$SplashAuthorizedStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({TokenEntity token});
 }
 
 /// @nodoc
@@ -212,58 +214,83 @@ class __$$SplashAuthorizedStateImplCopyWithImpl<$Res>
 
   /// Create a copy of SplashState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? token = null,
+  }) {
+    return _then(_$SplashAuthorizedStateImpl(
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as TokenEntity,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SplashAuthorizedStateImpl implements _SplashAuthorizedState {
-  const _$SplashAuthorizedStateImpl();
+  const _$SplashAuthorizedStateImpl({required this.token});
+
+  @override
+  final TokenEntity token;
 
   @override
   String toString() {
-    return 'SplashState.authorized()';
+    return 'SplashState.authorized(token: $token)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SplashAuthorizedStateImpl);
+            other is _$SplashAuthorizedStateImpl &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, token);
+
+  /// Create a copy of SplashState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SplashAuthorizedStateImplCopyWith<_$SplashAuthorizedStateImpl>
+      get copyWith => __$$SplashAuthorizedStateImplCopyWithImpl<
+          _$SplashAuthorizedStateImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(TokenEntity token) authorized,
     required TResult Function() unauthorized,
   }) {
-    return authorized();
+    return authorized(token);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(TokenEntity token)? authorized,
     TResult? Function()? unauthorized,
   }) {
-    return authorized?.call();
+    return authorized?.call(token);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(TokenEntity token)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {
     if (authorized != null) {
-      return authorized();
+      return authorized(token);
     }
     return orElse();
   }
@@ -304,7 +331,16 @@ class _$SplashAuthorizedStateImpl implements _SplashAuthorizedState {
 }
 
 abstract class _SplashAuthorizedState implements SplashState {
-  const factory _SplashAuthorizedState() = _$SplashAuthorizedStateImpl;
+  const factory _SplashAuthorizedState({required final TokenEntity token}) =
+      _$SplashAuthorizedStateImpl;
+
+  TokenEntity get token;
+
+  /// Create a copy of SplashState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$SplashAuthorizedStateImplCopyWith<_$SplashAuthorizedStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -352,7 +388,7 @@ class _$SplashUnauthorizedStateImpl implements _SplashUnauthorizedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() authorized,
+    required TResult Function(TokenEntity token) authorized,
     required TResult Function() unauthorized,
   }) {
     return unauthorized();
@@ -362,7 +398,7 @@ class _$SplashUnauthorizedStateImpl implements _SplashUnauthorizedState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? authorized,
+    TResult? Function(TokenEntity token)? authorized,
     TResult? Function()? unauthorized,
   }) {
     return unauthorized?.call();
@@ -372,7 +408,7 @@ class _$SplashUnauthorizedStateImpl implements _SplashUnauthorizedState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? authorized,
+    TResult Function(TokenEntity token)? authorized,
     TResult Function()? unauthorized,
     required TResult orElse(),
   }) {

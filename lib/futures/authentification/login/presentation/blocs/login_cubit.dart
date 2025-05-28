@@ -1,12 +1,17 @@
+import 'package:auth_screen/futures/splash_screen/domain/entities/token_entity.dart';
+import 'package:auth_screen/futures/splash_screen/domain/use_cases/save_token.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 
 part 'login_cubit.freezed.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(const LoginState.initial());
+  final SaveToken saveToken;
+
+  LoginCubit({required this.saveToken}) : super(const LoginState.initial());
 
   void onEmailContinue({required String email}) async {
     emit(const LoginState.loader());
@@ -30,8 +35,15 @@ class LoginCubit extends Cubit<LoginState> {
         password.contains(' ')) {
       emit(const LoginState.error());
     } else {
+      final generatedToken = generateToken();
+      final tokenEntity = TokenEntity(accessToken: generatedToken);
+      saveToken.perform(tokenEntity: tokenEntity);
       emit(const LoginState.success());
     }
+  }
+
+  String generateToken() {
+    return const Uuid().v4();
   }
 
   bool _isValidEmail(String email) {

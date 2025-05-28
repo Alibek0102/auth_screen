@@ -12,9 +12,9 @@ class TabNavigationScreen extends StatelessWidget {
     return AutoTabsRouter.pageView(
       routes: [
         HomeRoute(),
-        NotificationsRoute(),
-        PurchasesRoute(),
-        ProfileRoute()
+        const NotificationsRoute(),
+        const PurchasesRoute(),
+        const ProfileRoute()
       ],
       builder: (context, child, _) {
         final tabsRouter = AutoTabsRouter.of(context);
@@ -22,24 +22,29 @@ class TabNavigationScreen extends StatelessWidget {
         return Scaffold(
           body: child,
           bottomNavigationBar: BottomNavigationBar(
-            backgroundColor: Colors.white,
-            currentIndex: tabsRouter.activeIndex,
-            onTap: (index) {
-              tabsRouter.setActiveIndex(index);
-            },
-            selectedItemColor: AppColors.primary_violet,
-            unselectedItemColor: AppColors.primary_silver,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            elevation: 0,
-            type: BottomNavigationBarType.fixed,
-            items: const [
-              BottomNavigationBarItem(icon: Icon(Icons.home, size: 30), label: 'Home'),
-              BottomNavigationBarItem(icon: Icon(Icons.notifications, size: 30), label: 'Notifications'),
-              BottomNavigationBarItem(icon: Icon(Icons.receipt_long, size: 30), label: 'Purchases'),
-              BottomNavigationBarItem(icon: Icon(Icons.person, size: 30), label: 'Profile')
-            ]
-          ),
+              backgroundColor: Colors.white,
+              currentIndex: tabsRouter.activeIndex,
+              onTap: (index) {
+                tabsRouter.setActiveIndex(index);
+              },
+              selectedItemColor: AppColors.primaryViolet,
+              unselectedItemColor: AppColors.primarySilver,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
+              elevation: 0,
+              type: BottomNavigationBarType.fixed,
+              items: const [
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.home, size: 30), label: 'Home'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.notifications, size: 30),
+                    label: 'Notifications'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.receipt_long, size: 30),
+                    label: 'Purchases'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.person, size: 30), label: 'Profile')
+              ]),
         );
       },
     );

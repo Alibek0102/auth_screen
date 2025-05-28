@@ -15,11 +15,11 @@ class SplashScreen extends StatelessWidget {
     final splashCubit = getIt.get<SplashCubit>();
 
     return Scaffold(
-      backgroundColor: AppColors.primary_violet,
+      backgroundColor: AppColors.primaryViolet,
       body: BlocListener<SplashCubit, SplashState>(
         bloc: splashCubit..authCheck(),
         listener: (context, state) {
-          state.whenOrNull(authorized: () {
+          state.whenOrNull(authorized: (_) {
             context.router.replaceAll([const TabNavigationRoute()]);
           }, unauthorized: () {
             context.router.replaceAll([LoginEmailRoute()]);

@@ -11,11 +11,9 @@ class AppBarTrailing extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(right: 24.0),
       child: IconButton(
-        onPressed: (){}, 
+        onPressed: () {},
         icon: const Icon(Icons.shop_rounded),
-        style: IconButton.styleFrom(
-          backgroundColor: AppColors.primary_violet
-        ),
+        style: IconButton.styleFrom(backgroundColor: AppColors.primaryViolet),
         color: Colors.white,
       ),
     );

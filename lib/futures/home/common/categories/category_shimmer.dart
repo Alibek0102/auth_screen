@@ -17,8 +17,8 @@ class CategoryShimmer extends StatelessWidget {
                 width: 56,
                 height: 56,
                 child: Shimmer.fromColors(
-                  baseColor: AppColors.light_silver,
-                  highlightColor: AppColors.light_silver2,
+                  baseColor: AppColors.lightSilver,
+                  highlightColor: AppColors.lightSilver2,
                   child: const CircleAvatar(),
                 )),
             const Spacer(),

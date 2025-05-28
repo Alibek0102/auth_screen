@@ -19,7 +19,7 @@ class ProductItem extends StatelessWidget {
             height: 281,
             child: DecoratedBox(
               decoration: BoxDecoration(
-                color: AppColors.light_silver,
+                color: AppColors.lightSilver,
               ),
               child: Column(
                 children: [
@@ -59,7 +59,7 @@ class ProductItem extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 10,
                                   fontWeight: FontWeight.bold,
-                                  color: AppColors.primary_silver,
+                                  color: AppColors.primarySilver,
                                   decoration: TextDecoration.lineThrough,
                                   decorationThickness: 1,
                                   decorationColor: Colors.grey),

@@ -19,7 +19,7 @@ class ProductsShimmerItem extends StatelessWidget {
                 height: 281,
                 child: DecoratedBox(
                   decoration: BoxDecoration(
-                    color: AppColors.light_silver,
+                    color: AppColors.lightSilver,
                   ),
                   child: Column(
                     children: [
@@ -30,8 +30,8 @@ class ProductsShimmerItem extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                             child: Shimmer.fromColors(
-                                baseColor: AppColors.light_silver,
-                                highlightColor: AppColors.light_silver2,
+                                baseColor: AppColors.lightSilver,
+                                highlightColor: AppColors.lightSilver2,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: const DecoratedBox(
@@ -53,8 +53,8 @@ class ProductsShimmerItem extends StatelessWidget {
                                 width: 70,
                                 height: 14,
                                 child: Shimmer.fromColors(
-                                    baseColor: AppColors.light_silver,
-                                    highlightColor: AppColors.light_silver2,
+                                    baseColor: AppColors.lightSilver,
+                                    highlightColor: AppColors.lightSilver2,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: const DecoratedBox(
@@ -67,8 +67,8 @@ class ProductsShimmerItem extends StatelessWidget {
                                 width: 120,
                                 height: 14,
                                 child: Shimmer.fromColors(
-                                    baseColor: AppColors.light_silver,
-                                    highlightColor: AppColors.light_silver2,
+                                    baseColor: AppColors.lightSilver,
+                                    highlightColor: AppColors.lightSilver2,
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
                                       child: const DecoratedBox(

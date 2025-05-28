@@ -9,21 +9,17 @@ class CategoryAppBarButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: (){},
+      onPressed: () {},
       style: ElevatedButton.styleFrom(
-        elevation: 0,
-        backgroundColor: AppColors.light_silver,
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12)
-      ), 
+          elevation: 0,
+          backgroundColor: AppColors.lightSilver,
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12)),
       child: const Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
             'Man',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.black
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
           ),
           Icon(
             Icons.keyboard_arrow_down,

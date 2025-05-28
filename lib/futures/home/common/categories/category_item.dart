@@ -20,7 +20,7 @@ class CategoryItem extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(56 / 2)),
                   child: DecoratedBox(
-                    decoration: BoxDecoration(color: AppColors.primary_violet),
+                    decoration: BoxDecoration(color: AppColors.primaryViolet),
                     child: Center(
                         child: Text(
                       title[0].toUpperCase(),
