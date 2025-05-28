@@ -7,13 +7,16 @@ import 'package:auth_screen/futures/home/domain/repository/category_repository_i
 import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
-import 'package:auth_screen/sevices/login_service.dart';
+import 'package:auth_screen/futures/splash_screen/presentation/blocs/splash_cubit.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt getIt = GetIt.instance;
 
-void setupServiceLocator() {
+Future<void> setupServiceLocator() async {
   // clients
+  final sharedPreferences = await SharedPreferences.getInstance();
+  getIt.registerSingleton<SharedPreferences>(sharedPreferences);
   getIt.registerSingleton(DioClient());
 
   // repositories
@@ -34,12 +37,6 @@ void setupServiceLocator() {
   getIt.registerFactory(() => CategoryDetailsBloc(
       productsRepository: getIt.get<ProductsRepositoryImpl>()));
 
-  getIt.registerFactoryParam<LoginCubit, String, void>((type, _) =>
-      LoginCubit(loginService: getIt.get<LoginService>(instanceName: type)));
-
-  // services
-  getIt.registerFactory<LoginService>(() => EmailService(),
-      instanceName: 'emailService');
-  getIt.registerFactory<LoginService>(() => PasswordService(),
-      instanceName: 'passwordService');
+  getIt.registerFactory(() => LoginCubit());
+  getIt.registerSingleton(SplashCubit());
 }

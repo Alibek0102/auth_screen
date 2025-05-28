@@ -14,7 +14,7 @@ class ListHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            '$headerTitle',
+            headerTitle,
             style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
           const Spacer(),

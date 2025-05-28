@@ -2,8 +2,9 @@ import 'package:auth_screen/core/di/service_locator.dart';
 import 'package:auth_screen/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  setupServiceLocator();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await setupServiceLocator();
   runApp(ClotApplication());
 }
 

@@ -5,8 +5,8 @@ import 'package:auto_route/auto_route.dart';
 class AppRoutes extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-        AutoRoute(
-            path: '/login-email', page: LoginEmailRoute.page, initial: true),
+        AutoRoute(page: SplashRoute.page, initial: true),
+        AutoRoute(path: '/login-email', page: LoginEmailRoute.page),
         AutoRoute(
           path: '/login-password',
           page: LoginPaswordRoute.page,

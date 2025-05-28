@@ -23,7 +23,7 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final loginCubit = getIt.get<LoginCubit>(param1: 'emailService');
+    final loginCubit = getIt.get<LoginCubit>();
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -50,12 +50,13 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                       isInvalidEmail: state.maybeWhen(
                           error: () => true, orElse: () => false),
                       placeholder: 'Enter email',
+                      errorText: 'Неправильный email',
                     ),
                     16.height,
                     CustomButton(
                       buttonText: 'Sign in',
                       loginPress: () {
-                        loginCubit.onContinue(value: emailController.text);
+                        loginCubit.onEmailContinue(email: emailController.text);
                       },
                       loader: state.maybeMap(
                           loader: (value) => true, orElse: () => false),
