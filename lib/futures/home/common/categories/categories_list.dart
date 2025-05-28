@@ -7,8 +7,10 @@ import 'package:flutter/material.dart';
 
 class CategoriesList extends StatelessWidget {
   final List<CategoryEntity> categories;
+  final Function(String model) onTapCategory;
 
-  const CategoriesList({super.key, this.categories = const []});
+  const CategoriesList(
+      {super.key, this.categories = const [], required this.onTapCategory});
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,9 @@ class CategoriesList extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return CategoryItem(
                         title: categories[index].category,
+                        onTap: () {
+                          onTapCategory(categories[index].category);
+                        },
                       );
                     })
                 : ListView.builder(

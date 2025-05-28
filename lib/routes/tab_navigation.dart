@@ -2,6 +2,7 @@ import 'package:auth_screen/core/app_colors.dart';
 import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 @RoutePage()
 class TabNavigationScreen extends StatelessWidget {
@@ -33,17 +34,33 @@ class TabNavigationScreen extends StatelessWidget {
               showUnselectedLabels: false,
               elevation: 0,
               type: BottomNavigationBarType.fixed,
-              items: const [
+              items: [
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.home, size: 30), label: 'Home'),
+                    icon: SvgPicture.asset(
+                      'assets/images/HomeTab.svg',
+                      color: tabsRouter.activeIndex == 0
+                          ? AppColors.primaryViolet
+                          : AppColors.primarySilver,
+                    ),
+                    label: 'Home'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.notifications, size: 30),
+                    icon: SvgPicture.asset('assets/images/NotificationTab.svg',
+                        color: tabsRouter.activeIndex == 1
+                            ? AppColors.primaryViolet
+                            : AppColors.primarySilver),
                     label: 'Notifications'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.receipt_long, size: 30),
+                    icon: SvgPicture.asset('assets/images/ReceiptTab.svg',
+                        color: tabsRouter.activeIndex == 2
+                            ? AppColors.primaryViolet
+                            : AppColors.primarySilver),
                     label: 'Purchases'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.person, size: 30), label: 'Profile')
+                    icon: SvgPicture.asset('assets/images/ProfileTab.svg',
+                        color: tabsRouter.activeIndex == 3
+                            ? AppColors.primaryViolet
+                            : AppColors.primarySilver),
+                    label: 'Profile')
               ]),
         );
       },

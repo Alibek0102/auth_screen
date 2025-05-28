@@ -1,5 +1,6 @@
 import 'package:auth_screen/core/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class HomeSearchBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeSearchBar({
@@ -19,7 +20,11 @@ class HomeSearchBar extends StatelessWidget implements PreferredSizeWidget {
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: TextField(
               decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.search),
+                  prefixIconConstraints:
+                      BoxConstraints.tight(const Size(50.0, 16.0)),
+                  prefixIcon: SvgPicture.asset(
+                    'assets/images/Search.svg',
+                  ),
                   hintText: 'Search',
                   contentPadding:
                       const EdgeInsets.symmetric(horizontal: 19, vertical: 11),

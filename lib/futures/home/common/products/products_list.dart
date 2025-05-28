@@ -3,6 +3,7 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/common/list_header.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
+import 'package:auth_screen/futures/home/common/products/products_shimmer_item.dart';
 import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,16 @@ class _ProductsState extends State<Products> {
     return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
         if (state.products.isEmpty) {
-          return const Text('no data');
+          return ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              itemBuilder: (BuildContext context, int index) {
+                return const Padding(
+                  padding: EdgeInsets.only(right: 12.0),
+                  child: ProductsShimmerItem(),
+                );
+              });
         }
         return ListView.builder(
             controller: _controller,
