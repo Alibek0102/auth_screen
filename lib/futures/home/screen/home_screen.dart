@@ -34,7 +34,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
         body: CustomScrollView(
       slivers: [
-        const HomeAppBar(),
+        HomeAppBar(
+          onShowCart: () {
+            context.router.pushNamed('/cart');
+          },
+        ),
         BlocBuilder<CategoriesBloc, CategoriesState>(
           bloc: getIt.get<CategoriesBloc>(),
           builder: (context, state) {

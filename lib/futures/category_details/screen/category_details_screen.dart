@@ -1,5 +1,5 @@
 import 'package:auth_screen/core/di/service_locator.dart';
-import 'package:auth_screen/elements/custom_app_bar.dart';
+import 'package:auth_screen/elements/custom_sliver_app_bar.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
 import 'package:auth_screen/futures/category_details/common/category_title.dart';
@@ -26,7 +26,7 @@ class CategoryDetailsScreen extends StatelessWidget {
         builder: (context, state) {
           return CustomScrollView(
             slivers: [
-              CustomAppBar(
+              CustomSliverAppBar(
                 goBack: () {
                   context.router.back();
                 },
