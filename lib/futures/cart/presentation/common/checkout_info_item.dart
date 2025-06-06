@@ -1,6 +1,5 @@
 import 'package:auth_screen/core/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CheckoutInfoItem extends StatelessWidget {
   final String itemKey;

@@ -1,5 +1,6 @@
 import 'package:auth_screen/core/dio_client.dart';
 import 'package:auth_screen/futures/authentification/login/presentation/blocs/login_cubit.dart';
+import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
@@ -56,4 +57,5 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerFactory(() => LoginCubit(saveToken: getIt.get<SaveToken>()));
   getIt.registerSingleton(SplashCubit(getToken: getIt.get<GetToken>()));
+  getIt.registerSingleton(CartCubit());
 }

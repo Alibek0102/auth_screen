@@ -6,8 +6,14 @@ import 'package:flutter/material.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductEntity productEntity;
+  final bool availableInCart;
+  final VoidCallback? onAddToCart;
 
-  const ProductItem({super.key, required this.productEntity});
+  const ProductItem(
+      {super.key,
+      required this.productEntity,
+      this.availableInCart = false,
+      this.onAddToCart});
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +79,13 @@ class ProductItem extends StatelessWidget {
               ),
             ),
           ),
-          const Positioned(
+          Positioned(
             top: 5,
             right: 8,
-            child: FavoriteButton(),
+            child: FavoriteButton(
+              isSelected: availableInCart,
+              onPress: onAddToCart,
+            ),
           )
         ],
       ),

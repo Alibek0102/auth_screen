@@ -1,5 +1,7 @@
 import 'package:auth_screen/core/di/service_locator.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
+import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
+import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/common/list_header.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
@@ -78,7 +80,9 @@ class _ProductsState extends State<Products> {
   Widget build(BuildContext context) {
     return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
-        if (state.products.isEmpty) {
+        final products = state.products;
+
+        if (products.isEmpty) {
           return ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: 10,
@@ -90,22 +94,46 @@ class _ProductsState extends State<Products> {
                 );
               });
         }
-        return ListView.builder(
-            controller: _controller,
-            scrollDirection: Axis.horizontal,
-            itemCount: state.products.length,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: SizedBox(
-                  width: 159,
-                  child: ProductItem(
-                    productEntity: state.products[index],
-                  ),
-                ),
-              );
-            });
+        return BlocBuilder<CartCubit, CartState>(
+          bloc: getIt.get<CartCubit>(),
+          builder: (context, cartState) {
+            return ListView.builder(
+                controller: _controller,
+                scrollDirection: Axis.horizontal,
+                itemCount: products.length,
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                itemBuilder: (BuildContext context, int index) {
+                  final bool isAddedToCart = cartState.maybeWhen(
+                      hasProducts: (List<CartProductEntity> value) {
+                        final indexOfProductInCart = value.indexWhere(
+                            (productInCart) =>
+                                productInCart.product.id == products[index].id);
+
+                        if (indexOfProductInCart != -1) {
+                          return true;
+                        }
+                        return false;
+                      },
+                      orElse: () => false);
+
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: SizedBox(
+                      width: 159,
+                      child: ProductItem(
+                        productEntity: products[index],
+                        availableInCart: isAddedToCart,
+                        onAddToCart: () {
+                          getIt
+                              .get<CartCubit>()
+                              .increment(product: products[index]);
+                        },
+                      ),
+                    ),
+                  );
+                });
+          },
+        );
       },
     );
   }

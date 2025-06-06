@@ -4,7 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class CheckoutInfo extends StatelessWidget {
-  const CheckoutInfo({super.key});
+  final double subtotalValue;
+  final double shippingCostValue;
+  final double taxValue;
+  final double totalPrice;
+
+  const CheckoutInfo(
+      {super.key,
+      required this.subtotalValue,
+      required this.shippingCostValue,
+      this.taxValue = 0.0,
+      required this.totalPrice});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +24,12 @@ class CheckoutInfo extends StatelessWidget {
         children: [
           CheckoutInfoItem(
             itemKey: 'Subtotal',
-            itemValue: 200,
+            itemValue: subtotalValue,
           ),
           8.height,
           CheckoutInfoItem(
             itemKey: 'Shipping Cost',
-            itemValue: 8.00,
+            itemValue: shippingCostValue,
           ),
           8.height,
           CheckoutInfoItem(
@@ -29,7 +39,7 @@ class CheckoutInfo extends StatelessWidget {
           8.height,
           CheckoutInfoItem(
             itemKey: 'Total',
-            itemValue: 208,
+            itemValue: subtotalValue + shippingCostValue,
             isBoldValue: true,
           )
         ],

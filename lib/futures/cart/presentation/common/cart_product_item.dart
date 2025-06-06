@@ -1,16 +1,24 @@
 import 'package:auth_screen/core/app_colors.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
+import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CartProductItem extends StatelessWidget {
-  const CartProductItem({super.key});
+  final CartProductEntity cartProduct;
+  final VoidCallback onPlus;
+  final VoidCallback onMinus;
+
+  const CartProductItem(
+      {super.key,
+      required this.cartProduct,
+      required this.onMinus,
+      required this.onPlus});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 80,
+      height: 90,
       child: DecoratedBox(
         decoration: BoxDecoration(
             color: AppColors.lightSilver,
@@ -19,8 +27,9 @@ class CartProductItem extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              const SizedBox(
+              SizedBox(
                 width: 64,
+                child: Image.network(cartProduct.product.image),
               ),
               Expanded(
                   child: Padding(
@@ -29,9 +38,11 @@ class CartProductItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Mens Harrington Jacket',
-                      style: TextStyle(
+                    Text(
+                      cartProduct.product.title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                      style: const TextStyle(
                           fontSize: 12.0, fontWeight: FontWeight.w500),
                     ),
                     const Spacer(),
@@ -74,10 +85,10 @@ class CartProductItem extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  const Text(
-                    '\$148',
-                    style:
-                        TextStyle(fontSize: 12.0, fontWeight: FontWeight.bold),
+                  Text(
+                    '\$${cartProduct.priceByCount}',
+                    style: const TextStyle(
+                        fontSize: 12.0, fontWeight: FontWeight.bold),
                   ),
                   const Spacer(),
                   Row(
@@ -88,8 +99,8 @@ class CartProductItem extends StatelessWidget {
                         child: IconButton(
                             style: IconButton.styleFrom(
                                 backgroundColor: AppColors.primaryViolet),
-                            onPressed: () {},
-                            icon: SvgPicture.asset('assets/images/Plus.svg')),
+                            onPressed: onMinus,
+                            icon: SvgPicture.asset('assets/images/Minus.svg')),
                       ),
                       8.width,
                       SizedBox(
@@ -98,7 +109,7 @@ class CartProductItem extends StatelessWidget {
                         child: IconButton(
                             style: IconButton.styleFrom(
                                 backgroundColor: AppColors.primaryViolet),
-                            onPressed: () {},
+                            onPressed: onPlus,
                             icon: SvgPicture.asset('assets/images/Plus.svg')),
                       )
                     ],
