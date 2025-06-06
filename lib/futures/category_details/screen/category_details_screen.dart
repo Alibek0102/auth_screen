@@ -1,6 +1,8 @@
 import 'package:auth_screen/core/di/service_locator.dart';
 import 'package:auth_screen/elements/custom_sliver_app_bar.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
+import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
+import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
 import 'package:auth_screen/futures/category_details/common/category_title.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
@@ -57,17 +59,43 @@ class CategoryDetailsScreen extends StatelessWidget {
                   ),
                   SliverPadding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    sliver: SliverGrid.builder(
-                        itemCount: products.length,
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisSpacing: 20,
-                                mainAxisSpacing: 20,
-                                crossAxisCount: 2,
-                                mainAxisExtent: 281),
-                        itemBuilder: (BuildContext context, int index) {
-                          return ProductItem(productEntity: products[index]);
-                        }),
+                    sliver: BlocBuilder<CartCubit, CartState>(
+                      bloc: getIt.get<CartCubit>(),
+                      builder: (context, cartState) {
+                        return SliverGrid.builder(
+                            itemCount: products.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 20,
+                                    crossAxisCount: 2,
+                                    mainAxisExtent: 281),
+                            itemBuilder: (BuildContext context, int index) {
+                              final bool isAddedToCart = cartState.maybeWhen(
+                                  hasProducts: (List<CartProductEntity> value) {
+                                    final indexOfProductInCart =
+                                        value.indexWhere((productInCart) =>
+                                            productInCart.product.id ==
+                                            products[index].id);
+
+                                    if (indexOfProductInCart != -1) {
+                                      return true;
+                                    }
+                                    return false;
+                                  },
+                                  orElse: () => false);
+
+                              return ProductItem(
+                                  productEntity: products[index],
+                                  availableInCart: isAddedToCart,
+                                  onAddToCart: () {
+                                    getIt
+                                        .get<CartCubit>()
+                                        .increment(product: products[index]);
+                                  });
+                            });
+                      },
+                    ),
                   ),
                   SliverToBoxAdapter(
                     child: 34.height,
