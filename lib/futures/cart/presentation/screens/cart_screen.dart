@@ -97,7 +97,10 @@ class CartScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24.0),
                         child: CustomButton(
-                            buttonText: 'Checkout', loginPress: () {}),
+                            buttonText: 'Checkout',
+                            loginPress: () {
+                              context.router.pushNamed('/checkout');
+                            }),
                       ),
                       34.height,
                     ],
