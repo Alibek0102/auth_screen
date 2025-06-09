@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ColorSelector extends StatelessWidget {
-  const ColorSelector({
-    super.key,
-  });
+  final VoidCallback? onShow;
+
+  const ColorSelector({super.key, required this.onShow});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class ColorSelector extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16 / 2)))),
         29.width,
         InkWell(
-          onTap: () {},
+          onTap: onShow,
           child: SvgPicture.asset('assets/images/chevron_down.svg'),
         )
       ],

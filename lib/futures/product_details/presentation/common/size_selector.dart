@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SizeSelector extends StatelessWidget {
-  const SizeSelector({
-    super.key,
-  });
+  final VoidCallback? onShow;
+
+  const SizeSelector({super.key, this.onShow});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class SizeSelector extends StatelessWidget {
         ),
         29.width,
         InkWell(
-          onTap: () {},
+          onTap: onShow,
           child: SvgPicture.asset('assets/images/chevron_down.svg'),
         )
       ],

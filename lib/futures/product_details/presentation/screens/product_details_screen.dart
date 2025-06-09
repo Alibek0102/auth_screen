@@ -2,6 +2,7 @@ import 'package:auth_screen/elements/custom_app_bar.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/add_to_cart_button.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/color_selector.dart';
+import 'package:auth_screen/futures/product_details/presentation/common/colors_modal_view.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/image_carousel.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/options_container.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/product_comment.dart';
@@ -11,6 +12,7 @@ import 'package:auth_screen/futures/product_details/presentation/common/quantity
 import 'package:auth_screen/futures/product_details/presentation/common/reviews_title.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/shipping_policy.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/size_selector.dart';
+import 'package:auth_screen/futures/product_details/presentation/common/sizes_modal_view.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
@@ -33,14 +35,32 @@ class ProductDetailsScreen extends StatelessWidget {
                 children: [
                   const ImageCarousel(),
                   const ProductName(),
-                  const OptionsContainer(
+                  OptionsContainer(
                     containerKey: 'Size',
-                    containerChild: SizeSelector(),
+                    containerChild: SizeSelector(
+                      onShow: () {
+                        showModalBottomSheet(
+                            clipBehavior: Clip.hardEdge,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const SizesModalView();
+                            });
+                      },
+                    ),
                   ),
                   12.height,
-                  const OptionsContainer(
+                  OptionsContainer(
                     containerKey: 'Color',
-                    containerChild: ColorSelector(),
+                    containerChild: ColorSelector(
+                      onShow: () {
+                        showModalBottomSheet(
+                            clipBehavior: Clip.hardEdge,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const ColorsModalView();
+                            });
+                      },
+                    ),
                   ),
                   12.height,
                   const OptionsContainer(
