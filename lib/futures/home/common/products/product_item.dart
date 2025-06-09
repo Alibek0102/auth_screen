@@ -8,86 +8,91 @@ class ProductItem extends StatelessWidget {
   final ProductEntity productEntity;
   final bool availableInCart;
   final VoidCallback? onAddToCart;
+  final VoidCallback? onTapCard;
 
   const ProductItem(
       {super.key,
       required this.productEntity,
       this.availableInCart = false,
-      this.onAddToCart});
+      this.onAddToCart,
+      this.onTapCard});
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: Stack(
-        children: [
-          SizedBox(
-            height: 281,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: AppColors.lightSilver,
-              ),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: Image.network(
-                      productEntity.image,
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Image.network(
-                            'https://images.vexels.com/media/users/3/234049/isolated/preview/8f2ee5f40718feca247cb3e0f6f4d17a-hoodie-solid-color-clothing.png');
-                      },
+    return InkWell(
+      onTap: onTapCard,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: Stack(
+          children: [
+            SizedBox(
+              height: 281,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: AppColors.lightSilver,
+                ),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Image.network(
+                        productEntity.image,
+                        fit: BoxFit.contain,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Image.network(
+                              'https://images.vexels.com/media/users/3/234049/isolated/preview/8f2ee5f40718feca247cb3e0f6f4d17a-hoodie-solid-color-clothing.png');
+                        },
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          productEntity.title,
-                          style: const TextStyle(
-                            fontSize: 12,
-                          ),
-                          maxLines: 1,
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text(
-                              '${productEntity.price}',
-                              style: const TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            productEntity.title,
+                            style: const TextStyle(
+                              fontSize: 12,
                             ),
-                            8.width,
-                            Text(
-                              'S${productEntity.discount}',
-                              style: TextStyle(
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.primarySilver,
-                                  decoration: TextDecoration.lineThrough,
-                                  decorationThickness: 1,
-                                  decorationColor: Colors.grey),
-                            )
-                          ],
-                        ),
-                      ],
+                            maxLines: 1,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Text(
+                                '${productEntity.price}',
+                                style: const TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.bold),
+                              ),
+                              8.width,
+                              Text(
+                                'S${productEntity.discount}',
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.primarySilver,
+                                    decoration: TextDecoration.lineThrough,
+                                    decorationThickness: 1,
+                                    decorationColor: Colors.grey),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Positioned(
-            top: 5,
-            right: 8,
-            child: FavoriteButton(
-              isSelected: availableInCart,
-              onPress: onAddToCart,
-            ),
-          )
-        ],
+            Positioned(
+              top: 5,
+              right: 8,
+              child: FavoriteButton(
+                isSelected: availableInCart,
+                onPress: onAddToCart,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -29,6 +29,10 @@ class _HomeScreenState extends State<HomeScreen> {
     context.router.push(CategoryDetailsRoute(model: model));
   }
 
+  void showProductDetails() {
+    context.router.push(ProductDetailsRoute());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: state.categories
                       .map((category) => ProductsList(
                             categoryTitle: category.category,
+                            onShowDetails: showProductDetails,
                           ))
                       .toList())
             ]);

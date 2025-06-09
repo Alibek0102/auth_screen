@@ -13,8 +13,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsList extends StatelessWidget {
   final String categoryTitle;
+  final Function()? onShowDetails;
 
-  const ProductsList({super.key, required this.categoryTitle});
+  const ProductsList(
+      {super.key, required this.categoryTitle, this.onShowDetails});
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class ProductsList extends StatelessWidget {
             height: 281,
             child: Products(
               model: categoryTitle,
+              onShowDetails: onShowDetails,
             ),
           ),
         ],
@@ -45,8 +48,9 @@ class ProductsList extends StatelessWidget {
 
 class Products extends StatefulWidget {
   final String model;
+  final Function()? onShowDetails;
 
-  const Products({super.key, required this.model});
+  const Products({super.key, required this.model, this.onShowDetails});
 
   @override
   State<Products> createState() => _ProductsState();
@@ -123,6 +127,11 @@ class _ProductsState extends State<Products> {
                       child: ProductItem(
                         productEntity: products[index],
                         availableInCart: isAddedToCart,
+                        onTapCard: () {
+                          if (widget.onShowDetails != null) {
+                            widget.onShowDetails!();
+                          }
+                        },
                         onAddToCart: () {
                           getIt
                               .get<CartCubit>()
