@@ -4,7 +4,7 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
 import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/home/domain/entity/product_entity.dart';
-import 'package:auth_screen/futures/product_details/presentation/blocs/product_details_cubit.dart';
+import 'package:auth_screen/futures/product_details/presentation/blocs/details_cubit.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/add_to_cart_button.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/color_selector.dart';
 import 'package:auth_screen/futures/product_details/presentation/common/colors_modal_view.dart';
@@ -36,24 +36,24 @@ class ProductDetailsScreen extends StatelessWidget {
             context.router.back();
           },
         ),
-        body: BlocBuilder<ProductDetailsCubit, ProductDetailsState>(
-          bloc: getIt.get<ProductDetailsCubit>(),
-          builder: (context, detailsState) {
-            return BlocBuilder<CartCubit, CartState>(
-              bloc: getIt.get<CartCubit>(),
-              builder: (context, cartState) {
-                final productInCart = cartState.maybeWhen(
-                    hasProducts: (List<CartProductEntity> value) {
-                      return value
-                          .where((productInCart) =>
-                              productInCart.product.id == product.id)
-                          .firstOrNull;
-                    },
-                    orElse: () => null);
+        body: BlocBuilder<CartCubit, CartState>(
+          bloc: getIt.get<CartCubit>(),
+          builder: (context, cartState) {
+            final productInCart = cartState.maybeWhen(
+                hasProducts: (List<CartProductEntity> value) {
+                  return value
+                      .where((productInCart) =>
+                          productInCart.product.id == product.id)
+                      .firstOrNull;
+                },
+                orElse: () => null);
 
-                return Column(
-                  children: [
-                    Expanded(
+            return Column(
+              children: [
+                BlocBuilder<DetailsCubit, DetailsState>(
+                  bloc: getIt.get<DetailsCubit>(),
+                  builder: (context, detailsState) {
+                    return Expanded(
                       child: ListView(
                         children: [
                           ImageCarousel(
@@ -68,7 +68,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                   OptionsContainer(
                                     containerKey: 'Size',
                                     containerChild: SizeSelector(
-                                      value: detailsState.size,
+                                      value: 'M',
                                       onShow: () {
                                         showModalBottomSheet(
                                             clipBehavior: Clip.hardEdge,
@@ -76,10 +76,9 @@ class ProductDetailsScreen extends StatelessWidget {
                                             builder: (BuildContext context) {
                                               return SizesModalView(
                                                 onTap: (value) {
-                                                  getIt
-                                                      .get<
-                                                          ProductDetailsCubit>()
-                                                      .changeSize(size: value);
+                                                  // getIt
+                                                  //     .get<ProductDetailsCubit>()
+                                                  //     .changeSize(size: value);
                                                 },
                                               );
                                             });
@@ -98,7 +97,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                               return const ColorsModalView();
                                             });
                                       },
-                                      value: detailsState.size,
+                                      value: '#ffffff',
                                     ),
                                   ),
                                 ]
@@ -137,19 +136,17 @@ class ProductDetailsScreen extends StatelessWidget {
                           10.height,
                         ],
                       ),
-                    ),
-                    productInCart == null
-                        ? AddToCartButton(
-                            onTap: () {
-                              getIt
-                                  .get<CartCubit>()
-                                  .increment(product: product);
-                            },
-                          )
-                        : 0.height
-                  ],
-                );
-              },
+                    );
+                  },
+                ),
+                productInCart == null
+                    ? AddToCartButton(
+                        onTap: () {
+                          getIt.get<CartCubit>().increment(product: product);
+                        },
+                      )
+                    : 0.height
+              ],
             );
           },
         ));
