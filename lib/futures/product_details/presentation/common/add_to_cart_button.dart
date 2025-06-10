@@ -2,16 +2,17 @@ import 'package:auth_screen/elements/universal_button.dart';
 import 'package:flutter/material.dart';
 
 class AddToCartButton extends StatelessWidget {
-  const AddToCartButton({
-    super.key,
-  });
+  final VoidCallback? onTap;
+
+  const AddToCartButton({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.only(top: 20, bottom: 34, left: 24, right: 24),
+    return Padding(
+      padding: const EdgeInsets.only(top: 20, bottom: 34, left: 24, right: 24),
       child: UniversalButton(
-        child: Row(
+        onTap: onTap,
+        child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(

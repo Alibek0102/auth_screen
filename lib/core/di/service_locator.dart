@@ -6,6 +6,7 @@ import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
 import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
+import 'package:auth_screen/futures/product_details/presentation/blocs/product_details_cubit.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
 import 'package:auth_screen/futures/splash_screen/data/datasources/token_datasource.dart';
@@ -58,4 +59,5 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() => LoginCubit(saveToken: getIt.get<SaveToken>()));
   getIt.registerSingleton(SplashCubit(getToken: getIt.get<GetToken>()));
   getIt.registerSingleton(CartCubit());
+  getIt.registerFactory(() => ProductDetailsCubit());
 }

@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class QuantityStepper extends StatelessWidget {
-  const QuantityStepper({
-    super.key,
-  });
+  final VoidCallback? onPlusTap;
+  final VoidCallback? onMinusTap;
+  final int quantity;
+
+  const QuantityStepper(
+      {super.key, this.onPlusTap, this.onMinusTap, required this.quantity});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +22,13 @@ class QuantityStepper extends StatelessWidget {
           child: IconButton(
               style: IconButton.styleFrom(
                   backgroundColor: AppColors.primaryViolet),
-              onPressed: () {},
+              onPressed: onPlusTap,
               icon: SvgPicture.asset('assets/images/Plus.svg')),
         ),
         23.width,
-        const Text(
-          '1',
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+        Text(
+          '${quantity}',
+          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
         ),
         23.width,
         SizedBox(
@@ -35,7 +38,7 @@ class QuantityStepper extends StatelessWidget {
               style: IconButton.styleFrom(
                   backgroundColor: AppColors.primaryViolet),
               color: Colors.red,
-              onPressed: () {},
+              onPressed: onMinusTap,
               icon: SvgPicture.asset('assets/images/Minus.svg')),
         ),
       ],

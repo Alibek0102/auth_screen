@@ -3,6 +3,7 @@ import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/common/app_bar/home_app_bar.dart';
 import 'package:auth_screen/futures/home/common/categories/categories_list.dart';
 import 'package:auth_screen/futures/home/common/products/products_list.dart';
+import 'package:auth_screen/futures/home/domain/entity/product_entity.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
@@ -29,8 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
     context.router.push(CategoryDetailsRoute(model: model));
   }
 
-  void showProductDetails() {
-    context.router.push(ProductDetailsRoute());
+  void showProductDetails({required ProductEntity product}) {
+    context.router.push(ProductDetailsRoute(product: product));
   }
 
   @override

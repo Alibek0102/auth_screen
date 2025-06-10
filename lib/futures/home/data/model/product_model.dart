@@ -6,6 +6,7 @@ class ProductModel extends ProductEntity {
       required super.title,
       required super.image,
       required super.price,
+      required super.description,
       super.discount});
 
   ProductModel.fromJson(Map<String, dynamic> json)
@@ -14,5 +15,6 @@ class ProductModel extends ProductEntity {
             title: json['title'],
             image: json['image'],
             price: json['price'],
-            discount: json['discount']);
+            discount: json['discount'],
+            description: json['description']);
 }

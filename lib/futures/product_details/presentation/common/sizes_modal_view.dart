@@ -3,9 +3,9 @@ import 'package:auth_screen/futures/product_details/presentation/constants/optio
 import 'package:flutter/material.dart';
 
 class SizesModalView extends StatelessWidget {
-  const SizesModalView({
-    super.key,
-  });
+  final Function(String value)? onTap;
+
+  const SizesModalView({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class SizesModalView extends StatelessWidget {
       child: ColoredBox(
         color: Colors.white,
         child: Padding(
-          padding: EdgeInsets.all(24.0),
+          padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,6 +29,10 @@ class SizesModalView extends StatelessWidget {
                     itemCount: productSizes.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
+                        onTap: () {
+                          if (onTap == null) return;
+                          onTap!(productSizes[index]['size'] as String);
+                        },
                         contentPadding:
                             const EdgeInsets.symmetric(horizontal: 0.0),
                         title: Text(productSizes[index]['title'] as String),

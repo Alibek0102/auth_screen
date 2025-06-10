@@ -3,9 +3,11 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:flutter/widgets.dart';
 
 class ProductName extends StatelessWidget {
-  const ProductName({
-    super.key,
-  });
+  final String productName;
+  final int productPrice;
+
+  const ProductName(
+      {super.key, required this.productName, required this.productPrice});
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +17,13 @@ class ProductName extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Mens Harrington Jacket',
+            productName,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
           ),
           15.height,
-          Text('\$148',
+          Text('\$${productPrice}',
               style: TextStyle(
                   fontSize: 16.0,
                   fontWeight: FontWeight.bold,

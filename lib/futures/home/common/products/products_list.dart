@@ -6,6 +6,7 @@ import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/common/list_header.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
 import 'package:auth_screen/futures/home/common/products/products_shimmer_item.dart';
+import 'package:auth_screen/futures/home/domain/entity/product_entity.dart';
 import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProductsList extends StatelessWidget {
   final String categoryTitle;
-  final Function()? onShowDetails;
+  final Function({required ProductEntity product})? onShowDetails;
 
   const ProductsList(
       {super.key, required this.categoryTitle, this.onShowDetails});
@@ -48,7 +49,7 @@ class ProductsList extends StatelessWidget {
 
 class Products extends StatefulWidget {
   final String model;
-  final Function()? onShowDetails;
+  final Function({required ProductEntity product})? onShowDetails;
 
   const Products({super.key, required this.model, this.onShowDetails});
 
@@ -129,7 +130,7 @@ class _ProductsState extends State<Products> {
                         availableInCart: isAddedToCart,
                         onTapCard: () {
                           if (widget.onShowDetails != null) {
-                            widget.onShowDetails!();
+                            widget.onShowDetails!(product: products[index]);
                           }
                         },
                         onAddToCart: () {

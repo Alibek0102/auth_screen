@@ -4,17 +4,18 @@ import 'package:flutter_svg/svg.dart';
 
 class SizeSelector extends StatelessWidget {
   final VoidCallback? onShow;
+  final String? value;
 
-  const SizeSelector({super.key, this.onShow});
+  const SizeSelector({super.key, this.onShow, this.value});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text(
-          'S',
-          style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
+        Text(
+          value ?? 'Не выбран',
+          style: const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
         ),
         29.width,
         InkWell(

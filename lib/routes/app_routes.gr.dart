@@ -22,6 +22,8 @@ import 'package:auth_screen/futures/category_details/screen/category_details_scr
     as _i2;
 import 'package:auth_screen/futures/checkout/presentation/screens/checkout_screen.dart'
     as _i3;
+import 'package:auth_screen/futures/home/domain/entity/product_entity.dart'
+    as _i17;
 import 'package:auth_screen/futures/home/screen/home_screen.dart' as _i5;
 import 'package:auth_screen/futures/notifications/screen/notifications_screen.dart'
     as _i8;
@@ -250,10 +252,17 @@ class NotificationsRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.ProductDetailsScreen]
-class ProductDetailsRoute extends _i15.PageRouteInfo<void> {
-  const ProductDetailsRoute({List<_i15.PageRouteInfo>? children})
-      : super(
+class ProductDetailsRoute extends _i15.PageRouteInfo<ProductDetailsRouteArgs> {
+  ProductDetailsRoute({
+    _i16.Key? key,
+    required _i17.ProductEntity product,
+    List<_i15.PageRouteInfo>? children,
+  }) : super(
           ProductDetailsRoute.name,
+          args: ProductDetailsRouteArgs(
+            key: key,
+            product: product,
+          ),
           initialChildren: children,
         );
 
@@ -262,9 +271,29 @@ class ProductDetailsRoute extends _i15.PageRouteInfo<void> {
   static _i15.PageInfo page = _i15.PageInfo(
     name,
     builder: (data) {
-      return const _i9.ProductDetailsScreen();
+      final args = data.argsAs<ProductDetailsRouteArgs>();
+      return _i9.ProductDetailsScreen(
+        key: args.key,
+        product: args.product,
+      );
     },
   );
+}
+
+class ProductDetailsRouteArgs {
+  const ProductDetailsRouteArgs({
+    this.key,
+    required this.product,
+  });
+
+  final _i16.Key? key;
+
+  final _i17.ProductEntity product;
+
+  @override
+  String toString() {
+    return 'ProductDetailsRouteArgs{key: $key, product: $product}';
+  }
 }
 
 /// generated route for

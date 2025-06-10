@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class ImageCarousel extends StatelessWidget {
-  const ImageCarousel({
-    super.key,
-  });
+  final List<String> images;
+
+  const ImageCarousel({super.key, required this.images});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +13,12 @@ class ImageCarousel extends StatelessWidget {
       height: 248,
       child: ListView.separated(
         padding: const EdgeInsets.symmetric(horizontal: 24),
-        itemCount: 10,
+        itemCount: images.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (BuildContext context, int index) {
           return SizedBox(
             width: 161,
-            child: ColoredBox(color: Colors.red),
+            child: Image.network(images[index]),
           );
         },
         separatorBuilder: (BuildContext context, int index) {
