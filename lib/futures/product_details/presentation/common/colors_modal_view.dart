@@ -4,9 +4,9 @@ import 'package:auth_screen/futures/product_details/presentation/constants/optio
 import 'package:flutter/material.dart';
 
 class ColorsModalView extends StatelessWidget {
-  const ColorsModalView({
-    super.key,
-  });
+  final Function(String color)? onTap;
+
+  const ColorsModalView({super.key, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +30,10 @@ class ColorsModalView extends StatelessWidget {
                     itemCount: productColors.length,
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
+                        onTap: () {
+                          if (onTap == null) return;
+                          onTap!((productColors[index]['color'] as String));
+                        },
                         contentPadding:
                             const EdgeInsets.symmetric(horizontal: 0.0),
                         title: Text(productColors[index]['title'] as String),

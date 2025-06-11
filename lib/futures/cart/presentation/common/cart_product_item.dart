@@ -1,5 +1,6 @@
 import 'package:auth_screen/core/app_colors.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
+import 'package:auth_screen/extensions/string_extension.dart';
 import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -48,35 +49,45 @@ class CartProductItem extends StatelessWidget {
                     const Spacer(),
                     Row(
                       children: [
-                        Text.rich(TextSpan(children: [
-                          TextSpan(
-                              text: 'Size',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.textSilver)),
-                          const TextSpan(
-                              text: ' - M',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black))
-                        ])),
+                        cartProduct.size != null
+                            ? Text.rich(TextSpan(children: [
+                                TextSpan(
+                                    text: 'Size',
+                                    style: TextStyle(
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.textSilver)),
+                                TextSpan(
+                                    text: ' - ${cartProduct.size}',
+                                    style: const TextStyle(
+                                        fontSize: 12.0,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black))
+                              ]))
+                            : 0.height,
                         16.width,
-                        Text.rich(TextSpan(children: [
-                          TextSpan(
-                              text: 'Color',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: AppColors.textSilver)),
-                          const TextSpan(
-                              text: ' - Black',
-                              style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black))
-                        ])),
+                        cartProduct.color != null
+                            ? Row(
+                                children: [
+                                  Text('Color -',
+                                      style: TextStyle(
+                                          fontSize: 12.0,
+                                          fontWeight: FontWeight.bold,
+                                          color: AppColors.textSilver)),
+                                  5.width,
+                                  SizedBox(
+                                      width: 16,
+                                      height: 16,
+                                      child: DecoratedBox(
+                                          decoration: BoxDecoration(
+                                              color:
+                                                  cartProduct.color!.toColor(),
+                                              borderRadius:
+                                                  BorderRadiusDirectional
+                                                      .circular(16 / 2)))),
+                                ],
+                              )
+                            : 0.height,
                       ],
                     )
                   ],

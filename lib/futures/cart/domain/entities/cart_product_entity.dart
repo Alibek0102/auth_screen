@@ -9,9 +9,13 @@ class CartProductEntity {
   const CartProductEntity(
       {required this.count, required this.product, this.color, this.size});
 
-  CartProductEntity copyWith({int? count, ProductEntity? product}) {
+  CartProductEntity copyWith(
+      {int? count, ProductEntity? product, String? size, String? color}) {
     return CartProductEntity(
-        count: count ?? this.count, product: product ?? this.product);
+        count: count ?? this.count,
+        product: product ?? this.product,
+        size: size ?? this.size,
+        color: color ?? this.color);
   }
 
   int get priceByCount => product.price * count;

@@ -9,31 +9,42 @@ part 'cart_state.dart';
 class CartCubit extends Cubit<CartState> {
   CartCubit() : super(const CartState.empty());
 
-  void increment({required ProductEntity product}) {
+  void onAddToCart(
+      {required ProductEntity product, String? size, String? color}) {
     if (state is _CartEmptyState) {
-      final newCartItem = CartProductEntity(count: 1, product: product);
-      emit(CartState.hasProducts(cartProducts: [newCartItem]));
+      final newCartProduct = CartProductEntity(
+          count: 1, product: product, color: color, size: size);
+      emit(CartState.hasProducts(cartProducts: [newCartProduct]));
     } else if (state is _CartHasProducts) {
       final indexOfCartProduct = (state as _CartHasProducts)
           .cartProducts
           .indexWhere(
               (CartProductEntity item) => item.product.id == product.id);
-
       if (indexOfCartProduct == -1) {
-        final newCartItem = CartProductEntity(count: 1, product: product);
+        final newCartProduct = CartProductEntity(
+            count: 1, product: product, color: color, size: size);
         emit(CartState.hasProducts(cartProducts: [
           ...(state as _CartHasProducts).cartProducts,
-          newCartItem
+          newCartProduct
         ]));
-      } else {
+      }
+    }
+  }
+
+  void increment({required ProductEntity product}) {
+    if (state is _CartHasProducts) {
+      final indexOfCartProduct = (state as _CartHasProducts)
+          .cartProducts
+          .indexWhere(
+              (CartProductEntity item) => item.product.id == product.id);
+
+      if (indexOfCartProduct != -1) {
         emit(CartState.hasProducts(cartProducts: [
           ...(state as _CartHasProducts)
               .cartProducts
               .map((CartProductEntity cartItem) {
             if (cartItem.product.id == product.id) {
-              final selectedCartItem = cartItem;
-              return CartProductEntity(
-                  count: selectedCartItem.count + 1, product: product);
+              return cartItem.copyWith(count: cartItem.count + 1);
             }
             return cartItem;
           })

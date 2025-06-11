@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 
 class AddToCartButton extends StatelessWidget {
   final VoidCallback? onTap;
+  final bool disabled;
 
-  const AddToCartButton({super.key, this.onTap});
+  const AddToCartButton({super.key, this.onTap, this.disabled = false});
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +13,7 @@ class AddToCartButton extends StatelessWidget {
       padding: const EdgeInsets.only(top: 20, bottom: 34, left: 24, right: 24),
       child: UniversalButton(
         onTap: onTap,
+        disabled: disabled,
         child: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
