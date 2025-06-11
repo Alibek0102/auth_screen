@@ -50,7 +50,7 @@ class ProductDetailsScreen extends StatelessWidget {
 
             return Column(
               children: [
-                BlocBuilder<DetailsCubit, DetailsState>(
+                BlocConsumer<DetailsCubit, DetailsState>(
                   bloc: getIt.get<DetailsCubit>(),
                   builder: (context, detailsState) {
                     return Expanded(
@@ -68,7 +68,7 @@ class ProductDetailsScreen extends StatelessWidget {
                                   OptionsContainer(
                                     containerKey: 'Size',
                                     containerChild: SizeSelector(
-                                      value: 'M',
+                                      value: detailsState.size,
                                       onShow: () {
                                         showModalBottomSheet(
                                             clipBehavior: Clip.hardEdge,
@@ -77,8 +77,8 @@ class ProductDetailsScreen extends StatelessWidget {
                                               return SizesModalView(
                                                 onTap: (value) {
                                                   // getIt
-                                                  //     .get<ProductDetailsCubit>()
-                                                  //     .changeSize(size: value);
+                                                  //     .get<DetailsCubit>()
+                                                  //     .onChangeSize()
                                                 },
                                               );
                                             });
@@ -138,11 +138,13 @@ class ProductDetailsScreen extends StatelessWidget {
                       ),
                     );
                   },
+                  listener: (BuildContext context, DetailsState state) {},
                 ),
                 productInCart == null
                     ? AddToCartButton(
                         onTap: () {
-                          getIt.get<CartCubit>().increment(product: product);
+                          getIt.get<DetailsCubit>().onChangeSize();
+                          // getIt.get<CartCubit>().increment(product: product);
                         },
                       )
                     : 0.height
