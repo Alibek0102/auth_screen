@@ -65,9 +65,7 @@ class CartCubit extends Cubit<CartState> {
               .cartProducts
               .map((CartProductEntity cartItem) {
             if (cartItem.product.id == product.id) {
-              final selectedCartItem = cartItem;
-              return CartProductEntity(
-                  count: selectedCartItem.count - 1, product: product);
+              return cartItem.copyWith(count: cartItem.count - 1);
             }
             return cartItem;
           })
