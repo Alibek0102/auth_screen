@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
 
 class CheckoutSection extends StatelessWidget {
   final String sectionTitle;
-  final String sectionValue;
+  final String? sectionValue;
+  final VoidCallback? onTap;
+  final bool loader;
 
   const CheckoutSection(
-      {super.key, required this.sectionTitle, required this.sectionValue});
+      {super.key,
+      required this.sectionTitle,
+      this.sectionValue,
+      this.onTap,
+      this.loader = false});
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: onTap,
       child: SizedBox(
         height: 72,
         width: double.infinity,
@@ -36,15 +43,23 @@ class CheckoutSection extends StatelessWidget {
                           fontWeight: FontWeight.normal,
                           color: AppColors.textSilver),
                     ),
-                    Text(
-                      sectionValue,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.normal,
-                      ),
-                    )
+                    !loader
+                        ? Text(
+                            sectionValue ?? 'Не выбран',
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.normal,
+                            ),
+                          )
+                        : const SizedBox(
+                            width: 15,
+                            height: 15,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                            ),
+                          )
                   ],
                 )),
                 8.width,

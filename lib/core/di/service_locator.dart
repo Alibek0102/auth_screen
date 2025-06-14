@@ -1,7 +1,12 @@
 import 'package:auth_screen/core/dio_client.dart';
+import 'package:auth_screen/core/location_client.dart';
 import 'package:auth_screen/futures/authentification/login/presentation/blocs/login_cubit.dart';
 import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
+import 'package:auth_screen/futures/checkout/data/datasources/location_address_datasource.dart';
+import 'package:auth_screen/futures/checkout/data/repositories/location_address_repository_impl.dart';
+import 'package:auth_screen/futures/checkout/domain/usecases/get_address_usecases.dart';
+import 'package:auth_screen/futures/checkout/presentation/blocs/address_bloc/address_cubit.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
@@ -24,10 +29,13 @@ Future<void> setupServiceLocator() async {
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(sharedPreferences);
   getIt.registerSingleton(DioClient());
+  getIt.registerSingleton(LocationClient());
 
   // datasources
   getIt.registerFactory(() =>
       TokenDatasource(sharedPreferencesClient: getIt.get<SharedPreferences>()));
+  getIt.registerFactory(() =>
+      LocationAddressDatasource(dioClient: getIt.get<DioClient>().instance));
 
   // repositories
   getIt.registerFactory(
@@ -39,12 +47,16 @@ Future<void> setupServiceLocator() async {
       () => CategoryRepositoryImpl(client: getIt.get<DioClient>().instance));
   getIt.registerFactory(
       () => ProductsRepositoryImpl(client: getIt.get<DioClient>().instance));
+  getIt.registerFactory(() => LocationAddressRepositoryImpl(
+      locationAddressDatasource: getIt.get<LocationAddressDatasource>()));
 
   // use cases
   getIt.registerFactory(
       () => GetToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
   getIt.registerFactory(
       () => SaveToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
+  getIt.registerFactory(() => GetAddressUsecases(
+      locationAddressRepository: getIt.get<LocationAddressRepositoryImpl>()));
 
   // blocs
   getIt.registerLazySingleton(
@@ -61,4 +73,8 @@ Future<void> setupServiceLocator() async {
   getIt.registerSingleton(CartCubit());
 
   getIt.registerFactory(() => DetailsCubit());
+
+  getIt.registerFactory(() => AddressCubit(
+      locationClient: getIt.get<LocationClient>().location,
+      getAddressUsecases: getIt.get<GetAddressUsecases>()));
 }
