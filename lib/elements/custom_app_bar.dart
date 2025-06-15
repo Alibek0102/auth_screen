@@ -20,7 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   const TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
             )
           : null,
-      leading: HeaderBackButton(goBack: goBack),
+      leading: goBack != null ? HeaderBackButton(goBack: goBack) : null,
       leadingWidth: 40 + 27,
     );
   }

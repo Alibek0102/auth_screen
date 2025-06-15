@@ -17,7 +17,9 @@ class ProductsRepositoryImpl implements ProductsRepository {
       Response response = await _client
           .get(endpoint, queryParameters: {'type': model, 'page': page});
       List<dynamic> jsonList = response.data['products'] as List<dynamic>;
-      return jsonList.map((product) => ProductModel.fromJson(product)).toList();
+      return jsonList
+          .map((product) => ProductModel.fromJson(product).toEntity())
+          .toList();
     } catch (_) {
       throw ErrorDescription('products failed');
     }

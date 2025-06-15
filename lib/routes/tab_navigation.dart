@@ -11,11 +11,11 @@ class TabNavigationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter.pageView(
-      routes: [
+      routes: const [
         HomeRoute(),
-        const NotificationsRoute(),
-        const PurchasesRoute(),
-        const ProfileRoute()
+        NotificationsRoute(),
+        OrdersRoute(),
+        ProfileRoute()
       ],
       builder: (context, child, _) {
         final tabsRouter = AutoTabsRouter.of(context);
