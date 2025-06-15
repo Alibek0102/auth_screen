@@ -23,53 +23,58 @@ class RegistrationScreen extends StatelessWidget {
       body: AuthPage(
         hasBackButton: true,
         headerTitle: 'Create Account',
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 27),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomTextfield(
-                controller: firstNameFieldController,
-                isInvalidEmail: false,
-                placeholder: 'Firstname',
+        child: Expanded(
+          child: SingleChildScrollView(
+            physics: const AlwaysScrollableScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 27),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTextfield(
+                    controller: firstNameFieldController,
+                    isInvalidEmail: false,
+                    placeholder: 'Firstname',
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  CustomTextfield(
+                    controller: lastNameFieldController,
+                    isInvalidEmail: false,
+                    placeholder: 'Lastname',
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  CustomTextfield(
+                    controller: emailAdressFieldController,
+                    isInvalidEmail: false,
+                    placeholder: 'Email Address',
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  CustomTextfield(
+                    controller: passwordFieldController,
+                    isInvalidEmail: false,
+                    placeholder: 'Password',
+                  ),
+                  SizedBox(
+                    height: screenHeight * 0.05,
+                  ),
+                  CustomButton(buttonText: 'Continue', loginPress: () {}),
+                  40.height,
+                  AuthInfoText(
+                    startText: 'ForgotPassword?',
+                    tappableText: 'Reset',
+                    onTap: () {
+                      context.router.pushNamed('/forgot-password');
+                    },
+                  )
+                ],
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              CustomTextfield(
-                controller: lastNameFieldController,
-                isInvalidEmail: false,
-                placeholder: 'Lastname',
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              CustomTextfield(
-                controller: emailAdressFieldController,
-                isInvalidEmail: false,
-                placeholder: 'Email Address',
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              CustomTextfield(
-                controller: passwordFieldController,
-                isInvalidEmail: false,
-                placeholder: 'Password',
-              ),
-              SizedBox(
-                height: screenHeight * 0.05,
-              ),
-              CustomButton(buttonText: 'Continue', loginPress: () {}),
-              40.height,
-              AuthInfoText(
-                startText: 'ForgotPassword?',
-                tappableText: 'Reset',
-                onTap: () {
-                  context.router.pushNamed('/forgot-password');
-                },
-              )
-            ],
+            ),
           ),
         ),
       ),
