@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'create_order_cubit.dart';
+part of 'orders_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$CreateOrderState {
+mixin _$OrdersState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -43,88 +43,85 @@ mixin _$CreateOrderState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateOrderInitialState value) initial,
-    required TResult Function(_CreateOrderLoaderState value) loader,
-    required TResult Function(_CreateOrderSuccessState value) success,
-    required TResult Function(_CreateOrderErrorState value) error,
+    required TResult Function(_OrderInitialState value) initial,
+    required TResult Function(_OrderLoaderState value) loader,
+    required TResult Function(_OrderSuccessState value) success,
+    required TResult Function(_OrderErrorState value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateOrderInitialState value)? initial,
-    TResult? Function(_CreateOrderLoaderState value)? loader,
-    TResult? Function(_CreateOrderSuccessState value)? success,
-    TResult? Function(_CreateOrderErrorState value)? error,
+    TResult? Function(_OrderInitialState value)? initial,
+    TResult? Function(_OrderLoaderState value)? loader,
+    TResult? Function(_OrderSuccessState value)? success,
+    TResult? Function(_OrderErrorState value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateOrderInitialState value)? initial,
-    TResult Function(_CreateOrderLoaderState value)? loader,
-    TResult Function(_CreateOrderSuccessState value)? success,
-    TResult Function(_CreateOrderErrorState value)? error,
+    TResult Function(_OrderInitialState value)? initial,
+    TResult Function(_OrderLoaderState value)? loader,
+    TResult Function(_OrderSuccessState value)? success,
+    TResult Function(_OrderErrorState value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CreateOrderStateCopyWith<$Res> {
-  factory $CreateOrderStateCopyWith(
-          CreateOrderState value, $Res Function(CreateOrderState) then) =
-      _$CreateOrderStateCopyWithImpl<$Res, CreateOrderState>;
+abstract class $OrdersStateCopyWith<$Res> {
+  factory $OrdersStateCopyWith(
+          OrdersState value, $Res Function(OrdersState) then) =
+      _$OrdersStateCopyWithImpl<$Res, OrdersState>;
 }
 
 /// @nodoc
-class _$CreateOrderStateCopyWithImpl<$Res, $Val extends CreateOrderState>
-    implements $CreateOrderStateCopyWith<$Res> {
-  _$CreateOrderStateCopyWithImpl(this._value, this._then);
+class _$OrdersStateCopyWithImpl<$Res, $Val extends OrdersState>
+    implements $OrdersStateCopyWith<$Res> {
+  _$OrdersStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of CreateOrderState
+  /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
-abstract class _$$CreateOrderInitialStateImplCopyWith<$Res> {
-  factory _$$CreateOrderInitialStateImplCopyWith(
-          _$CreateOrderInitialStateImpl value,
-          $Res Function(_$CreateOrderInitialStateImpl) then) =
-      __$$CreateOrderInitialStateImplCopyWithImpl<$Res>;
+abstract class _$$OrderInitialStateImplCopyWith<$Res> {
+  factory _$$OrderInitialStateImplCopyWith(_$OrderInitialStateImpl value,
+          $Res Function(_$OrderInitialStateImpl) then) =
+      __$$OrderInitialStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreateOrderInitialStateImplCopyWithImpl<$Res>
-    extends _$CreateOrderStateCopyWithImpl<$Res, _$CreateOrderInitialStateImpl>
-    implements _$$CreateOrderInitialStateImplCopyWith<$Res> {
-  __$$CreateOrderInitialStateImplCopyWithImpl(
-      _$CreateOrderInitialStateImpl _value,
-      $Res Function(_$CreateOrderInitialStateImpl) _then)
+class __$$OrderInitialStateImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$OrderInitialStateImpl>
+    implements _$$OrderInitialStateImplCopyWith<$Res> {
+  __$$OrderInitialStateImplCopyWithImpl(_$OrderInitialStateImpl _value,
+      $Res Function(_$OrderInitialStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateOrderState
+  /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$CreateOrderInitialStateImpl implements _CreateOrderInitialState {
-  const _$CreateOrderInitialStateImpl();
+class _$OrderInitialStateImpl implements _OrderInitialState {
+  const _$OrderInitialStateImpl();
 
   @override
   String toString() {
-    return 'CreateOrderState.initial()';
+    return 'OrdersState.initial()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateOrderInitialStateImpl);
+        (other.runtimeType == runtimeType && other is _$OrderInitialStateImpl);
   }
 
   @override
@@ -170,10 +167,10 @@ class _$CreateOrderInitialStateImpl implements _CreateOrderInitialState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateOrderInitialState value) initial,
-    required TResult Function(_CreateOrderLoaderState value) loader,
-    required TResult Function(_CreateOrderSuccessState value) success,
-    required TResult Function(_CreateOrderErrorState value) error,
+    required TResult Function(_OrderInitialState value) initial,
+    required TResult Function(_OrderLoaderState value) loader,
+    required TResult Function(_OrderSuccessState value) success,
+    required TResult Function(_OrderErrorState value) error,
   }) {
     return initial(this);
   }
@@ -181,10 +178,10 @@ class _$CreateOrderInitialStateImpl implements _CreateOrderInitialState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateOrderInitialState value)? initial,
-    TResult? Function(_CreateOrderLoaderState value)? loader,
-    TResult? Function(_CreateOrderSuccessState value)? success,
-    TResult? Function(_CreateOrderErrorState value)? error,
+    TResult? Function(_OrderInitialState value)? initial,
+    TResult? Function(_OrderLoaderState value)? loader,
+    TResult? Function(_OrderSuccessState value)? success,
+    TResult? Function(_OrderErrorState value)? error,
   }) {
     return initial?.call(this);
   }
@@ -192,10 +189,10 @@ class _$CreateOrderInitialStateImpl implements _CreateOrderInitialState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateOrderInitialState value)? initial,
-    TResult Function(_CreateOrderLoaderState value)? loader,
-    TResult Function(_CreateOrderSuccessState value)? success,
-    TResult Function(_CreateOrderErrorState value)? error,
+    TResult Function(_OrderInitialState value)? initial,
+    TResult Function(_OrderLoaderState value)? loader,
+    TResult Function(_OrderSuccessState value)? success,
+    TResult Function(_OrderErrorState value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -205,46 +202,43 @@ class _$CreateOrderInitialStateImpl implements _CreateOrderInitialState {
   }
 }
 
-abstract class _CreateOrderInitialState implements CreateOrderState {
-  const factory _CreateOrderInitialState() = _$CreateOrderInitialStateImpl;
+abstract class _OrderInitialState implements OrdersState {
+  const factory _OrderInitialState() = _$OrderInitialStateImpl;
 }
 
 /// @nodoc
-abstract class _$$CreateOrderLoaderStateImplCopyWith<$Res> {
-  factory _$$CreateOrderLoaderStateImplCopyWith(
-          _$CreateOrderLoaderStateImpl value,
-          $Res Function(_$CreateOrderLoaderStateImpl) then) =
-      __$$CreateOrderLoaderStateImplCopyWithImpl<$Res>;
+abstract class _$$OrderLoaderStateImplCopyWith<$Res> {
+  factory _$$OrderLoaderStateImplCopyWith(_$OrderLoaderStateImpl value,
+          $Res Function(_$OrderLoaderStateImpl) then) =
+      __$$OrderLoaderStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreateOrderLoaderStateImplCopyWithImpl<$Res>
-    extends _$CreateOrderStateCopyWithImpl<$Res, _$CreateOrderLoaderStateImpl>
-    implements _$$CreateOrderLoaderStateImplCopyWith<$Res> {
-  __$$CreateOrderLoaderStateImplCopyWithImpl(
-      _$CreateOrderLoaderStateImpl _value,
-      $Res Function(_$CreateOrderLoaderStateImpl) _then)
+class __$$OrderLoaderStateImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$OrderLoaderStateImpl>
+    implements _$$OrderLoaderStateImplCopyWith<$Res> {
+  __$$OrderLoaderStateImplCopyWithImpl(_$OrderLoaderStateImpl _value,
+      $Res Function(_$OrderLoaderStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateOrderState
+  /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$CreateOrderLoaderStateImpl implements _CreateOrderLoaderState {
-  const _$CreateOrderLoaderStateImpl();
+class _$OrderLoaderStateImpl implements _OrderLoaderState {
+  const _$OrderLoaderStateImpl();
 
   @override
   String toString() {
-    return 'CreateOrderState.loader()';
+    return 'OrdersState.loader()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateOrderLoaderStateImpl);
+        (other.runtimeType == runtimeType && other is _$OrderLoaderStateImpl);
   }
 
   @override
@@ -290,10 +284,10 @@ class _$CreateOrderLoaderStateImpl implements _CreateOrderLoaderState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateOrderInitialState value) initial,
-    required TResult Function(_CreateOrderLoaderState value) loader,
-    required TResult Function(_CreateOrderSuccessState value) success,
-    required TResult Function(_CreateOrderErrorState value) error,
+    required TResult Function(_OrderInitialState value) initial,
+    required TResult Function(_OrderLoaderState value) loader,
+    required TResult Function(_OrderSuccessState value) success,
+    required TResult Function(_OrderErrorState value) error,
   }) {
     return loader(this);
   }
@@ -301,10 +295,10 @@ class _$CreateOrderLoaderStateImpl implements _CreateOrderLoaderState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateOrderInitialState value)? initial,
-    TResult? Function(_CreateOrderLoaderState value)? loader,
-    TResult? Function(_CreateOrderSuccessState value)? success,
-    TResult? Function(_CreateOrderErrorState value)? error,
+    TResult? Function(_OrderInitialState value)? initial,
+    TResult? Function(_OrderLoaderState value)? loader,
+    TResult? Function(_OrderSuccessState value)? success,
+    TResult? Function(_OrderErrorState value)? error,
   }) {
     return loader?.call(this);
   }
@@ -312,10 +306,10 @@ class _$CreateOrderLoaderStateImpl implements _CreateOrderLoaderState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateOrderInitialState value)? initial,
-    TResult Function(_CreateOrderLoaderState value)? loader,
-    TResult Function(_CreateOrderSuccessState value)? success,
-    TResult Function(_CreateOrderErrorState value)? error,
+    TResult Function(_OrderInitialState value)? initial,
+    TResult Function(_OrderLoaderState value)? loader,
+    TResult Function(_OrderSuccessState value)? success,
+    TResult Function(_OrderErrorState value)? error,
     required TResult orElse(),
   }) {
     if (loader != null) {
@@ -325,46 +319,43 @@ class _$CreateOrderLoaderStateImpl implements _CreateOrderLoaderState {
   }
 }
 
-abstract class _CreateOrderLoaderState implements CreateOrderState {
-  const factory _CreateOrderLoaderState() = _$CreateOrderLoaderStateImpl;
+abstract class _OrderLoaderState implements OrdersState {
+  const factory _OrderLoaderState() = _$OrderLoaderStateImpl;
 }
 
 /// @nodoc
-abstract class _$$CreateOrderSuccessStateImplCopyWith<$Res> {
-  factory _$$CreateOrderSuccessStateImplCopyWith(
-          _$CreateOrderSuccessStateImpl value,
-          $Res Function(_$CreateOrderSuccessStateImpl) then) =
-      __$$CreateOrderSuccessStateImplCopyWithImpl<$Res>;
+abstract class _$$OrderSuccessStateImplCopyWith<$Res> {
+  factory _$$OrderSuccessStateImplCopyWith(_$OrderSuccessStateImpl value,
+          $Res Function(_$OrderSuccessStateImpl) then) =
+      __$$OrderSuccessStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreateOrderSuccessStateImplCopyWithImpl<$Res>
-    extends _$CreateOrderStateCopyWithImpl<$Res, _$CreateOrderSuccessStateImpl>
-    implements _$$CreateOrderSuccessStateImplCopyWith<$Res> {
-  __$$CreateOrderSuccessStateImplCopyWithImpl(
-      _$CreateOrderSuccessStateImpl _value,
-      $Res Function(_$CreateOrderSuccessStateImpl) _then)
+class __$$OrderSuccessStateImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$OrderSuccessStateImpl>
+    implements _$$OrderSuccessStateImplCopyWith<$Res> {
+  __$$OrderSuccessStateImplCopyWithImpl(_$OrderSuccessStateImpl _value,
+      $Res Function(_$OrderSuccessStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateOrderState
+  /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$CreateOrderSuccessStateImpl implements _CreateOrderSuccessState {
-  const _$CreateOrderSuccessStateImpl();
+class _$OrderSuccessStateImpl implements _OrderSuccessState {
+  const _$OrderSuccessStateImpl();
 
   @override
   String toString() {
-    return 'CreateOrderState.success()';
+    return 'OrdersState.success()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateOrderSuccessStateImpl);
+        (other.runtimeType == runtimeType && other is _$OrderSuccessStateImpl);
   }
 
   @override
@@ -410,10 +401,10 @@ class _$CreateOrderSuccessStateImpl implements _CreateOrderSuccessState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateOrderInitialState value) initial,
-    required TResult Function(_CreateOrderLoaderState value) loader,
-    required TResult Function(_CreateOrderSuccessState value) success,
-    required TResult Function(_CreateOrderErrorState value) error,
+    required TResult Function(_OrderInitialState value) initial,
+    required TResult Function(_OrderLoaderState value) loader,
+    required TResult Function(_OrderSuccessState value) success,
+    required TResult Function(_OrderErrorState value) error,
   }) {
     return success(this);
   }
@@ -421,10 +412,10 @@ class _$CreateOrderSuccessStateImpl implements _CreateOrderSuccessState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateOrderInitialState value)? initial,
-    TResult? Function(_CreateOrderLoaderState value)? loader,
-    TResult? Function(_CreateOrderSuccessState value)? success,
-    TResult? Function(_CreateOrderErrorState value)? error,
+    TResult? Function(_OrderInitialState value)? initial,
+    TResult? Function(_OrderLoaderState value)? loader,
+    TResult? Function(_OrderSuccessState value)? success,
+    TResult? Function(_OrderErrorState value)? error,
   }) {
     return success?.call(this);
   }
@@ -432,10 +423,10 @@ class _$CreateOrderSuccessStateImpl implements _CreateOrderSuccessState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateOrderInitialState value)? initial,
-    TResult Function(_CreateOrderLoaderState value)? loader,
-    TResult Function(_CreateOrderSuccessState value)? success,
-    TResult Function(_CreateOrderErrorState value)? error,
+    TResult Function(_OrderInitialState value)? initial,
+    TResult Function(_OrderLoaderState value)? loader,
+    TResult Function(_OrderSuccessState value)? success,
+    TResult Function(_OrderErrorState value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -445,45 +436,43 @@ class _$CreateOrderSuccessStateImpl implements _CreateOrderSuccessState {
   }
 }
 
-abstract class _CreateOrderSuccessState implements CreateOrderState {
-  const factory _CreateOrderSuccessState() = _$CreateOrderSuccessStateImpl;
+abstract class _OrderSuccessState implements OrdersState {
+  const factory _OrderSuccessState() = _$OrderSuccessStateImpl;
 }
 
 /// @nodoc
-abstract class _$$CreateOrderErrorStateImplCopyWith<$Res> {
-  factory _$$CreateOrderErrorStateImplCopyWith(
-          _$CreateOrderErrorStateImpl value,
-          $Res Function(_$CreateOrderErrorStateImpl) then) =
-      __$$CreateOrderErrorStateImplCopyWithImpl<$Res>;
+abstract class _$$OrderErrorStateImplCopyWith<$Res> {
+  factory _$$OrderErrorStateImplCopyWith(_$OrderErrorStateImpl value,
+          $Res Function(_$OrderErrorStateImpl) then) =
+      __$$OrderErrorStateImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CreateOrderErrorStateImplCopyWithImpl<$Res>
-    extends _$CreateOrderStateCopyWithImpl<$Res, _$CreateOrderErrorStateImpl>
-    implements _$$CreateOrderErrorStateImplCopyWith<$Res> {
-  __$$CreateOrderErrorStateImplCopyWithImpl(_$CreateOrderErrorStateImpl _value,
-      $Res Function(_$CreateOrderErrorStateImpl) _then)
+class __$$OrderErrorStateImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$OrderErrorStateImpl>
+    implements _$$OrderErrorStateImplCopyWith<$Res> {
+  __$$OrderErrorStateImplCopyWithImpl(
+      _$OrderErrorStateImpl _value, $Res Function(_$OrderErrorStateImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of CreateOrderState
+  /// Create a copy of OrdersState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$CreateOrderErrorStateImpl implements _CreateOrderErrorState {
-  const _$CreateOrderErrorStateImpl();
+class _$OrderErrorStateImpl implements _OrderErrorState {
+  const _$OrderErrorStateImpl();
 
   @override
   String toString() {
-    return 'CreateOrderState.error()';
+    return 'OrdersState.error()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$CreateOrderErrorStateImpl);
+        (other.runtimeType == runtimeType && other is _$OrderErrorStateImpl);
   }
 
   @override
@@ -529,10 +518,10 @@ class _$CreateOrderErrorStateImpl implements _CreateOrderErrorState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_CreateOrderInitialState value) initial,
-    required TResult Function(_CreateOrderLoaderState value) loader,
-    required TResult Function(_CreateOrderSuccessState value) success,
-    required TResult Function(_CreateOrderErrorState value) error,
+    required TResult Function(_OrderInitialState value) initial,
+    required TResult Function(_OrderLoaderState value) loader,
+    required TResult Function(_OrderSuccessState value) success,
+    required TResult Function(_OrderErrorState value) error,
   }) {
     return error(this);
   }
@@ -540,10 +529,10 @@ class _$CreateOrderErrorStateImpl implements _CreateOrderErrorState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_CreateOrderInitialState value)? initial,
-    TResult? Function(_CreateOrderLoaderState value)? loader,
-    TResult? Function(_CreateOrderSuccessState value)? success,
-    TResult? Function(_CreateOrderErrorState value)? error,
+    TResult? Function(_OrderInitialState value)? initial,
+    TResult? Function(_OrderLoaderState value)? loader,
+    TResult? Function(_OrderSuccessState value)? success,
+    TResult? Function(_OrderErrorState value)? error,
   }) {
     return error?.call(this);
   }
@@ -551,10 +540,10 @@ class _$CreateOrderErrorStateImpl implements _CreateOrderErrorState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_CreateOrderInitialState value)? initial,
-    TResult Function(_CreateOrderLoaderState value)? loader,
-    TResult Function(_CreateOrderSuccessState value)? success,
-    TResult Function(_CreateOrderErrorState value)? error,
+    TResult Function(_OrderInitialState value)? initial,
+    TResult Function(_OrderLoaderState value)? loader,
+    TResult Function(_OrderSuccessState value)? success,
+    TResult Function(_OrderErrorState value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -564,6 +553,6 @@ class _$CreateOrderErrorStateImpl implements _CreateOrderErrorState {
   }
 }
 
-abstract class _CreateOrderErrorState implements CreateOrderState {
-  const factory _CreateOrderErrorState() = _$CreateOrderErrorStateImpl;
+abstract class _OrderErrorState implements OrdersState {
+  const factory _OrderErrorState() = _$OrderErrorStateImpl;
 }

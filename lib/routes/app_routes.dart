@@ -27,6 +27,7 @@ class AppRoutes extends RootStackRouter {
         AutoRoute(page: CategoryDetailsRoute.page),
         AutoRoute(page: CartRoute.page, path: '/cart'),
         AutoRoute(page: CheckoutRoute.page, path: '/checkout'),
-        AutoRoute(page: ProductDetailsRoute.page)
+        AutoRoute(page: ProductDetailsRoute.page),
+        AutoRoute(page: SuccessOrderRoute.page, path: '/success-order')
       ];
 }

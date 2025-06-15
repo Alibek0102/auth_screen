@@ -26,4 +26,13 @@ class OrderModel {
           .map((productEntity) => CartProductModel.fromEntity(productEntity))
           .toList(),
       shippingAddress: entity.shippingAddress);
+
+  OrderEntity toEntity() {
+    return OrderEntity(
+      cardNumber: cardNumber,
+      shippingAddress: shippingAddress,
+      products:
+          products.map((productModel) => productModel.toEntity()).toList(),
+    );
+  }
 }

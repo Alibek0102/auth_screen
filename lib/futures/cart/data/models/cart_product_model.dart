@@ -27,4 +27,13 @@ class CartProductModel {
           product: ProductModel.fromEntity(entity.product),
           size: entity.size,
           color: entity.color);
+
+  CartProductEntity toEntity() {
+    return CartProductEntity(
+      count: count,
+      size: size,
+      color: color,
+      product: product.toEntity(),
+    );
+  }
 }

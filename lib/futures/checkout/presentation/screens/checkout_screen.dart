@@ -9,6 +9,7 @@ import 'package:auth_screen/futures/checkout/presentation/blocs/payment_bloc/pay
 import 'package:auth_screen/futures/checkout/presentation/common/checkout_section.dart';
 import 'package:auth_screen/futures/checkout/presentation/common/enter_card_number_modal_view.dart';
 import 'package:auth_screen/futures/checkout/presentation/common/select_delivery_address_modal_view.dart';
+import 'package:auth_screen/futures/orders/presentation/blocs/orders_bloc/orders_cubit.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +23,8 @@ class CheckoutScreen extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => getIt.get<AddressCubit>()),
-        BlocProvider(create: (_) => getIt.get<PaymentCubit>())
+        BlocProvider(create: (_) => getIt.get<PaymentCubit>()),
+        BlocProvider(create: (_) => getIt.get<OrdersCubit>())
       ],
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -118,29 +120,65 @@ class CheckoutScreen extends StatelessWidget {
                     ),
                   ),
                   89.height,
-                  Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                      child: UniversalButton(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              '\$${cartInstance.totalPrice}',
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
-                            ),
-                            const Text(
-                              'Place Order',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 16),
-                            )
-                          ],
-                        ),
-                      )),
+                  BlocConsumer<OrdersCubit, OrdersState>(
+                    listener: (BuildContext context, OrdersState state) {
+                      state.whenOrNull(
+                        success: () {
+                          getIt.get<CartCubit>().reset();
+                          context.router.replaceNamed('/success-order');
+                        },
+                      );
+                    },
+                    builder: (context, orderState) {
+                      return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                          child: UniversalButton(
+                              onTap: () {
+                                state.whenOrNull(
+                                  hasProducts: (cartProducts) {
+                                    context.read<OrdersCubit>().createOrder(
+                                        shippingAddress: 'aaa',
+                                        cardNumber: 'bbb',
+                                        products: cartProducts);
+                                  },
+                                );
+                              },
+                              child: orderState.maybeWhen(
+                                loader: () => const Center(
+                                  child: SizedBox(
+                                    width: 25,
+                                    height: 25,
+                                    child: CircularProgressIndicator(
+                                      color: Colors.white,
+                                      strokeWidth: 2.0,
+                                    ),
+                                  ),
+                                ),
+                                orElse: () {
+                                  return Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        '\$${cartInstance.totalPrice}',
+                                        style: const TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16),
+                                      ),
+                                      const Text(
+                                        'Place Order',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16),
+                                      )
+                                    ],
+                                  );
+                                },
+                              )));
+                    },
+                  ),
                   34.height
                 ],
               );

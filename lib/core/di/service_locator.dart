@@ -1,6 +1,7 @@
 import 'package:auth_screen/core/dio_client.dart';
 import 'package:auth_screen/core/location_client.dart';
 import 'package:auth_screen/futures/authentification/login/presentation/blocs/login_cubit.dart';
+import 'package:auth_screen/futures/cart/data/models/cart_product_model.dart';
 import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
 import 'package:auth_screen/futures/checkout/data/datasources/location_address_datasource.dart';
@@ -10,12 +11,15 @@ import 'package:auth_screen/futures/checkout/presentation/blocs/address_bloc/add
 import 'package:auth_screen/futures/checkout/presentation/blocs/payment_bloc/payment_cubit.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
+import 'package:auth_screen/futures/home/data/model/product_model.dart';
 import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
 import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
 import 'package:auth_screen/futures/orders/data/datasource/order_datasource.dart';
 import 'package:auth_screen/futures/orders/data/models/order_model.dart';
 import 'package:auth_screen/futures/orders/data/repository/order_repository_impl.dart';
 import 'package:auth_screen/futures/orders/domain/use_case/create_order_use_case.dart';
+import 'package:auth_screen/futures/orders/domain/use_case/get_orders_use_case.dart';
+import 'package:auth_screen/futures/orders/presentation/blocs/orders_bloc/orders_cubit.dart';
 import 'package:auth_screen/futures/product_details/presentation/blocs/details_cubit.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
@@ -35,8 +39,10 @@ Future<void> setupServiceLocator() async {
   await Hive.initFlutter();
   if (!Hive.isAdapterRegistered(0)) {
     Hive.registerAdapter(OrderModelAdapter());
+    Hive.registerAdapter(CartProductModelAdapter());
+    Hive.registerAdapter(ProductModelAdapter());
   }
-  final orderBox = await Hive.openBox<OrderModel>('order1');
+  final orderBox = await Hive.openBox<OrderModel>('order2');
 
   getIt.registerSingleton(orderBox);
 
@@ -78,6 +84,8 @@ Future<void> setupServiceLocator() async {
       locationAddressRepository: getIt.get<LocationAddressRepositoryImpl>()));
   getIt.registerFactory(() =>
       CreateOrderUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
+  getIt.registerFactory(() =>
+      GetOrdersUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
 
   // blocs
   getIt.registerLazySingleton(
@@ -99,4 +107,8 @@ Future<void> setupServiceLocator() async {
       locationClient: getIt.get<LocationClient>().location,
       getAddressUsecases: getIt.get<GetAddressUsecases>()));
   getIt.registerFactory(() => PaymentCubit());
+
+  getIt.registerFactory(() => OrdersCubit(
+      createOrderUseCase: getIt.get<CreateOrderUseCase>(),
+      getOrdersUseCase: getIt.get<GetOrdersUseCase>()));
 }

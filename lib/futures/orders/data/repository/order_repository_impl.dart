@@ -12,4 +12,12 @@ class OrderRepositoryImpl implements OrderRepository {
   void createOrder({required OrderEntity order}) {
     orderDatasource.createOrder(order: OrderModel.fromEntity(order));
   }
+
+  @override
+  List<OrderEntity> getOrders() {
+    return orderDatasource
+        .getOrders()
+        .map((model) => model.toEntity())
+        .toList();
+  }
 }
