@@ -16,26 +16,40 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => getIt.get<OrdersCubit>()..getOrders(),
-      child: BlocBuilder<OrdersCubit, OrdersState>(
-        builder: (context, state) {
-          return Scaffold(
-            appBar: const CustomAppBar(
-              headerTitle: 'Orders',
-            ),
-            body: Column(
-              children: [
-                const OrdersFilterList(),
-                24.height,
-                Expanded(
-                    child: ListView.builder(
-                        itemCount: 5,
-                        itemBuilder: (BuildContext context, int index) {
-                          return const OrderItem();
-                        }))
-              ],
-            ),
-          );
-        },
+      child: Scaffold(
+        appBar: const CustomAppBar(
+          headerTitle: 'Orders',
+        ),
+        body: BlocBuilder<OrdersCubit, OrdersState>(
+          builder: (context, state) {
+            return state.maybeWhen(
+              loaded: (orders) {
+                return RefreshIndicator(
+                  onRefresh: () async {
+                    context.read<OrdersCubit>().getOrders();
+                  },
+                  child: Column(
+                    children: [
+                      const OrdersFilterList(),
+                      24.height,
+                      Expanded(
+                          child: ListView.builder(
+                              itemCount: orders.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return OrderItem(
+                                  order: orders[index],
+                                );
+                              }))
+                    ],
+                  ),
+                );
+              },
+              orElse: () {
+                return Text('empty');
+              },
+            );
+          },
+        ),
       ),
     );
   }

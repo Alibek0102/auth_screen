@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'dart:math';
 import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
 import 'package:auth_screen/futures/orders/domain/entities/order_entity.dart';
 import 'package:auth_screen/futures/orders/domain/use_case/create_order_use_case.dart';
@@ -25,6 +24,7 @@ class OrdersCubit extends Cubit<OrdersState> {
     emit(const OrdersState.loader());
     await Future.delayed(const Duration(seconds: 2));
     final order = OrderEntity(
+        orderNumber: generateOrderNumber(),
         products: products,
         cardNumber: cardNumber,
         shippingAddress: shippingAddress);
@@ -34,6 +34,12 @@ class OrdersCubit extends Cubit<OrdersState> {
 
   void getOrders() {
     List<OrderEntity> orders = getOrdersUseCase.perform();
-    inspect(orders);
+    emit(OrdersState.loaded(orders: orders));
+  }
+
+  String generateOrderNumber() {
+    final random = Random();
+    final number = random.nextInt(900000) + 100000;
+    return '#$number';
   }
 }

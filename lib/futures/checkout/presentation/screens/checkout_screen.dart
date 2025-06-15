@@ -136,9 +136,27 @@ class CheckoutScreen extends StatelessWidget {
                               onTap: () {
                                 state.whenOrNull(
                                   hasProducts: (cartProducts) {
+                                    final address = context
+                                        .read<AddressCubit>()
+                                        .state
+                                        .whenOrNull(
+                                          selectedAddress: (address) => address,
+                                        );
+
+                                    final cardNumber = context
+                                        .read<PaymentCubit>()
+                                        .state
+                                        .whenOrNull(
+                                          selectedCard: (cardNumber, _) =>
+                                              cardNumber,
+                                        );
+
+                                    if (address == null || cardNumber == null)
+                                      return;
+
                                     context.read<OrdersCubit>().createOrder(
-                                        shippingAddress: 'aaa',
-                                        cardNumber: 'bbb',
+                                        shippingAddress: address.displayName,
+                                        cardNumber: cardNumber,
                                         products: cartProducts);
                                   },
                                 );

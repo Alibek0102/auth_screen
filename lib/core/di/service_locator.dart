@@ -42,7 +42,7 @@ Future<void> setupServiceLocator() async {
     Hive.registerAdapter(CartProductModelAdapter());
     Hive.registerAdapter(ProductModelAdapter());
   }
-  final orderBox = await Hive.openBox<OrderModel>('order2');
+  final orderBox = await Hive.openBox<OrderModel>('order3');
 
   getIt.registerSingleton(orderBox);
 

@@ -22,6 +22,7 @@ mixin _$OrdersState {
     required TResult Function() loader,
     required TResult Function() success,
     required TResult Function() error,
+    required TResult Function(List<OrderEntity> orders) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$OrdersState {
     TResult? Function()? loader,
     TResult? Function()? success,
     TResult? Function()? error,
+    TResult? Function(List<OrderEntity> orders)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$OrdersState {
     TResult Function()? loader,
     TResult Function()? success,
     TResult Function()? error,
+    TResult Function(List<OrderEntity> orders)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,7 @@ mixin _$OrdersState {
     required TResult Function(_OrderLoaderState value) loader,
     required TResult Function(_OrderSuccessState value) success,
     required TResult Function(_OrderErrorState value) error,
+    required TResult Function(_OrdersLoadedState value) loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +59,7 @@ mixin _$OrdersState {
     TResult? Function(_OrderLoaderState value)? loader,
     TResult? Function(_OrderSuccessState value)? success,
     TResult? Function(_OrderErrorState value)? error,
+    TResult? Function(_OrdersLoadedState value)? loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +68,7 @@ mixin _$OrdersState {
     TResult Function(_OrderLoaderState value)? loader,
     TResult Function(_OrderSuccessState value)? success,
     TResult Function(_OrderErrorState value)? error,
+    TResult Function(_OrdersLoadedState value)? loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -134,6 +140,7 @@ class _$OrderInitialStateImpl implements _OrderInitialState {
     required TResult Function() loader,
     required TResult Function() success,
     required TResult Function() error,
+    required TResult Function(List<OrderEntity> orders) loaded,
   }) {
     return initial();
   }
@@ -145,6 +152,7 @@ class _$OrderInitialStateImpl implements _OrderInitialState {
     TResult? Function()? loader,
     TResult? Function()? success,
     TResult? Function()? error,
+    TResult? Function(List<OrderEntity> orders)? loaded,
   }) {
     return initial?.call();
   }
@@ -156,6 +164,7 @@ class _$OrderInitialStateImpl implements _OrderInitialState {
     TResult Function()? loader,
     TResult Function()? success,
     TResult Function()? error,
+    TResult Function(List<OrderEntity> orders)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -171,6 +180,7 @@ class _$OrderInitialStateImpl implements _OrderInitialState {
     required TResult Function(_OrderLoaderState value) loader,
     required TResult Function(_OrderSuccessState value) success,
     required TResult Function(_OrderErrorState value) error,
+    required TResult Function(_OrdersLoadedState value) loaded,
   }) {
     return initial(this);
   }
@@ -182,6 +192,7 @@ class _$OrderInitialStateImpl implements _OrderInitialState {
     TResult? Function(_OrderLoaderState value)? loader,
     TResult? Function(_OrderSuccessState value)? success,
     TResult? Function(_OrderErrorState value)? error,
+    TResult? Function(_OrdersLoadedState value)? loaded,
   }) {
     return initial?.call(this);
   }
@@ -193,6 +204,7 @@ class _$OrderInitialStateImpl implements _OrderInitialState {
     TResult Function(_OrderLoaderState value)? loader,
     TResult Function(_OrderSuccessState value)? success,
     TResult Function(_OrderErrorState value)? error,
+    TResult Function(_OrdersLoadedState value)? loaded,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -251,6 +263,7 @@ class _$OrderLoaderStateImpl implements _OrderLoaderState {
     required TResult Function() loader,
     required TResult Function() success,
     required TResult Function() error,
+    required TResult Function(List<OrderEntity> orders) loaded,
   }) {
     return loader();
   }
@@ -262,6 +275,7 @@ class _$OrderLoaderStateImpl implements _OrderLoaderState {
     TResult? Function()? loader,
     TResult? Function()? success,
     TResult? Function()? error,
+    TResult? Function(List<OrderEntity> orders)? loaded,
   }) {
     return loader?.call();
   }
@@ -273,6 +287,7 @@ class _$OrderLoaderStateImpl implements _OrderLoaderState {
     TResult Function()? loader,
     TResult Function()? success,
     TResult Function()? error,
+    TResult Function(List<OrderEntity> orders)? loaded,
     required TResult orElse(),
   }) {
     if (loader != null) {
@@ -288,6 +303,7 @@ class _$OrderLoaderStateImpl implements _OrderLoaderState {
     required TResult Function(_OrderLoaderState value) loader,
     required TResult Function(_OrderSuccessState value) success,
     required TResult Function(_OrderErrorState value) error,
+    required TResult Function(_OrdersLoadedState value) loaded,
   }) {
     return loader(this);
   }
@@ -299,6 +315,7 @@ class _$OrderLoaderStateImpl implements _OrderLoaderState {
     TResult? Function(_OrderLoaderState value)? loader,
     TResult? Function(_OrderSuccessState value)? success,
     TResult? Function(_OrderErrorState value)? error,
+    TResult? Function(_OrdersLoadedState value)? loaded,
   }) {
     return loader?.call(this);
   }
@@ -310,6 +327,7 @@ class _$OrderLoaderStateImpl implements _OrderLoaderState {
     TResult Function(_OrderLoaderState value)? loader,
     TResult Function(_OrderSuccessState value)? success,
     TResult Function(_OrderErrorState value)? error,
+    TResult Function(_OrdersLoadedState value)? loaded,
     required TResult orElse(),
   }) {
     if (loader != null) {
@@ -368,6 +386,7 @@ class _$OrderSuccessStateImpl implements _OrderSuccessState {
     required TResult Function() loader,
     required TResult Function() success,
     required TResult Function() error,
+    required TResult Function(List<OrderEntity> orders) loaded,
   }) {
     return success();
   }
@@ -379,6 +398,7 @@ class _$OrderSuccessStateImpl implements _OrderSuccessState {
     TResult? Function()? loader,
     TResult? Function()? success,
     TResult? Function()? error,
+    TResult? Function(List<OrderEntity> orders)? loaded,
   }) {
     return success?.call();
   }
@@ -390,6 +410,7 @@ class _$OrderSuccessStateImpl implements _OrderSuccessState {
     TResult Function()? loader,
     TResult Function()? success,
     TResult Function()? error,
+    TResult Function(List<OrderEntity> orders)? loaded,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -405,6 +426,7 @@ class _$OrderSuccessStateImpl implements _OrderSuccessState {
     required TResult Function(_OrderLoaderState value) loader,
     required TResult Function(_OrderSuccessState value) success,
     required TResult Function(_OrderErrorState value) error,
+    required TResult Function(_OrdersLoadedState value) loaded,
   }) {
     return success(this);
   }
@@ -416,6 +438,7 @@ class _$OrderSuccessStateImpl implements _OrderSuccessState {
     TResult? Function(_OrderLoaderState value)? loader,
     TResult? Function(_OrderSuccessState value)? success,
     TResult? Function(_OrderErrorState value)? error,
+    TResult? Function(_OrdersLoadedState value)? loaded,
   }) {
     return success?.call(this);
   }
@@ -427,6 +450,7 @@ class _$OrderSuccessStateImpl implements _OrderSuccessState {
     TResult Function(_OrderLoaderState value)? loader,
     TResult Function(_OrderSuccessState value)? success,
     TResult Function(_OrderErrorState value)? error,
+    TResult Function(_OrdersLoadedState value)? loaded,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -485,6 +509,7 @@ class _$OrderErrorStateImpl implements _OrderErrorState {
     required TResult Function() loader,
     required TResult Function() success,
     required TResult Function() error,
+    required TResult Function(List<OrderEntity> orders) loaded,
   }) {
     return error();
   }
@@ -496,6 +521,7 @@ class _$OrderErrorStateImpl implements _OrderErrorState {
     TResult? Function()? loader,
     TResult? Function()? success,
     TResult? Function()? error,
+    TResult? Function(List<OrderEntity> orders)? loaded,
   }) {
     return error?.call();
   }
@@ -507,6 +533,7 @@ class _$OrderErrorStateImpl implements _OrderErrorState {
     TResult Function()? loader,
     TResult Function()? success,
     TResult Function()? error,
+    TResult Function(List<OrderEntity> orders)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -522,6 +549,7 @@ class _$OrderErrorStateImpl implements _OrderErrorState {
     required TResult Function(_OrderLoaderState value) loader,
     required TResult Function(_OrderSuccessState value) success,
     required TResult Function(_OrderErrorState value) error,
+    required TResult Function(_OrdersLoadedState value) loaded,
   }) {
     return error(this);
   }
@@ -533,6 +561,7 @@ class _$OrderErrorStateImpl implements _OrderErrorState {
     TResult? Function(_OrderLoaderState value)? loader,
     TResult? Function(_OrderSuccessState value)? success,
     TResult? Function(_OrderErrorState value)? error,
+    TResult? Function(_OrdersLoadedState value)? loaded,
   }) {
     return error?.call(this);
   }
@@ -544,6 +573,7 @@ class _$OrderErrorStateImpl implements _OrderErrorState {
     TResult Function(_OrderLoaderState value)? loader,
     TResult Function(_OrderSuccessState value)? success,
     TResult Function(_OrderErrorState value)? error,
+    TResult Function(_OrdersLoadedState value)? loaded,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -555,4 +585,171 @@ class _$OrderErrorStateImpl implements _OrderErrorState {
 
 abstract class _OrderErrorState implements OrdersState {
   const factory _OrderErrorState() = _$OrderErrorStateImpl;
+}
+
+/// @nodoc
+abstract class _$$OrdersLoadedStateImplCopyWith<$Res> {
+  factory _$$OrdersLoadedStateImplCopyWith(_$OrdersLoadedStateImpl value,
+          $Res Function(_$OrdersLoadedStateImpl) then) =
+      __$$OrdersLoadedStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<OrderEntity> orders});
+}
+
+/// @nodoc
+class __$$OrdersLoadedStateImplCopyWithImpl<$Res>
+    extends _$OrdersStateCopyWithImpl<$Res, _$OrdersLoadedStateImpl>
+    implements _$$OrdersLoadedStateImplCopyWith<$Res> {
+  __$$OrdersLoadedStateImplCopyWithImpl(_$OrdersLoadedStateImpl _value,
+      $Res Function(_$OrdersLoadedStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? orders = null,
+  }) {
+    return _then(_$OrdersLoadedStateImpl(
+      orders: null == orders
+          ? _value._orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<OrderEntity>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$OrdersLoadedStateImpl implements _OrdersLoadedState {
+  const _$OrdersLoadedStateImpl({required final List<OrderEntity> orders})
+      : _orders = orders;
+
+  final List<OrderEntity> _orders;
+  @override
+  List<OrderEntity> get orders {
+    if (_orders is EqualUnmodifiableListView) return _orders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_orders);
+  }
+
+  @override
+  String toString() {
+    return 'OrdersState.loaded(orders: $orders)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$OrdersLoadedStateImpl &&
+            const DeepCollectionEquality().equals(other._orders, _orders));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_orders));
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$OrdersLoadedStateImplCopyWith<_$OrdersLoadedStateImpl> get copyWith =>
+      __$$OrdersLoadedStateImplCopyWithImpl<_$OrdersLoadedStateImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loader,
+    required TResult Function() success,
+    required TResult Function() error,
+    required TResult Function(List<OrderEntity> orders) loaded,
+  }) {
+    return loaded(orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loader,
+    TResult? Function()? success,
+    TResult? Function()? error,
+    TResult? Function(List<OrderEntity> orders)? loaded,
+  }) {
+    return loaded?.call(orders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loader,
+    TResult Function()? success,
+    TResult Function()? error,
+    TResult Function(List<OrderEntity> orders)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(orders);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_OrderInitialState value) initial,
+    required TResult Function(_OrderLoaderState value) loader,
+    required TResult Function(_OrderSuccessState value) success,
+    required TResult Function(_OrderErrorState value) error,
+    required TResult Function(_OrdersLoadedState value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_OrderInitialState value)? initial,
+    TResult? Function(_OrderLoaderState value)? loader,
+    TResult? Function(_OrderSuccessState value)? success,
+    TResult? Function(_OrderErrorState value)? error,
+    TResult? Function(_OrdersLoadedState value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_OrderInitialState value)? initial,
+    TResult Function(_OrderLoaderState value)? loader,
+    TResult Function(_OrderSuccessState value)? success,
+    TResult Function(_OrderErrorState value)? error,
+    TResult Function(_OrdersLoadedState value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _OrdersLoadedState implements OrdersState {
+  const factory _OrdersLoadedState({required final List<OrderEntity> orders}) =
+      _$OrdersLoadedStateImpl;
+
+  List<OrderEntity> get orders;
+
+  /// Create a copy of OrdersState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$OrdersLoadedStateImplCopyWith<_$OrdersLoadedStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
