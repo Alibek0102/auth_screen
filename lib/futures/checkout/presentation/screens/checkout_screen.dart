@@ -5,7 +5,9 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/cart/presentation/common/checkout_info.dart';
 import 'package:auth_screen/futures/checkout/presentation/blocs/address_bloc/address_cubit.dart';
+import 'package:auth_screen/futures/checkout/presentation/blocs/payment_bloc/payment_cubit.dart';
 import 'package:auth_screen/futures/checkout/presentation/common/checkout_section.dart';
+import 'package:auth_screen/futures/checkout/presentation/common/enter_card_number_modal_view.dart';
 import 'package:auth_screen/futures/checkout/presentation/common/select_delivery_address_modal_view.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -18,8 +20,12 @@ class CheckoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => getIt.get<AddressCubit>())],
+      providers: [
+        BlocProvider(create: (_) => getIt.get<AddressCubit>()),
+        BlocProvider(create: (_) => getIt.get<PaymentCubit>())
+      ],
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
           headerTitle: 'Checkout',
           goBack: () {
@@ -32,28 +38,28 @@ class CheckoutScreen extends StatelessWidget {
             return state.maybeMap(hasProducts: (cartInstance) {
               return Column(
                 children: [
-                  BlocConsumer<AddressCubit, AddressState>(
-                    listener: (context, state) {},
-                    builder: (context, state) {
-                      return Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Column(
-                          children: [
-                            CheckoutSection(
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Column(
+                      children: [
+                        BlocBuilder<AddressCubit, AddressState>(
+                          builder: (context, addressState) {
+                            return CheckoutSection(
                               sectionTitle: 'Shipping Address',
-                              loader: state.maybeWhen(
+                              loader: addressState.maybeWhen(
                                   loader: () => true, orElse: () => false),
-                              sectionValue: state.whenOrNull(
+                              sectionValue: addressState.whenOrNull(
                                 selectedAddress: (address) =>
                                     address.displayName,
                               ),
                               onTap: () {
-                                state.maybeWhen(loader: () {
+                                addressState.maybeWhen(loader: () {
                                   return;
                                 }, orElse: () {
                                   showModalBottomSheet(
                                       context: context,
+                                      isScrollControlled: true,
                                       clipBehavior: Clip.hardEdge,
                                       builder: (BuildContext modalContext) {
                                         return SelectDeliveryAddressModalView(
@@ -74,17 +80,35 @@ class CheckoutScreen extends StatelessWidget {
                                       });
                                 });
                               },
-                            ),
-                            8.height,
-                            CheckoutSection(
-                              sectionTitle: 'Payment Method',
-                              sectionValue: '**** 4187',
-                            )
-                          ],
+                            );
+                          },
                         ),
-                      ));
-                    },
-                  ),
+                        8.height,
+                        BlocBuilder<PaymentCubit, PaymentState>(
+                          builder: (context, paymentState) {
+                            return CheckoutSection(
+                              sectionTitle: 'Payment Method',
+                              sectionValue: paymentState.whenOrNull(
+                                selectedCard: (_, maskedCardNumber) =>
+                                    maskedCardNumber,
+                              ),
+                              onTap: () {
+                                showModalBottomSheet(
+                                    clipBehavior: Clip.hardEdge,
+                                    context: context,
+                                    builder: (BuildContext modalContext) {
+                                      return EnterCardNumberModalView(
+                                        paymentCubit:
+                                            context.read<PaymentCubit>(),
+                                      );
+                                    });
+                              },
+                            );
+                          },
+                        )
+                      ],
+                    ),
+                  )),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: CheckoutInfo(
@@ -121,7 +145,7 @@ class CheckoutScreen extends StatelessWidget {
                 ],
               );
             }, orElse: () {
-              return Text('data');
+              return const Text('data');
             });
           },
         ),

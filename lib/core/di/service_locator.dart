@@ -7,6 +7,7 @@ import 'package:auth_screen/futures/checkout/data/datasources/location_address_d
 import 'package:auth_screen/futures/checkout/data/repositories/location_address_repository_impl.dart';
 import 'package:auth_screen/futures/checkout/domain/usecases/get_address_usecases.dart';
 import 'package:auth_screen/futures/checkout/presentation/blocs/address_bloc/address_cubit.dart';
+import 'package:auth_screen/futures/checkout/presentation/blocs/payment_bloc/payment_cubit.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
@@ -77,4 +78,5 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() => AddressCubit(
       locationClient: getIt.get<LocationClient>().location,
       getAddressUsecases: getIt.get<GetAddressUsecases>()));
+  getIt.registerFactory(() => PaymentCubit());
 }

@@ -1,5 +1,5 @@
 import 'package:auth_screen/elements/custom_button.dart';
-import 'package:auth_screen/futures/checkout/presentation/common/enter_address_textfield.dart';
+import 'package:auth_screen/futures/checkout/presentation/common/checkout_textfield.dart';
 import 'package:auth_screen/futures/checkout/presentation/common/location_button.dart';
 import 'package:flutter/material.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
@@ -30,8 +30,9 @@ class SelectDeliveryAddressModalView extends StatelessWidget {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
               12.height,
-              EnterAddressTextField(
-                addressController: addressController,
+              CheckoutTextfield(
+                controller: addressController,
+                placeholder: 'Адрес доставки',
               ),
               12.height,
               LocationButton(
