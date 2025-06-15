@@ -2,7 +2,6 @@ import 'package:auth_screen/core/app_colors.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/orders/domain/entities/order_entity.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_svg/svg.dart';
 
 class OrderItem extends StatelessWidget {
