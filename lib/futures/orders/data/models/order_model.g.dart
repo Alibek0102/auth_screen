@@ -1,22 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'create_order_model.dart';
+part of 'order_model.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class CreateOrderModelAdapter extends TypeAdapter<CreateOrderModel> {
+class OrderModelAdapter extends TypeAdapter<OrderModel> {
   @override
   final int typeId = 3;
 
   @override
-  CreateOrderModel read(BinaryReader reader) {
+  OrderModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return CreateOrderModel(
+    return OrderModel(
       cardNumber: fields[1] as String,
       products: (fields[2] as List).cast<CartProductModel>(),
       shippingAddress: fields[0] as String,
@@ -24,7 +24,7 @@ class CreateOrderModelAdapter extends TypeAdapter<CreateOrderModel> {
   }
 
   @override
-  void write(BinaryWriter writer, CreateOrderModel obj) {
+  void write(BinaryWriter writer, OrderModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -41,7 +41,7 @@ class CreateOrderModelAdapter extends TypeAdapter<CreateOrderModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is CreateOrderModelAdapter &&
+      other is OrderModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
