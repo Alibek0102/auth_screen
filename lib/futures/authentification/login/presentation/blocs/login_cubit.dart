@@ -19,7 +19,8 @@ class LoginCubit extends Cubit<LoginState> {
     await Future.delayed(const Duration(seconds: 3));
 
     if (!_isValidEmail(email)) {
-      emit(const LoginState.error());
+      emit(const LoginState.error(
+          message: 'Некорректный формат электронной почты'));
     } else {
       emit(const LoginState.success());
     }
@@ -30,10 +31,12 @@ class LoginCubit extends Cubit<LoginState> {
 
     await Future.delayed(const Duration(seconds: 3));
 
-    if (!_isValidPasswordLength(password) ||
-        !_containsPasswordLatinLetters(password) ||
-        password.contains(' ')) {
-      emit(const LoginState.error());
+    if (!_isValidPasswordLength(password) || password.contains(' ')) {
+      emit(const LoginState.error(
+          message: 'Пароль должен содержать не менее 8 символов'));
+    } else if (!_containsPasswordLatinLetters(password)) {
+      emit(const LoginState.error(
+          message: 'Пароль должен содержать только латинские буквы'));
     } else {
       final generatedToken = generateToken();
       final tokenEntity = TokenEntity(accessToken: generatedToken);

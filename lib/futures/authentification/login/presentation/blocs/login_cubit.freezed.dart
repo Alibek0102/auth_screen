@@ -19,7 +19,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() error,
+    required TResult Function(String message) error,
     required TResult Function() loader,
     required TResult Function() success,
   }) =>
@@ -27,7 +27,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
     TResult? Function()? loader,
     TResult? Function()? success,
   }) =>
@@ -35,7 +35,7 @@ mixin _$LoginState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     TResult Function()? loader,
     TResult Function()? success,
     required TResult orElse(),
@@ -139,7 +139,7 @@ class _$LoginInitialStateImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() error,
+    required TResult Function(String message) error,
     required TResult Function() loader,
     required TResult Function() success,
   }) {
@@ -150,7 +150,7 @@ class _$LoginInitialStateImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
     TResult? Function()? loader,
     TResult? Function()? success,
   }) {
@@ -161,7 +161,7 @@ class _$LoginInitialStateImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     TResult Function()? loader,
     TResult Function()? success,
     required TResult orElse(),
@@ -219,6 +219,8 @@ abstract class _$$LoginErrorStateImplCopyWith<$Res> {
   factory _$$LoginErrorStateImplCopyWith(_$LoginErrorStateImpl value,
           $Res Function(_$LoginErrorStateImpl) then) =
       __$$LoginErrorStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -231,6 +233,18 @@ class __$$LoginErrorStateImplCopyWithImpl<$Res>
 
   /// Create a copy of LoginState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_$LoginErrorStateImpl(
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
@@ -238,61 +252,77 @@ class __$$LoginErrorStateImplCopyWithImpl<$Res>
 class _$LoginErrorStateImpl
     with DiagnosticableTreeMixin
     implements _LoginErrorState {
-  const _$LoginErrorStateImpl();
+  const _$LoginErrorStateImpl({required this.message});
+
+  @override
+  final String message;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LoginState.error()';
+    return 'LoginState.error(message: $message)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'LoginState.error'));
+    properties
+      ..add(DiagnosticsProperty('type', 'LoginState.error'))
+      ..add(DiagnosticsProperty('message', message));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoginErrorStateImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$LoginErrorStateImpl &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, message);
+
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoginErrorStateImplCopyWith<_$LoginErrorStateImpl> get copyWith =>
+      __$$LoginErrorStateImplCopyWithImpl<_$LoginErrorStateImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() error,
+    required TResult Function(String message) error,
     required TResult Function() loader,
     required TResult Function() success,
   }) {
-    return error();
+    return error(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
     TResult? Function()? loader,
     TResult? Function()? success,
   }) {
-    return error?.call();
+    return error?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     TResult Function()? loader,
     TResult Function()? success,
     required TResult orElse(),
   }) {
     if (error != null) {
-      return error();
+      return error(message);
     }
     return orElse();
   }
@@ -336,7 +366,16 @@ class _$LoginErrorStateImpl
 }
 
 abstract class _LoginErrorState implements LoginState {
-  const factory _LoginErrorState() = _$LoginErrorStateImpl;
+  const factory _LoginErrorState({required final String message}) =
+      _$LoginErrorStateImpl;
+
+  String get message;
+
+  /// Create a copy of LoginState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LoginErrorStateImplCopyWith<_$LoginErrorStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -389,7 +428,7 @@ class _$LoginLoaderStateImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() error,
+    required TResult Function(String message) error,
     required TResult Function() loader,
     required TResult Function() success,
   }) {
@@ -400,7 +439,7 @@ class _$LoginLoaderStateImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
     TResult? Function()? loader,
     TResult? Function()? success,
   }) {
@@ -411,7 +450,7 @@ class _$LoginLoaderStateImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     TResult Function()? loader,
     TResult Function()? success,
     required TResult orElse(),
@@ -514,7 +553,7 @@ class _$LoginSuccessStateImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() error,
+    required TResult Function(String message) error,
     required TResult Function() loader,
     required TResult Function() success,
   }) {
@@ -525,7 +564,7 @@ class _$LoginSuccessStateImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? error,
+    TResult? Function(String message)? error,
     TResult? Function()? loader,
     TResult? Function()? success,
   }) {
@@ -536,7 +575,7 @@ class _$LoginSuccessStateImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? error,
+    TResult Function(String message)? error,
     TResult Function()? loader,
     TResult Function()? success,
     required TResult orElse(),

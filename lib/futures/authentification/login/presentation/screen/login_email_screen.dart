@@ -48,9 +48,11 @@ class _LoginEmailScreenState extends State<LoginEmailScreen> {
                     CustomTextfield(
                       controller: emailController,
                       isInvalidEmail: state.maybeWhen(
-                          error: () => true, orElse: () => false),
+                          error: (_) => true, orElse: () => false),
                       placeholder: 'Enter email',
-                      errorText: 'Неправильный email',
+                      errorText: state.whenOrNull(
+                        error: (message) => message,
+                      ),
                     ),
                     16.height,
                     CustomButton(

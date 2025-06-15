@@ -44,10 +44,12 @@ class _LoginPaswordScreenState extends State<LoginPaswordScreen> {
                 children: [
                   CustomTextfield(
                     controller: passwordController,
-                    isInvalidEmail:
-                        state.maybeWhen(error: () => true, orElse: () => false),
+                    isInvalidEmail: state.maybeWhen(
+                        error: (_) => true, orElse: () => false),
                     placeholder: 'Password',
-                    errorText: 'Неправильный пароль',
+                    errorText: state.whenOrNull(
+                      error: (message) => message,
+                    ),
                   ),
                   16.height,
                   CustomButton(
