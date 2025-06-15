@@ -7,6 +7,6 @@ class CreateOrderUseCase {
   const CreateOrderUseCase({required this.orderRepository});
 
   void perform({required OrderEntity order}) {
-    orderRepository.createOrder(order: order);
+    return orderRepository.createOrder(order: order);
   }
 }

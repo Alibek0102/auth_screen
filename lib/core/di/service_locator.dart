@@ -12,6 +12,10 @@ import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/domain/repository/category_repository_impl.dart';
 import 'package:auth_screen/futures/home/domain/repository/products_repository_impl.dart';
+import 'package:auth_screen/futures/orders/data/datasource/order_datasource.dart';
+import 'package:auth_screen/futures/orders/data/models/order_model.dart';
+import 'package:auth_screen/futures/orders/data/repository/order_repository_impl.dart';
+import 'package:auth_screen/futures/orders/domain/use_case/create_order_use_case.dart';
 import 'package:auth_screen/futures/product_details/presentation/blocs/details_cubit.dart';
 import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
@@ -22,11 +26,20 @@ import 'package:auth_screen/futures/splash_screen/domain/use_cases/save_token.da
 import 'package:auth_screen/futures/splash_screen/presentation/blocs/splash_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 final GetIt getIt = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
   // clients
+  await Hive.initFlutter();
+  if (!Hive.isAdapterRegistered(0)) {
+    Hive.registerAdapter(OrderModelAdapter());
+  }
+  final orderBox = await Hive.openBox<OrderModel>('order1');
+
+  getIt.registerSingleton(orderBox);
+
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(sharedPreferences);
   getIt.registerSingleton(DioClient());
@@ -37,6 +50,8 @@ Future<void> setupServiceLocator() async {
       TokenDatasource(sharedPreferencesClient: getIt.get<SharedPreferences>()));
   getIt.registerFactory(() =>
       LocationAddressDatasource(dioClient: getIt.get<DioClient>().instance));
+  getIt.registerFactory(
+      () => OrderDatasourceImpl(orderBox: getIt.get<Box<OrderModel>>()));
 
   // repositories
   getIt.registerFactory(
@@ -51,6 +66,9 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() => LocationAddressRepositoryImpl(
       locationAddressDatasource: getIt.get<LocationAddressDatasource>()));
 
+  getIt.registerFactory(() =>
+      OrderRepositoryImpl(orderDatasource: getIt.get<OrderDatasourceImpl>()));
+
   // use cases
   getIt.registerFactory(
       () => GetToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
@@ -58,6 +76,8 @@ Future<void> setupServiceLocator() async {
       () => SaveToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
   getIt.registerFactory(() => GetAddressUsecases(
       locationAddressRepository: getIt.get<LocationAddressRepositoryImpl>()));
+  getIt.registerFactory(() =>
+      CreateOrderUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
 
   // blocs
   getIt.registerLazySingleton(
