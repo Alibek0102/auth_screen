@@ -4,6 +4,7 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/orders/presentation/blocs/orders_bloc/orders_cubit.dart';
 import 'package:auth_screen/futures/orders/presentation/common/orders_filter_list.dart';
 import 'package:auth_screen/futures/orders/presentation/constants/order_item.dart';
+import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -37,6 +38,11 @@ class OrdersScreen extends StatelessWidget {
                               itemCount: orders.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return OrderItem(
+                                  onItemTap: () {
+                                    context.router.push(OrderDetailsRoute(
+                                        orderNumber:
+                                            orders[index].orderNumber));
+                                  },
                                   order: orders[index],
                                 );
                               }))
