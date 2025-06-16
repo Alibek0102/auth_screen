@@ -15,7 +15,7 @@ import 'package:auth_screen/futures/authentification/login/presentation/screen/l
 import 'package:auth_screen/futures/authentification/login/presentation/screen/login_pasword_screen.dart'
     as _i7;
 import 'package:auth_screen/futures/authentification/registration/screen/registration_screen.dart'
-    as _i13;
+    as _i14;
 import 'package:auth_screen/futures/cart/presentation/screens/cart_screen.dart'
     as _i1;
 import 'package:auth_screen/futures/category_details/screen/category_details_screen.dart'
@@ -23,29 +23,31 @@ import 'package:auth_screen/futures/category_details/screen/category_details_scr
 import 'package:auth_screen/futures/checkout/presentation/screens/checkout_screen.dart'
     as _i3;
 import 'package:auth_screen/futures/home/domain/entity/product_entity.dart'
-    as _i19;
+    as _i20;
 import 'package:auth_screen/futures/home/screen/home_screen.dart' as _i5;
 import 'package:auth_screen/futures/notifications/screen/notifications_screen.dart'
     as _i8;
-import 'package:auth_screen/futures/orders/presentation/screens/orders_screen.dart'
+import 'package:auth_screen/futures/orders/presentation/screens/order_details_screen.dart'
     as _i9;
-import 'package:auth_screen/futures/orders/presentation/screens/success_order_screen.dart'
-    as _i15;
-import 'package:auth_screen/futures/product_details/presentation/screens/product_details_screen.dart'
+import 'package:auth_screen/futures/orders/presentation/screens/orders_screen.dart'
     as _i10;
-import 'package:auth_screen/futures/profile/screen/profile_screen.dart' as _i11;
+import 'package:auth_screen/futures/orders/presentation/screens/success_order_screen.dart'
+    as _i16;
+import 'package:auth_screen/futures/product_details/presentation/screens/product_details_screen.dart'
+    as _i11;
+import 'package:auth_screen/futures/profile/screen/profile_screen.dart' as _i12;
 import 'package:auth_screen/futures/purchases/screen/purchases_screen.dart'
-    as _i12;
+    as _i13;
 import 'package:auth_screen/futures/splash_screen/presentation/screens/splash_screen.dart'
-    as _i14;
-import 'package:auth_screen/routes/tab_navigation.dart' as _i16;
-import 'package:auto_route/auto_route.dart' as _i17;
-import 'package:flutter/material.dart' as _i18;
+    as _i15;
+import 'package:auth_screen/routes/tab_navigation.dart' as _i17;
+import 'package:auto_route/auto_route.dart' as _i18;
+import 'package:flutter/material.dart' as _i19;
 
 /// generated route for
 /// [_i1.CartScreen]
-class CartRoute extends _i17.PageRouteInfo<void> {
-  const CartRoute({List<_i17.PageRouteInfo>? children})
+class CartRoute extends _i18.PageRouteInfo<void> {
+  const CartRoute({List<_i18.PageRouteInfo>? children})
       : super(
           CartRoute.name,
           initialChildren: children,
@@ -53,7 +55,7 @@ class CartRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'CartRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       return const _i1.CartScreen();
@@ -64,11 +66,11 @@ class CartRoute extends _i17.PageRouteInfo<void> {
 /// generated route for
 /// [_i2.CategoryDetailsScreen]
 class CategoryDetailsRoute
-    extends _i17.PageRouteInfo<CategoryDetailsRouteArgs> {
+    extends _i18.PageRouteInfo<CategoryDetailsRouteArgs> {
   CategoryDetailsRoute({
-    _i18.Key? key,
+    _i19.Key? key,
     required String model,
-    List<_i17.PageRouteInfo>? children,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           CategoryDetailsRoute.name,
           args: CategoryDetailsRouteArgs(
@@ -80,7 +82,7 @@ class CategoryDetailsRoute
 
   static const String name = 'CategoryDetailsRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<CategoryDetailsRouteArgs>();
@@ -98,7 +100,7 @@ class CategoryDetailsRouteArgs {
     required this.model,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   final String model;
 
@@ -110,8 +112,8 @@ class CategoryDetailsRouteArgs {
 
 /// generated route for
 /// [_i3.CheckoutScreen]
-class CheckoutRoute extends _i17.PageRouteInfo<void> {
-  const CheckoutRoute({List<_i17.PageRouteInfo>? children})
+class CheckoutRoute extends _i18.PageRouteInfo<void> {
+  const CheckoutRoute({List<_i18.PageRouteInfo>? children})
       : super(
           CheckoutRoute.name,
           initialChildren: children,
@@ -119,7 +121,7 @@ class CheckoutRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'CheckoutRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       return const _i3.CheckoutScreen();
@@ -129,10 +131,10 @@ class CheckoutRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.ForgotPasswordScreen]
-class ForgotPasswordRoute extends _i17.PageRouteInfo<ForgotPasswordRouteArgs> {
+class ForgotPasswordRoute extends _i18.PageRouteInfo<ForgotPasswordRouteArgs> {
   ForgotPasswordRoute({
-    _i18.Key? key,
-    List<_i17.PageRouteInfo>? children,
+    _i19.Key? key,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           ForgotPasswordRoute.name,
           args: ForgotPasswordRouteArgs(key: key),
@@ -141,7 +143,7 @@ class ForgotPasswordRoute extends _i17.PageRouteInfo<ForgotPasswordRouteArgs> {
 
   static const String name = 'ForgotPasswordRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ForgotPasswordRouteArgs>(
@@ -154,7 +156,7 @@ class ForgotPasswordRoute extends _i17.PageRouteInfo<ForgotPasswordRouteArgs> {
 class ForgotPasswordRouteArgs {
   const ForgotPasswordRouteArgs({this.key});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -164,8 +166,8 @@ class ForgotPasswordRouteArgs {
 
 /// generated route for
 /// [_i5.HomeScreen]
-class HomeRoute extends _i17.PageRouteInfo<void> {
-  const HomeRoute({List<_i17.PageRouteInfo>? children})
+class HomeRoute extends _i18.PageRouteInfo<void> {
+  const HomeRoute({List<_i18.PageRouteInfo>? children})
       : super(
           HomeRoute.name,
           initialChildren: children,
@@ -173,7 +175,7 @@ class HomeRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'HomeRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       return const _i5.HomeScreen();
@@ -183,10 +185,10 @@ class HomeRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.LoginEmailScreen]
-class LoginEmailRoute extends _i17.PageRouteInfo<LoginEmailRouteArgs> {
+class LoginEmailRoute extends _i18.PageRouteInfo<LoginEmailRouteArgs> {
   LoginEmailRoute({
-    _i18.Key? key,
-    List<_i17.PageRouteInfo>? children,
+    _i19.Key? key,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           LoginEmailRoute.name,
           args: LoginEmailRouteArgs(key: key),
@@ -195,7 +197,7 @@ class LoginEmailRoute extends _i17.PageRouteInfo<LoginEmailRouteArgs> {
 
   static const String name = 'LoginEmailRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<LoginEmailRouteArgs>(
@@ -208,7 +210,7 @@ class LoginEmailRoute extends _i17.PageRouteInfo<LoginEmailRouteArgs> {
 class LoginEmailRouteArgs {
   const LoginEmailRouteArgs({this.key});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -218,8 +220,8 @@ class LoginEmailRouteArgs {
 
 /// generated route for
 /// [_i7.LoginPaswordScreen]
-class LoginPaswordRoute extends _i17.PageRouteInfo<void> {
-  const LoginPaswordRoute({List<_i17.PageRouteInfo>? children})
+class LoginPaswordRoute extends _i18.PageRouteInfo<void> {
+  const LoginPaswordRoute({List<_i18.PageRouteInfo>? children})
       : super(
           LoginPaswordRoute.name,
           initialChildren: children,
@@ -227,7 +229,7 @@ class LoginPaswordRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'LoginPaswordRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       return const _i7.LoginPaswordScreen();
@@ -237,8 +239,8 @@ class LoginPaswordRoute extends _i17.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.NotificationsScreen]
-class NotificationsRoute extends _i17.PageRouteInfo<void> {
-  const NotificationsRoute({List<_i17.PageRouteInfo>? children})
+class NotificationsRoute extends _i18.PageRouteInfo<void> {
+  const NotificationsRoute({List<_i18.PageRouteInfo>? children})
       : super(
           NotificationsRoute.name,
           initialChildren: children,
@@ -246,7 +248,7 @@ class NotificationsRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'NotificationsRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       return const _i8.NotificationsScreen();
@@ -255,9 +257,55 @@ class NotificationsRoute extends _i17.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.OrdersScreen]
-class OrdersRoute extends _i17.PageRouteInfo<void> {
-  const OrdersRoute({List<_i17.PageRouteInfo>? children})
+/// [_i9.OrderDetailsScreen]
+class OrderDetailsRoute extends _i18.PageRouteInfo<OrderDetailsRouteArgs> {
+  OrderDetailsRoute({
+    _i19.Key? key,
+    required String orderNumber,
+    List<_i18.PageRouteInfo>? children,
+  }) : super(
+          OrderDetailsRoute.name,
+          args: OrderDetailsRouteArgs(
+            key: key,
+            orderNumber: orderNumber,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'OrderDetailsRoute';
+
+  static _i18.PageInfo page = _i18.PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<OrderDetailsRouteArgs>();
+      return _i9.OrderDetailsScreen(
+        key: args.key,
+        orderNumber: args.orderNumber,
+      );
+    },
+  );
+}
+
+class OrderDetailsRouteArgs {
+  const OrderDetailsRouteArgs({
+    this.key,
+    required this.orderNumber,
+  });
+
+  final _i19.Key? key;
+
+  final String orderNumber;
+
+  @override
+  String toString() {
+    return 'OrderDetailsRouteArgs{key: $key, orderNumber: $orderNumber}';
+  }
+}
+
+/// generated route for
+/// [_i10.OrdersScreen]
+class OrdersRoute extends _i18.PageRouteInfo<void> {
+  const OrdersRoute({List<_i18.PageRouteInfo>? children})
       : super(
           OrdersRoute.name,
           initialChildren: children,
@@ -265,21 +313,21 @@ class OrdersRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'OrdersRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i9.OrdersScreen();
+      return const _i10.OrdersScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i10.ProductDetailsScreen]
-class ProductDetailsRoute extends _i17.PageRouteInfo<ProductDetailsRouteArgs> {
+/// [_i11.ProductDetailsScreen]
+class ProductDetailsRoute extends _i18.PageRouteInfo<ProductDetailsRouteArgs> {
   ProductDetailsRoute({
-    _i18.Key? key,
-    required _i19.ProductEntity product,
-    List<_i17.PageRouteInfo>? children,
+    _i19.Key? key,
+    required _i20.ProductEntity product,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           ProductDetailsRoute.name,
           args: ProductDetailsRouteArgs(
@@ -291,11 +339,11 @@ class ProductDetailsRoute extends _i17.PageRouteInfo<ProductDetailsRouteArgs> {
 
   static const String name = 'ProductDetailsRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ProductDetailsRouteArgs>();
-      return _i10.ProductDetailsScreen(
+      return _i11.ProductDetailsScreen(
         key: args.key,
         product: args.product,
       );
@@ -309,9 +357,9 @@ class ProductDetailsRouteArgs {
     required this.product,
   });
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
-  final _i19.ProductEntity product;
+  final _i20.ProductEntity product;
 
   @override
   String toString() {
@@ -320,9 +368,9 @@ class ProductDetailsRouteArgs {
 }
 
 /// generated route for
-/// [_i11.ProfileScreen]
-class ProfileRoute extends _i17.PageRouteInfo<void> {
-  const ProfileRoute({List<_i17.PageRouteInfo>? children})
+/// [_i12.ProfileScreen]
+class ProfileRoute extends _i18.PageRouteInfo<void> {
+  const ProfileRoute({List<_i18.PageRouteInfo>? children})
       : super(
           ProfileRoute.name,
           initialChildren: children,
@@ -330,18 +378,18 @@ class ProfileRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'ProfileRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i11.ProfileScreen();
+      return const _i12.ProfileScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i12.PurchasesScreen]
-class PurchasesRoute extends _i17.PageRouteInfo<void> {
-  const PurchasesRoute({List<_i17.PageRouteInfo>? children})
+/// [_i13.PurchasesScreen]
+class PurchasesRoute extends _i18.PageRouteInfo<void> {
+  const PurchasesRoute({List<_i18.PageRouteInfo>? children})
       : super(
           PurchasesRoute.name,
           initialChildren: children,
@@ -349,20 +397,20 @@ class PurchasesRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'PurchasesRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i12.PurchasesScreen();
+      return const _i13.PurchasesScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i13.RegistrationScreen]
-class RegistrationRoute extends _i17.PageRouteInfo<RegistrationRouteArgs> {
+/// [_i14.RegistrationScreen]
+class RegistrationRoute extends _i18.PageRouteInfo<RegistrationRouteArgs> {
   RegistrationRoute({
-    _i18.Key? key,
-    List<_i17.PageRouteInfo>? children,
+    _i19.Key? key,
+    List<_i18.PageRouteInfo>? children,
   }) : super(
           RegistrationRoute.name,
           args: RegistrationRouteArgs(key: key),
@@ -371,12 +419,12 @@ class RegistrationRoute extends _i17.PageRouteInfo<RegistrationRouteArgs> {
 
   static const String name = 'RegistrationRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<RegistrationRouteArgs>(
           orElse: () => const RegistrationRouteArgs());
-      return _i13.RegistrationScreen(key: args.key);
+      return _i14.RegistrationScreen(key: args.key);
     },
   );
 }
@@ -384,7 +432,7 @@ class RegistrationRoute extends _i17.PageRouteInfo<RegistrationRouteArgs> {
 class RegistrationRouteArgs {
   const RegistrationRouteArgs({this.key});
 
-  final _i18.Key? key;
+  final _i19.Key? key;
 
   @override
   String toString() {
@@ -393,9 +441,9 @@ class RegistrationRouteArgs {
 }
 
 /// generated route for
-/// [_i14.SplashScreen]
-class SplashRoute extends _i17.PageRouteInfo<void> {
-  const SplashRoute({List<_i17.PageRouteInfo>? children})
+/// [_i15.SplashScreen]
+class SplashRoute extends _i18.PageRouteInfo<void> {
+  const SplashRoute({List<_i18.PageRouteInfo>? children})
       : super(
           SplashRoute.name,
           initialChildren: children,
@@ -403,18 +451,18 @@ class SplashRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'SplashRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i14.SplashScreen();
+      return const _i15.SplashScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i15.SuccessOrderScreen]
-class SuccessOrderRoute extends _i17.PageRouteInfo<void> {
-  const SuccessOrderRoute({List<_i17.PageRouteInfo>? children})
+/// [_i16.SuccessOrderScreen]
+class SuccessOrderRoute extends _i18.PageRouteInfo<void> {
+  const SuccessOrderRoute({List<_i18.PageRouteInfo>? children})
       : super(
           SuccessOrderRoute.name,
           initialChildren: children,
@@ -422,18 +470,18 @@ class SuccessOrderRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'SuccessOrderRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i15.SuccessOrderScreen();
+      return const _i16.SuccessOrderScreen();
     },
   );
 }
 
 /// generated route for
-/// [_i16.TabNavigationScreen]
-class TabNavigationRoute extends _i17.PageRouteInfo<void> {
-  const TabNavigationRoute({List<_i17.PageRouteInfo>? children})
+/// [_i17.TabNavigationScreen]
+class TabNavigationRoute extends _i18.PageRouteInfo<void> {
+  const TabNavigationRoute({List<_i18.PageRouteInfo>? children})
       : super(
           TabNavigationRoute.name,
           initialChildren: children,
@@ -441,10 +489,10 @@ class TabNavigationRoute extends _i17.PageRouteInfo<void> {
 
   static const String name = 'TabNavigationRoute';
 
-  static _i17.PageInfo page = _i17.PageInfo(
+  static _i18.PageInfo page = _i18.PageInfo(
     name,
     builder: (data) {
-      return const _i16.TabNavigationScreen();
+      return const _i17.TabNavigationScreen();
     },
   );
 }
