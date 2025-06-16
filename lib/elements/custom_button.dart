@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
   final String buttonText;
-  bool loader = false;
-  void Function() loginPress;
+  final bool loader;
+  final void Function() loginPress;
 
-  CustomButton(
+  const CustomButton(
       {super.key,
       required this.buttonText,
       required this.loginPress,

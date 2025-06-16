@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class CheckoutInfoItem extends StatelessWidget {
   final String itemKey;
   final double itemValue;
-  bool isBoldValue = false;
+  final bool isBoldValue;
 
-  CheckoutInfoItem(
+  const CheckoutInfoItem(
       {super.key,
       required this.itemKey,
       required this.itemValue,
