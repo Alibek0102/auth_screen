@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class OrderItemsCountView extends StatelessWidget {
-  const OrderItemsCountView({super.key});
+  final int count;
+
+  const OrderItemsCountView({super.key, required this.count});
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +26,17 @@ class OrderItemsCountView extends StatelessWidget {
                 color: AppColors.lightSilver,
                 borderRadius: BorderRadius.circular(8.0)),
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Row(
                 children: [
                   SvgPicture.asset('assets/images/ReceiptTab.svg'),
                   12.width,
                   Text(
-                    '4 items',
-                    style:
-                        TextStyle(fontSize: 16.0, fontWeight: FontWeight.w500),
+                    '$count items',
+                    style: const TextStyle(
+                        fontSize: 16.0, fontWeight: FontWeight.w500),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Text(
                     'View All',
                     style: TextStyle(

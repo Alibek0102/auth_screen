@@ -20,4 +20,9 @@ class OrderRepositoryImpl implements OrderRepository {
         .map((model) => model.toEntity())
         .toList();
   }
+
+  @override
+  OrderEntity getOrder({required int orderIndex}) {
+    return orderDatasource.getOrder(orderIndex: orderIndex).toEntity();
+  }
 }

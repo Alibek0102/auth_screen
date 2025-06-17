@@ -3,7 +3,9 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:flutter/material.dart';
 
 class ShippingDetailsView extends StatelessWidget {
-  const ShippingDetailsView({super.key});
+  final String shippingAddress;
+
+  const ShippingDetailsView({super.key, required this.shippingAddress});
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +18,14 @@ class ShippingDetailsView extends StatelessWidget {
         ),
         16.height,
         SizedBox(
-          height: 64,
           width: double.infinity,
           child: DecoratedBox(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 color: AppColors.lightSilver),
             child: Padding(
-              padding: EdgeInsets.all(11),
-              child: Text('2715 Ash Dr. San Jose, South Dakota 83475'),
+              padding: const EdgeInsets.all(11),
+              child: Text(shippingAddress),
             ),
           ),
         ),

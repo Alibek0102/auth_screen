@@ -18,6 +18,7 @@ import 'package:auth_screen/futures/orders/data/datasource/order_datasource.dart
 import 'package:auth_screen/futures/orders/data/models/order_model.dart';
 import 'package:auth_screen/futures/orders/data/repository/order_repository_impl.dart';
 import 'package:auth_screen/futures/orders/domain/use_case/create_order_use_case.dart';
+import 'package:auth_screen/futures/orders/domain/use_case/get_order_use_case.dart';
 import 'package:auth_screen/futures/orders/domain/use_case/get_orders_use_case.dart';
 import 'package:auth_screen/futures/orders/presentation/blocs/orders_bloc/orders_cubit.dart';
 import 'package:auth_screen/futures/product_details/presentation/blocs/details_cubit.dart';
@@ -86,6 +87,8 @@ Future<void> setupServiceLocator() async {
       CreateOrderUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
   getIt.registerFactory(() =>
       GetOrdersUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
+  getIt.registerFactory(
+      () => GetOrderUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
 
   // blocs
   getIt.registerLazySingleton(
@@ -110,5 +113,6 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerFactory(() => OrdersCubit(
       createOrderUseCase: getIt.get<CreateOrderUseCase>(),
-      getOrdersUseCase: getIt.get<GetOrdersUseCase>()));
+      getOrdersUseCase: getIt.get<GetOrdersUseCase>(),
+      getOrderUseCase: getIt.get<GetOrderUseCase>()));
 }

@@ -262,12 +262,14 @@ class OrderDetailsRoute extends _i18.PageRouteInfo<OrderDetailsRouteArgs> {
   OrderDetailsRoute({
     _i19.Key? key,
     required String orderNumber,
+    required int index,
     List<_i18.PageRouteInfo>? children,
   }) : super(
           OrderDetailsRoute.name,
           args: OrderDetailsRouteArgs(
             key: key,
             orderNumber: orderNumber,
+            index: index,
           ),
           initialChildren: children,
         );
@@ -281,6 +283,7 @@ class OrderDetailsRoute extends _i18.PageRouteInfo<OrderDetailsRouteArgs> {
       return _i9.OrderDetailsScreen(
         key: args.key,
         orderNumber: args.orderNumber,
+        index: args.index,
       );
     },
   );
@@ -290,15 +293,18 @@ class OrderDetailsRouteArgs {
   const OrderDetailsRouteArgs({
     this.key,
     required this.orderNumber,
+    required this.index,
   });
 
   final _i19.Key? key;
 
   final String orderNumber;
 
+  final int index;
+
   @override
   String toString() {
-    return 'OrderDetailsRouteArgs{key: $key, orderNumber: $orderNumber}';
+    return 'OrderDetailsRouteArgs{key: $key, orderNumber: $orderNumber, index: $index}';
   }
 }
 

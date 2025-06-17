@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
 import 'package:auth_screen/futures/orders/domain/entities/order_entity.dart';
 import 'package:auth_screen/futures/orders/domain/use_case/create_order_use_case.dart';
+import 'package:auth_screen/futures/orders/domain/use_case/get_order_use_case.dart';
 import 'package:auth_screen/futures/orders/domain/use_case/get_orders_use_case.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,12 +21,16 @@ class OrdersCubit extends Cubit<OrdersState> {
   /// Юзкейс для получения списка заказов.
   final GetOrdersUseCase getOrdersUseCase;
 
+  final GetOrderUseCase getOrderUseCase;
+
   /// Создаёт экземпляр [OrdersCubit] с указанными юзкейсами.
   ///
   /// [createOrderUseCase] — юзкейс для создания заказа.
   /// [getOrdersUseCase] — юзкейс для получения заказов.
   OrdersCubit(
-      {required this.createOrderUseCase, required this.getOrdersUseCase})
+      {required this.createOrderUseCase,
+      required this.getOrdersUseCase,
+      required this.getOrderUseCase})
       : super(const OrdersState.initial());
 
   /// Создаёт новый заказ.
@@ -56,6 +61,17 @@ class OrdersCubit extends Cubit<OrdersState> {
   void getOrders() {
     List<OrderEntity> orders = getOrdersUseCase.perform();
     emit(OrdersState.loaded(orders: orders));
+  }
+
+  void getOrderByIndex({required int orderIndex}) async {
+    emit(const OrdersState.loader());
+    await Future.delayed(const Duration(seconds: 2));
+    try {
+      final OrderEntity order = getOrderUseCase.perform(orderIndex: orderIndex);
+      emit(OrdersState.loadedSingleOrder(order: order));
+    } catch (error) {
+      emit(const OrdersState.error());
+    }
   }
 
   /// Генерирует случайный номер заказа в формате `#XXXXXX`.

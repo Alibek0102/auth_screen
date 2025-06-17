@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 
 abstract class OrderDatasource {
   List<OrderModel> getOrders();
+  OrderModel getOrder({required int orderIndex});
   void createOrder({required OrderModel order});
 }
 
@@ -18,7 +19,16 @@ class OrderDatasourceImpl implements OrderDatasource {
 
   @override
   List<OrderModel> getOrders() {
-    final orders = orderBox.values.toList();
-    return orders;
+    return orderBox.values.toList();
+  }
+
+  @override
+  OrderModel getOrder({required int orderIndex}) {
+    final OrderModel? order = orderBox.getAt(orderIndex);
+    if (order != null) {
+      return order;
+    } else {
+      throw Exception('Заказ с указанным индексом не найден');
+    }
   }
 }

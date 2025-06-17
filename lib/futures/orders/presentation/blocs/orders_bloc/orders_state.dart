@@ -8,4 +8,6 @@ class OrdersState with _$OrdersState {
   const factory OrdersState.error() = _OrderErrorState;
   const factory OrdersState.loaded({required List<OrderEntity> orders}) =
       _OrdersLoadedState;
+  const factory OrdersState.loadedSingleOrder({required OrderEntity order}) =
+      _OrderLoadedSingleOrderState;
 }

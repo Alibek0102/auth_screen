@@ -40,6 +40,7 @@ class OrdersScreen extends StatelessWidget {
                                 return OrderItem(
                                   onItemTap: () {
                                     context.router.push(OrderDetailsRoute(
+                                        index: index,
                                         orderNumber:
                                             orders[index].orderNumber));
                                   },
@@ -51,7 +52,7 @@ class OrdersScreen extends StatelessWidget {
                 );
               },
               orElse: () {
-                return Text('empty');
+                return const SizedBox.shrink();
               },
             );
           },
