@@ -64,20 +64,27 @@ class CheckoutScreen extends StatelessWidget {
                                       isScrollControlled: true,
                                       clipBehavior: Clip.hardEdge,
                                       builder: (BuildContext modalContext) {
-                                        return SelectDeliveryAddressModalView(
-                                          onAddressTap: () {
-                                            Navigator.of(context).pop();
-                                            context
-                                                .read<AddressCubit>()
-                                                .onMyLocationPress();
-                                          },
-                                          onConfirm: ({required address}) {
-                                            Navigator.of(context).pop();
-                                            context
-                                                .read<AddressCubit>()
-                                                .onSetEnteredAddress(
-                                                    address: address);
-                                          },
+                                        return Padding(
+                                          padding: EdgeInsets.only(
+                                              bottom:
+                                                  MediaQuery.of(modalContext)
+                                                      .viewInsets
+                                                      .bottom),
+                                          child: SelectDeliveryAddressModalView(
+                                            onAddressTap: () {
+                                              Navigator.of(context).pop();
+                                              context
+                                                  .read<AddressCubit>()
+                                                  .onMyLocationPress();
+                                            },
+                                            onConfirm: ({required address}) {
+                                              Navigator.of(context).pop();
+                                              context
+                                                  .read<AddressCubit>()
+                                                  .onSetEnteredAddress(
+                                                      address: address);
+                                            },
+                                          ),
                                         );
                                       });
                                 });
@@ -97,11 +104,18 @@ class CheckoutScreen extends StatelessWidget {
                               onTap: () {
                                 showModalBottomSheet(
                                     clipBehavior: Clip.hardEdge,
+                                    isScrollControlled: true,
                                     context: context,
                                     builder: (BuildContext modalContext) {
-                                      return EnterCardNumberModalView(
-                                        paymentCubit:
-                                            context.read<PaymentCubit>(),
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom),
+                                        child: EnterCardNumberModalView(
+                                          paymentCubit:
+                                              context.read<PaymentCubit>(),
+                                        ),
                                       );
                                     });
                               },
