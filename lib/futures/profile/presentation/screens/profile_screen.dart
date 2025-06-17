@@ -3,6 +3,8 @@ import 'package:auth_screen/extensions/sized_box_by_int.dart';
 import 'package:auth_screen/futures/profile/presentation/blocs/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/presentation/common/profile_action_item.dart';
 import 'package:auth_screen/futures/profile/presentation/common/user_info_view.dart';
+import 'package:auth_screen/futures/splash_screen/presentation/blocs/splash_cubit.dart';
+import 'package:auth_screen/routes/app_routes.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,15 +59,29 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 )),
               ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Sign up',
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.red),
-                  )),
+              BlocConsumer<SplashCubit, SplashState>(
+                bloc: getIt.get<SplashCubit>(),
+                listener: (context, state) {
+                  state.whenOrNull(
+                    unauthorized: () {
+                      context.router.replaceAll([LoginEmailRoute()]);
+                    },
+                  );
+                },
+                builder: (context, state) {
+                  return TextButton(
+                      onPressed: () {
+                        getIt.get<SplashCubit>().onRemoveToken();
+                      },
+                      child: const Text(
+                        'Sign up',
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.red),
+                      ));
+                },
+              ),
               15.height,
             ],
           ),

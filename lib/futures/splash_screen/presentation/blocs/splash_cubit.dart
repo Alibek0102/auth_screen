@@ -1,5 +1,6 @@
 import 'package:auth_screen/futures/splash_screen/domain/entities/token_entity.dart';
 import 'package:auth_screen/futures/splash_screen/domain/use_cases/get_token.dart';
+import 'package:auth_screen/futures/splash_screen/domain/use_cases/remove_token.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -8,8 +9,10 @@ part 'splash_state.dart';
 
 class SplashCubit extends Cubit<SplashState> {
   final GetToken getToken;
+  final RemoveToken removeToken;
 
-  SplashCubit({required this.getToken}) : super(const SplashState.initial());
+  SplashCubit({required this.getToken, required this.removeToken})
+      : super(const SplashState.initial());
 
   void authCheck() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -19,5 +22,10 @@ class SplashCubit extends Cubit<SplashState> {
     } catch (error) {
       emit(const SplashState.unauthorized());
     }
+  }
+
+  Future<void> onRemoveToken() async {
+    await removeToken.perform();
+    emit(const SplashState.unauthorized());
   }
 }

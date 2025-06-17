@@ -22,4 +22,8 @@ class TokenDatasource {
       throw ErrorDescription(ErrorMessages.tokenNotFound);
     }
   }
+
+  Future<void> removeToken() async {
+    await sharedPreferencesClient.remove(accessTokenKey);
+  }
 }

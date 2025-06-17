@@ -27,6 +27,7 @@ import 'package:auth_screen/futures/profile/domain/repository/user_repository_im
 import 'package:auth_screen/futures/splash_screen/data/datasources/token_datasource.dart';
 import 'package:auth_screen/futures/splash_screen/data/repositories/token_repository_impl.dart';
 import 'package:auth_screen/futures/splash_screen/domain/use_cases/get_token.dart';
+import 'package:auth_screen/futures/splash_screen/domain/use_cases/remove_token.dart';
 import 'package:auth_screen/futures/splash_screen/domain/use_cases/save_token.dart';
 import 'package:auth_screen/futures/splash_screen/presentation/blocs/splash_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -81,6 +82,9 @@ Future<void> setupServiceLocator() async {
       () => GetToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
   getIt.registerFactory(
       () => SaveToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
+  getIt.registerFactory(
+      () => RemoveToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
+
   getIt.registerFactory(() => GetAddressUsecases(
       locationAddressRepository: getIt.get<LocationAddressRepositoryImpl>()));
   getIt.registerFactory(() =>
@@ -101,7 +105,8 @@ Future<void> setupServiceLocator() async {
       productsRepository: getIt.get<ProductsRepositoryImpl>()));
 
   getIt.registerFactory(() => LoginCubit(saveToken: getIt.get<SaveToken>()));
-  getIt.registerSingleton(SplashCubit(getToken: getIt.get<GetToken>()));
+  getIt.registerSingleton(SplashCubit(
+      getToken: getIt.get<GetToken>(), removeToken: getIt.get<RemoveToken>()));
   getIt.registerSingleton(CartCubit());
 
   getIt.registerFactory(() => DetailsCubit());

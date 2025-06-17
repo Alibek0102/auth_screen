@@ -18,4 +18,9 @@ class TokenRepositoryImpl extends TokenRepository {
     final tokenModel = TokenModel.fromEntity(token);
     tokenDatasource.saveToken(tokenModel);
   }
+
+  @override
+  Future<void> removeToken() async {
+    await tokenDatasource.removeToken();
+  }
 }
