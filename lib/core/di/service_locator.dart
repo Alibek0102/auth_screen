@@ -22,7 +22,7 @@ import 'package:auth_screen/futures/orders/domain/use_case/get_order_use_case.da
 import 'package:auth_screen/futures/orders/domain/use_case/get_orders_use_case.dart';
 import 'package:auth_screen/futures/orders/presentation/blocs/orders_bloc/orders_cubit.dart';
 import 'package:auth_screen/futures/product_details/presentation/blocs/details_cubit.dart';
-import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
+import 'package:auth_screen/futures/profile/presentation/blocs/profile_bloc.dart';
 import 'package:auth_screen/futures/profile/domain/repository/user_repository_impl.dart';
 import 'package:auth_screen/futures/splash_screen/data/datasources/token_datasource.dart';
 import 'package:auth_screen/futures/splash_screen/data/repositories/token_repository_impl.dart';

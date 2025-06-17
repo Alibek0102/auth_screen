@@ -1,5 +1,5 @@
 import 'package:auth_screen/core/di/service_locator.dart';
-import 'package:auth_screen/futures/profile/bloc/profile_bloc.dart';
+import 'package:auth_screen/futures/profile/presentation/blocs/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,9 +17,9 @@ class AppBarLeading extends StatelessWidget {
           padding: const EdgeInsets.only(
             left: 24,
           ),
-          child: state.pickture != null
+          child: state.user?.picture != null
               ? CircleAvatar(
-                  backgroundImage: NetworkImage(state.pickture as String),
+                  backgroundImage: NetworkImage(state.user?.picture as String),
                 )
               : const CircleAvatar(),
         );

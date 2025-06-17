@@ -35,7 +35,8 @@ import 'package:auth_screen/futures/orders/presentation/screens/success_order_sc
     as _i16;
 import 'package:auth_screen/futures/product_details/presentation/screens/product_details_screen.dart'
     as _i11;
-import 'package:auth_screen/futures/profile/screen/profile_screen.dart' as _i12;
+import 'package:auth_screen/futures/profile/presentation/screens/profile_screen.dart'
+    as _i12;
 import 'package:auth_screen/futures/purchases/screen/purchases_screen.dart'
     as _i13;
 import 'package:auth_screen/futures/splash_screen/presentation/screens/splash_screen.dart'
