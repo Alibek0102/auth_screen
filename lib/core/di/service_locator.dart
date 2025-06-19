@@ -9,6 +9,11 @@ import 'package:auth_screen/futures/checkout/data/repositories/location_address_
 import 'package:auth_screen/futures/checkout/domain/usecases/get_address_usecases.dart';
 import 'package:auth_screen/futures/checkout/presentation/blocs/address_bloc/address_cubit.dart';
 import 'package:auth_screen/futures/checkout/presentation/blocs/payment_bloc/payment_cubit.dart';
+import 'package:auth_screen/futures/favorite/data/datasource/favorite_products_datasource.dart';
+import 'package:auth_screen/futures/favorite/data/repository/favorite_products_repository_impl.dart';
+import 'package:auth_screen/futures/favorite/domain/use_case/add_favorite_product.dart';
+import 'package:auth_screen/futures/favorite/domain/use_case/get_favorite_products.dart';
+import 'package:auth_screen/futures/favorite/presentation/blocs/favorite_cubit.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/data/model/product_model.dart';
@@ -45,8 +50,10 @@ Future<void> setupServiceLocator() async {
     Hive.registerAdapter(ProductModelAdapter());
   }
   final orderBox = await Hive.openBox<OrderModel>('order3');
+  final favoriteBox = await Hive.openBox<ProductModel>('favorite1');
 
   getIt.registerSingleton(orderBox);
+  getIt.registerSingleton(favoriteBox);
 
   final sharedPreferences = await SharedPreferences.getInstance();
   getIt.registerSingleton<SharedPreferences>(sharedPreferences);
@@ -60,6 +67,8 @@ Future<void> setupServiceLocator() async {
       LocationAddressDatasource(dioClient: getIt.get<DioClient>().instance));
   getIt.registerFactory(
       () => OrderDatasourceImpl(orderBox: getIt.get<Box<OrderModel>>()));
+  getIt.registerFactory(() => FavoriteProductsDatasourceImpl(
+      favoriteProductsBox: getIt.get<Box<ProductModel>>()));
 
   // repositories
   getIt.registerFactory(
@@ -77,6 +86,9 @@ Future<void> setupServiceLocator() async {
   getIt.registerFactory(() =>
       OrderRepositoryImpl(orderDatasource: getIt.get<OrderDatasourceImpl>()));
 
+  getIt.registerFactory(() => FavoriteProductsRepositoryImpl(
+      favoriteProductsDatasource: getIt.get<FavoriteProductsDatasourceImpl>()));
+
   // use cases
   getIt.registerFactory(
       () => GetToken(tokenRepository: getIt.get<TokenRepositoryImpl>()));
@@ -93,6 +105,11 @@ Future<void> setupServiceLocator() async {
       GetOrdersUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
   getIt.registerFactory(
       () => GetOrderUseCase(orderRepository: getIt.get<OrderRepositoryImpl>()));
+
+  getIt.registerFactory(() => GetFavoriteProducts(
+      favoriteProductsRepository: getIt.get<FavoriteProductsRepositoryImpl>()));
+  getIt.registerFactory(() => AddFavoriteProduct(
+      favoriteProductsRepository: getIt.get<FavoriteProductsRepositoryImpl>()));
 
   // blocs
   getIt.registerLazySingleton(
@@ -120,4 +137,9 @@ Future<void> setupServiceLocator() async {
       createOrderUseCase: getIt.get<CreateOrderUseCase>(),
       getOrdersUseCase: getIt.get<GetOrdersUseCase>(),
       getOrderUseCase: getIt.get<GetOrderUseCase>()));
+
+  getIt.registerSingleton(FavoriteCubit(
+      getFavoriteProducts: getIt.get<GetFavoriteProducts>(),
+      addFavoriteProduct: getIt.get<AddFavoriteProduct>())
+    ..loadFavoriteProducts());
 }

@@ -1,10 +1,10 @@
 import 'package:auth_screen/core/di/service_locator.dart';
 import 'package:auth_screen/elements/custom_sliver_app_bar.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
-import 'package:auth_screen/futures/cart/domain/entities/cart_product_entity.dart';
 import 'package:auth_screen/futures/cart/presentation/%20blocs/cart_cubit.dart';
 import 'package:auth_screen/futures/category_details/bloc/category_details_bloc.dart';
 import 'package:auth_screen/futures/category_details/common/category_title.dart';
+import 'package:auth_screen/futures/favorite/presentation/blocs/favorite_cubit.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
@@ -57,45 +57,41 @@ class CategoryDetailsScreen extends StatelessWidget {
                   SliverToBoxAdapter(
                     child: 15.height,
                   ),
-                  SliverPadding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    sliver: BlocBuilder<CartCubit, CartState>(
-                      bloc: getIt.get<CartCubit>(),
-                      builder: (context, cartState) {
-                        return SliverGrid.builder(
-                            itemCount: products.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisSpacing: 20,
-                                    mainAxisSpacing: 20,
-                                    crossAxisCount: 2,
-                                    mainAxisExtent: 281),
-                            itemBuilder: (BuildContext context, int index) {
-                              final bool isAddedToCart = cartState.maybeWhen(
-                                  hasProducts: (List<CartProductEntity> value) {
-                                    final indexOfProductInCart =
-                                        value.indexWhere((productInCart) =>
-                                            productInCart.product.id ==
-                                            products[index].id);
-
-                                    if (indexOfProductInCart != -1) {
-                                      return true;
-                                    }
-                                    return false;
-                                  },
-                                  orElse: () => false);
-
-                              return ProductItem(
-                                  productEntity: products[index],
-                                  availableInCart: isAddedToCart,
-                                  onAddToCart: () {
-                                    getIt
-                                        .get<CartCubit>()
-                                        .increment(product: products[index]);
-                                  });
-                            });
-                      },
-                    ),
+                  BlocBuilder<FavoriteCubit, FavoriteState>(
+                    bloc: getIt.get<FavoriteCubit>(),
+                    builder: (context, favoriteState) {
+                      return SliverPadding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                        sliver: BlocBuilder<CartCubit, CartState>(
+                          bloc: getIt.get<CartCubit>(),
+                          builder: (context, cartState) {
+                            return SliverGrid.builder(
+                                itemCount: products.length,
+                                gridDelegate:
+                                    const SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisSpacing: 20,
+                                        mainAxisSpacing: 20,
+                                        crossAxisCount: 2,
+                                        mainAxisExtent: 281),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return ProductItem(
+                                      productEntity: products[index],
+                                      availableInCart: favoriteState.products
+                                              .indexWhere((favoriteProduct) =>
+                                                  favoriteProduct.id ==
+                                                  products[index].id) !=
+                                          -1,
+                                      onAddToCart: () {
+                                        getIt
+                                            .get<FavoriteCubit>()
+                                            .appendFavoriteProduct(
+                                                product: products[index]);
+                                      });
+                                });
+                          },
+                        ),
+                      );
+                    },
                   ),
                   SliverToBoxAdapter(
                     child: 34.height,

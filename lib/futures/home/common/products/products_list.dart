@@ -1,5 +1,6 @@
 import 'package:auth_screen/core/di/service_locator.dart';
 import 'package:auth_screen/extensions/sized_box_by_int.dart';
+import 'package:auth_screen/futures/favorite/presentation/blocs/favorite_cubit.dart';
 import 'package:auth_screen/futures/home/bloc/products/products_bloc.dart';
 import 'package:auth_screen/futures/home/common/list_header.dart';
 import 'package:auth_screen/futures/home/common/products/product_item.dart';
@@ -97,33 +98,41 @@ class _ProductsState extends State<Products> {
                 );
               });
         }
-        return ListView.builder(
-            controller: _controller,
-            scrollDirection: Axis.horizontal,
-            itemCount: products.length,
-            padding: const EdgeInsets.symmetric(horizontal: 24),
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.only(right: 12.0),
-                child: SizedBox(
-                  width: 159,
-                  child: ProductItem(
-                    productEntity: products[index],
-                    availableInCart: false,
-                    onTapCard: () {
-                      if (widget.onShowDetails != null) {
-                        widget.onShowDetails!(product: products[index]);
-                      }
-                    },
-                    onAddToCart: () {
-                      // getIt
-                      //     .get<CartCubit>()
-                      //     .increment(product: products[index]);
-                    },
-                  ),
-                ),
-              );
-            });
+        return BlocBuilder<FavoriteCubit, FavoriteState>(
+          bloc: getIt.get<FavoriteCubit>(),
+          builder: (context, state) {
+            return ListView.builder(
+                controller: _controller,
+                scrollDirection: Axis.horizontal,
+                itemCount: products.length,
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 12.0),
+                    child: SizedBox(
+                      width: 159,
+                      child: ProductItem(
+                        productEntity: products[index],
+                        availableInCart: state.products.indexWhere(
+                                (stateProduct) =>
+                                    stateProduct.id == products[index].id) !=
+                            -1,
+                        onTapCard: () {
+                          if (widget.onShowDetails != null) {
+                            widget.onShowDetails!(product: products[index]);
+                          }
+                        },
+                        onAddToCart: () {
+                          getIt
+                              .get<FavoriteCubit>()
+                              .appendFavoriteProduct(product: products[index]);
+                        },
+                      ),
+                    ),
+                  );
+                });
+          },
+        );
       },
     );
   }

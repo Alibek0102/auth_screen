@@ -31,6 +31,7 @@ class AppRoutes extends RootStackRouter {
         AutoRoute(page: SuccessOrderRoute.page, path: '/success-order'),
         AutoRoute(
           page: OrderDetailsRoute.page,
-        )
+        ),
+        AutoRoute(page: FavoriteProductsRoute.page, path: '/favorite-products')
       ];
 }

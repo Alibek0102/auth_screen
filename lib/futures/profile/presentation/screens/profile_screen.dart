@@ -43,8 +43,11 @@ class ProfileScreen extends StatelessWidget {
                         32.height,
                         UserInfoView(user: state.user),
                         32.height,
-                        const ProfileActionItem(
-                          title: 'Wishlist',
+                        ProfileActionItem(
+                          title: 'Favorite Products',
+                          onTap: () {
+                            context.router.pushNamed('/favorite-products');
+                          },
                         ),
                         8.height,
                         const ProfileActionItem(
