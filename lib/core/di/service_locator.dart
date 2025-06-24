@@ -12,6 +12,7 @@ import 'package:auth_screen/futures/checkout/presentation/blocs/payment_bloc/pay
 import 'package:auth_screen/futures/favorite/data/datasource/favorite_products_datasource.dart';
 import 'package:auth_screen/futures/favorite/data/repository/favorite_products_repository_impl.dart';
 import 'package:auth_screen/futures/favorite/domain/use_case/add_favorite_product.dart';
+import 'package:auth_screen/futures/favorite/domain/use_case/delete_favorite_product.dart';
 import 'package:auth_screen/futures/favorite/domain/use_case/get_favorite_products.dart';
 import 'package:auth_screen/futures/favorite/presentation/blocs/favorite_cubit.dart';
 import 'package:auth_screen/futures/home/bloc/catagories/categories_bloc.dart';
@@ -110,6 +111,8 @@ Future<void> setupServiceLocator() async {
       favoriteProductsRepository: getIt.get<FavoriteProductsRepositoryImpl>()));
   getIt.registerFactory(() => AddFavoriteProduct(
       favoriteProductsRepository: getIt.get<FavoriteProductsRepositoryImpl>()));
+  getIt.registerFactory(() => DeleteFavoriteProduct(
+      favoriteProductsRepository: getIt.get<FavoriteProductsRepositoryImpl>()));
 
   // blocs
   getIt.registerLazySingleton(
@@ -140,5 +143,6 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerSingleton(FavoriteCubit(
       getFavoriteProducts: getIt.get<GetFavoriteProducts>(),
-      addFavoriteProduct: getIt.get<AddFavoriteProduct>()));
+      addFavoriteProduct: getIt.get<AddFavoriteProduct>(),
+      deleteFavoriteProduct: getIt.get<DeleteFavoriteProduct>()));
 }

@@ -23,4 +23,9 @@ class FavoriteProductsRepositoryImpl implements FavoriteProductsRepository {
     return favoriteProductsDatasource.appendToFavoriteBox(
         favoriteProduct: ProductModel.fromEntity(favoriteProduct));
   }
+
+  @override
+  Future<void> deleteFavoriteProductById({required int productId}) async {
+    await favoriteProductsDatasource.deleteById(productId: productId);
+  }
 }
