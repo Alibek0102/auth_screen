@@ -140,6 +140,5 @@ Future<void> setupServiceLocator() async {
 
   getIt.registerSingleton(FavoriteCubit(
       getFavoriteProducts: getIt.get<GetFavoriteProducts>(),
-      addFavoriteProduct: getIt.get<AddFavoriteProduct>())
-    ..loadFavoriteProducts());
+      addFavoriteProduct: getIt.get<AddFavoriteProduct>()));
 }
